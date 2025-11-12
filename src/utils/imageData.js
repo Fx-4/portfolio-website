@@ -1,7 +1,7 @@
 // src/data/imageData.js
 import image1 from '../assets/images/Smartlearn.png';
-import image2 from '../assets/images/Smartlearn.png';       
-import image3 from '../assets/images/Smartlearn.png';
+import image2 from '../assets/images/HistoricalJogja.png';       
+import image3 from '../assets/images/SecondLife.png';
 
 
 export const focusCardsData = [
@@ -12,10 +12,10 @@ export const focusCardsData = [
     },
     {
       src: image2, // Update with your actual image paths
-      title: "UI/UX Design"
+      title: "Historical Jogja"
     },
     {
       src: image3, // Update with your actual image
-      title: "Mobile Development"
+      title: "Second Life"
     }
   ];
