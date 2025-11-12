@@ -1,4 +1,5 @@
-const nodemailer = require('nodemailer');
+import process from 'process';
+import nodemailer from 'nodemailer';
 
 export default async function handler(req, res) {
   // CORS headers
@@ -33,7 +34,7 @@ export default async function handler(req, res) {
   try {
     await transporter.sendMail({
       from: email,
-      to: process.env.EMAIL_USER, // Email kamu
+      to: process.env.EMAIL_USER, // Email kamu (f4.code.work@gmail.com)
       subject: `Portfolio Contact: ${fullName}`,
       text: `
 Name: ${fullName}
