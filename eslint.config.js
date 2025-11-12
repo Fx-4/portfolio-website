@@ -6,8 +6,10 @@ import reactRefresh from 'eslint-plugin-react-refresh'
 
 export default [
   { ignores: ['dist'] },
+  // Konfigurasi untuk React files
   {
     files: ['**/*.{js,jsx}'],
+    ignores: ['api/**/*.js'], // Exclude API folder dari React config
     languageOptions: {
       ecmaVersion: 2020,
       globals: globals.browser,
@@ -33,6 +35,23 @@ export default [
         'warn',
         { allowConstantExport: true },
       ],
+    },
+  },
+  // Konfigurasi khusus untuk Vercel Serverless Functions (Node.js)
+  {
+    files: ['api/**/*.js'],
+    languageOptions: {
+      ecmaVersion: 2020,
+      globals: {
+        ...globals.node, // Node.js globals termasuk 'process'
+      },
+      parserOptions: {
+        ecmaVersion: 'latest',
+        sourceType: 'module',
+      },
+    },
+    rules: {
+      ...js.configs.recommended.rules,
     },
   },
 ]

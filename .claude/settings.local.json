@@ -18,7 +18,9 @@
       "Bash(npm run build:*)",
       "Bash(\"D:\\uii\\belajar mandiri\\website-portofolio\\src\\components\\NotFound.jsx\")",
       "Bash(git init:*)",
-      "Bash(git add:*)"
+      "Bash(git add:*)",
+      "Bash(git commit:*)",
+      "Bash(gh:*)"
     ],
     "deny": [],
     "ask": []

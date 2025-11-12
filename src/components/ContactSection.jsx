@@ -101,6 +101,23 @@ const ContactSection = () => {
     const data = Object.fromEntries(formData);
     
     try {
+      // Check if we're in development mode
+      const isDevelopment = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
+      
+      if (isDevelopment) {
+        // Mock success in development
+        console.log('Development mode - Form data:', data);
+        await new Promise(resolve => setTimeout(resolve, 1000)); // Simulate delay
+        setStatus({ 
+          type: 'success', 
+          message: '✅ Development mode: Form would be sent in production!' 
+        });
+        e.target.reset();
+        setIsSubmitting(false);
+        return;
+      }
+      
+      // Production mode - actual API call
       const response = await fetch('/api/contact', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
