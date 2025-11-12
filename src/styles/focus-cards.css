@@ -1,0 +1,175 @@
+/* src/styles/focus-cards.css */
+
+/* Card container */
+.focus-cards-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+    max-width: 64rem;
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
+    transition: all 0.3s ease;
+  }
+  
+  /* Media query for medium screens and up */
+  @media (min-width: 768px) {
+    .focus-cards-grid {
+      grid-template-columns: repeat(3, 1fr);
+      padding-left: 2rem;
+      padding-right: 2rem;
+    }
+  }
+  
+  /* Individual card */
+  .focus-card {
+    position: relative;
+    border-radius: 1rem;
+    background-color: var(--surface);
+    overflow: hidden;
+    height: 15rem;
+    width: 100%;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.07);
+    transition: all 0.3s ease;
+  }
+  
+  /* Card hover effect similar to .card in App.css */
+  .focus-card:hover {
+    transform: translateY(-5px);
+  }
+  
+  /* Card when blurred */
+  .focus-card.blurred {
+    filter: blur(4px);
+    transform: scale(0.98);
+  }
+  
+  /* Media query for medium screens and up */
+  @media (min-width: 768px) {
+    .focus-card {
+      height: 24rem;
+    }
+  }
+  
+  /* Card image */
+  .focus-card-image {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+  }
+  
+  /* Card overlay */
+  .focus-card-overlay {
+    position: absolute;
+    inset: 0;
+
+    display: flex;
+    align-items: flex-end;
+    padding: 2rem 1rem;
+    transition: opacity 0.3s ease;
+  }
+  
+  .focus-card-overlay.visible {
+    opacity: 1;
+  }
+  
+  .focus-card-overlay.hidden {
+    opacity: 0;
+  }
+  
+  /* Card title - using text-gradient from App.css */
+  .focus-card-title {
+    font-size: 1.25rem;
+    line-height: 1.75rem;
+    font-weight: 700;
+    background: linear-gradient(to right, var(--brand-primary), var(--brand-primary-hover));
+    background-color: aliceblue;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  
+  @media (min-width: 768px) {
+    .focus-card-title {
+      font-size: 1.5rem;
+      line-height: 2rem;
+    }
+  }
+  
+  /* Dark theme adjustments */
+  [data-theme="dark"] .focus-card {
+    background-color: var(--surface);
+  }
+  
+  /* Apply glass effect from App.css for a more cohesive look */
+  .focus-card.glass-effect {
+    background: rgba(var(--surface), 0.05);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(var(--text), 0.1);
+  } 
+
+  /* Add this to your focus-cards.css file */
+
+/* Indicate clickable cards with a subtle effect */
+.focus-card[style*="cursor: pointer"]:hover {
+    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+    transform: translateY(-8px);
+  }
+  
+  /* Add a subtle animation for the overlay when hovering on clickable cards */
+  .focus-card[style*="cursor: pointer"]:hover .focus-card-overlay {
+    opacity: 1;
+  }
+  
+  /* Optional: Add a small indicator that the card is clickable */
+  .focus-card[style*="cursor: pointer"] .focus-card-overlay::after {
+    content: "Click to learn more";
+    position: absolute;
+    bottom: 1rem;
+    left: 1rem;
+    font-size: 0.75rem;
+    opacity: 0.8;
+    color: #fff;
+    transition: opacity 0.3s ease;
+  }
+
+/* --- Mobile responsiveness --- */
+@media (max-width: 767px) {
+  .focus-cards-grid {
+    gap: 1.25rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+
+  .focus-card {
+    height: 14rem; /* sedikit lebih pendek agar muat di layar kecil */
+    border-radius: 0.75rem;
+  }
+
+  .focus-card-overlay {
+    padding: 1rem 0.75rem;
+    /* tambahkan gradien tipis untuk keterbacaan teks di atas gambar */
+    background: linear-gradient(to top, rgba(0,0,0,0.45) 0%, rgba(0,0,0,0.2) 40%, rgba(0,0,0,0) 80%);
+  }
+
+  .focus-card-title {
+    font-size: 1.125rem;
+    line-height: 1.5rem;
+  }
+}
+
+@media (max-width: 420px) {
+  .focus-card { height: 12.5rem; }
+  .focus-card-title { font-size: 1rem; line-height: 1.375rem; }
+  /* Ganti teks untuk perangkat sentuh kecil */
+  .focus-card[style*="cursor: pointer"] .focus-card-overlay::after { content: "Tap to learn more"; font-size: 0.7rem; }
+}
+
+/* Matikan efek hover berat di perangkat sentuh */
+@media (hover: none) {
+  .focus-card:hover { transform: none; }
+  .focus-card[style*="cursor: pointer"]:hover .focus-card-overlay { opacity: 1; }
+}

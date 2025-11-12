@@ -1,0 +1,354 @@
+/* Footer.css - Glassmorphism Design */
+
+:root {
+  --gap-size: 1.5rem;
+}
+
+/* Ensure the footer element pushes extra space after it on the page
+   If padding inside `.footer-container` didn't create visible spacing (e.g. because footer is the last element),
+   add margin-bottom on the footer wrapper itself so the page has more blank space below. */
+footer.max-screen {
+  /* slightly reduced from previous large values */
+    /* reduced further per user request */
+    margin-bottom: 30px;
+}
+
+footer.max-screen {
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+.py-sm {
+  padding-top: clamp(1.5rem, 3vw, 2rem);
+  padding-bottom: clamp(1.5rem, 3vw, 2rem);
+}
+
+.flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.rounded-3xl {
+  border-radius: clamp(1rem, 2vw, 1.5rem);
+}
+
+/* Footer container - Glassmorphism Style */
+.footer-container {
+  /* Glassmorphism effect matching navbar */
+  background: linear-gradient(135deg,
+    rgba(255, 255, 255, 0.4),
+    rgba(255, 255, 255, 0.25));
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+
+  /* Border & Shadow */
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.1),
+              inset 0 1px 0 0 rgba(255, 255, 255, 0.5);
+
+  transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease, border-color 0.3s ease;
+  opacity: 1 !important;
+  visibility: visible !important;
+    /* Extra bottom padding: reduced further so footer remains compact */
+    padding: bottom 20px;;
+}
+
+.footer-container:hover {
+  box-shadow: 0 12px 40px 0 rgba(0, 0, 0, 0.15),
+              inset 0 1px 0 0 rgba(255, 255, 255, 0.6);
+}
+
+/* Heading text styles */
+footer .heading-text,
+footer h2.heading-text,
+footer .split-parent.heading-text {
+  font-size: clamp(1.75rem, 5vw, 2.75rem) !important;
+  font-weight: 700 !important;
+  line-height: 1.2 !important;
+  color: var(--text) !important;
+  transition: color 0.3s ease !important;
+}
+
+/* Button - Theme-aware */
+#footer-cta-button,
+#footer-cta-button.button,
+footer #footer-cta-button,
+footer .button,
+footer a.button,
+.footer-container .button,
+.footer-container a.button,
+footer .button.button,
+a.button.button {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 8px !important;
+  padding: clamp(12px, 2vw, 16px) clamp(28px, 4vw, 36px) !important;
+  font-size: clamp(0.9375rem, 2vw, 1.0625rem) !important;
+  font-weight: 600 !important;
+  color: #ffffff !important;
+  text-decoration: none !important;
+  border-radius: 12px !important;
+
+
+  /* Use theme brand colors */
+  background: var(--brand-primary) !important;
+  backdrop-filter: blur(10px) !important;
+  -webkit-backdrop-filter: blur(10px) !important;
+  border: 1px solid var(--brand-primary) !important;
+  box-shadow: 0 4px 20px rgba(42, 157, 143, 0.35) !important;
+
+  transition: all 0.3s ease !important;
+  cursor: pointer !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+}
+
+#footer-cta-button:hover,
+#footer-cta-button.button:hover,
+footer #footer-cta-button:hover,
+footer .button:hover,
+footer a.button:hover,
+.footer-container .button:hover,
+.footer-container a.button:hover,
+footer .button.button:hover,
+a.button.button:hover {
+  transform: translateY(-2px) !important;
+  background: var(--brand-primary-hover) !important;
+  border-color: var(--brand-primary-hover) !important;
+  box-shadow: 0 6px 24px rgba(42, 157, 143, 0.45) !important;
+  color: #ffffff !important;
+}
+
+footer .button:active {
+  transform: translateY(0);
+}
+
+/* Copyright text */
+.copyright-text {
+  color: var(--text-muted) !important;
+  font-size: clamp(0.9375rem, 2vw, 1rem) !important;
+  font-weight: 500 !important;
+  text-align: center;
+  transition: color 0.3s ease;
+  opacity: 1 !important;
+  visibility: visible !important;
+}
+
+/* Social links - Glass effect */
+.social-link-custom {
+  display: inline-flex !important;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+
+  /* Glass effect background using theme colors */
+  background: rgba(42, 157, 143, 0.15) !important;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1.5px solid var(--brand-primary) !important;
+
+  color: var(--brand-primary) !important;
+  transition: all 0.3s ease;
+  opacity: 1 !important;
+  visibility: visible !important;
+}
+
+.social-link-custom:hover {
+  background: rgba(42, 157, 143, 0.25);
+  border-color: var(--brand-primary-hover);
+  transform: translateY(-3px);
+  box-shadow: 0 6px 16px rgba(42, 157, 143, 0.25);
+}
+
+.opacity-container-child {
+  transition: transform 0.3s ease;
+  color: currentColor;
+}
+
+.social-link-custom:hover .opacity-container-child {
+  transform: scale(1.1);
+}
+
+/* Footer bottom section */
+.footer-bottom-section {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  z-index: 10;
+}
+
+.footer-content-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  gap: clamp(1rem, 2vw, 1.5rem);
+}
+
+.copyright-wrapper {
+  width: 100%;
+  opacity: 1 !important;
+  visibility: visible !important;
+}
+
+.social-links-container {
+  display: flex;
+  justify-content: center;
+  gap: clamp(0.75rem, 2vw, 1rem);
+  flex-wrap: wrap;
+  opacity: 1 !important;
+  visibility: visible !important;
+}
+
+.social-item {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 1 !important;
+  visibility: visible !important;
+}
+
+/* SplitText Animation */
+.split-letter {
+  transform-origin: 50% 100%;
+}
+
+/* Dark Theme Support */
+[data-theme='dark'] .footer-container {
+  /* Dark glassmorphism effect */
+  background: linear-gradient(135deg,
+    rgba(29, 53, 87, 0.4),
+    rgba(29, 53, 87, 0.25));
+  border: 1px solid rgba(231, 111, 81, 0.2);
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.4),
+              inset 0 1px 0 0 rgba(231, 111, 81, 0.15);
+}
+
+[data-theme='dark'] .footer-container:hover {
+  box-shadow: 0 12px 40px 0 rgba(0, 0, 0, 0.5),
+              inset 0 1px 0 0 rgba(231, 111, 81, 0.2);
+}
+
+[data-theme='dark'] .social-link-custom {
+  background: rgba(231, 111, 81, 0.15) !important;
+}
+
+[data-theme='dark'] .social-link-custom:hover {
+  background: rgba(231, 111, 81, 0.25) !important;
+  box-shadow: 0 6px 16px rgba(231, 111, 81, 0.25);
+}
+
+/* Responsive Design */
+@media (min-width: 640px) {
+  footer.max-screen {
+    padding: 0 1.5rem;
+  }
+
+  footer .copyright-text {
+    text-align: left;
+  }
+}
+
+@media (min-width: 768px) {
+  .footer-content-wrapper {
+    flex-direction: row;
+    justify-content: space-between;
+  }
+
+  .copyright-wrapper {
+    width: auto;
+  }
+
+  .social-links-container {
+    gap: 1.25rem;
+  }
+}
+
+@media (max-width: 480px) {
+  footer .social-link-custom {
+    width: 40px;
+    height: 40px;
+  }
+
+  footer .opacity-container-child {
+    width: 18px;
+    height: 18px;
+  }
+}
+
+@media (max-width: 375px) {
+  footer.max-screen {
+    padding: 0 0.75rem;
+  }
+
+  footer .social-link-custom {
+    width: 38px;
+    height: 38px;
+  }
+}
+
+@media (max-width: 320px) {
+  footer.max-screen {
+    padding: 0 0.5rem;
+  }
+
+  footer .social-link-custom {
+    width: 36px;
+    height: 36px;
+  }
+
+  footer .social-links-container {
+    gap: 0.5rem;
+  }
+}
+
+/* Reduced Motion Support */
+@media (prefers-reduced-motion: reduce) {
+  .footer-container,
+  footer .button,
+  .social-link-custom,
+  .opacity-container-child {
+    transition: none;
+  }
+
+  .split-letter {
+    animation: none;
+    transform: none !important;
+    opacity: 1 !important;
+  }
+}
+
+/* Layout utilities */
+.flex-col {
+  flex-direction: column;
+}
+
+.m-auto {
+  margin: auto;
+}
+
+.max-w-screen-sm {
+  max-width: 640px;
+}
+
+.py-14 {
+  padding-top: clamp(2.5rem, 5vw, 3.5rem);
+  padding-bottom: clamp(2.5rem, 5vw, 3.5rem);
+}
+
+.z-10 {
+  z-index: 10;
+}
+
+.mb-6 {
+  margin-bottom: clamp(1rem, 2vw, 1.5rem);
+}
+
+.space-y-6 > * + * {
+  margin-top: clamp(1rem, 2vw, 1.5rem);
+}

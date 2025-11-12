@@ -1,0 +1,54 @@
+:root {
+  /* Inverting the colors - text becomes background and vice versa */
+  --scroller-bg: var(--bg-color);
+  --scroller-text: var(--text-color);
+  --scroller-shadow: rgba(255, 255, 255, 0.1);
+  --scroll-duration: 20s;
+}
+
+[data-theme='dark'] {
+  --scroller-bg: var(--bg-color);
+  --scroller-text: var(--text-color);
+  --scroller-shadow: rgba(0, 0, 0, 0.1);
+}
+
+.parallax {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  transition: all 0.3s ease;
+  background-color: var(--scroller-text) !important;
+
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  display: flex;
+  align-items: center;
+}
+
+.scroller {
+  display: flex;
+  white-space: nowrap;
+  text-align: center;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 2.25rem;
+  font-style: italic;
+  font-weight: bolder;
+  letter-spacing: 5px;
+  filter: drop-shadow(0 1px 1px var(--scroller-shadow));
+  color: var(--scroller-bg)!important;
+  transition: color 0.3s ease;
+  will-change: transform;
+  min-width: 100%;
+}
+
+.scroller span {
+  display: inline-block;
+  flex-shrink: 0;
+}
+
+@media (min-width: 768px) {
+  .scroller {
+    font-size: 5rem;
+    line-height: 5rem;
+  }
+}

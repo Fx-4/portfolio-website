@@ -1,0 +1,12 @@
+# robots.txt for Haikal Hifzhi Helmy Portfolio
+# Allow all search engines to crawl the site
+
+User-agent: *
+Allow: /
+
+# Disallow admin or private directories if any
+# Disallow: /admin/
+# Disallow: /private/
+
+# Sitemap location
+Sitemap: https://haikalhelmy.vercel.app/sitemap.xml

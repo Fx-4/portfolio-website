@@ -1,0 +1,206 @@
+.error-boundary-container {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--background, #F4F4F4);
+  padding: 2rem;
+}
+
+.error-boundary-content {
+  text-align: center;
+  max-width: 600px;
+  width: 100%;
+}
+
+.error-icon {
+  color: var(--error-color, #ef4444);
+  margin-bottom: 1.5rem;
+  display: inline-block;
+  animation: shake 0.5s ease-in-out;
+}
+
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  10%, 30%, 50%, 70%, 90% { transform: translateX(-10px); }
+  20%, 40%, 60%, 80% { transform: translateX(10px); }
+}
+
+.error-title {
+  font-size: clamp(1.75rem, 4vw, 2.25rem);
+  font-weight: 700;
+  color: var(--text, #264653);
+  margin-bottom: 1rem;
+}
+
+.error-description {
+  font-size: clamp(1rem, 2vw, 1.125rem);
+  color: var(--text-secondary, #6B7280);
+  margin-bottom: 2rem;
+  line-height: 1.6;
+}
+
+.error-details {
+  background: var(--bg-secondary, #E5E7EB);
+  border-radius: 0.75rem;
+  padding: 1rem;
+  margin: 2rem 0;
+  text-align: left;
+  border: 1px solid var(--border-color, #D1D5DB);
+}
+
+.error-details-summary {
+  cursor: pointer;
+  font-weight: 600;
+  color: var(--text, #264653);
+  list-style: none;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.error-details-summary::-webkit-details-marker {
+  display: none;
+}
+
+.error-details-summary::before {
+  content: '¶';
+  transition: transform 0.2s;
+  display: inline-block;
+}
+
+.error-details[open] .error-details-summary::before {
+  transform: rotate(90deg);
+}
+
+.error-details-content {
+  margin-top: 1rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--border-color, #D1D5DB);
+}
+
+.error-details-content strong {
+  display: block;
+  margin-top: 0.75rem;
+  margin-bottom: 0.5rem;
+  color: var(--text, #264653);
+}
+
+.error-details-content pre {
+  background: var(--bg-tertiary, #F3F4F6);
+  padding: 0.75rem;
+  border-radius: 0.5rem;
+  overflow-x: auto;
+  font-size: 0.875rem;
+  line-height: 1.5;
+  color: var(--error-color, #ef4444);
+}
+
+.error-actions {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.error-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.875rem 1.75rem;
+  border-radius: 9999px;
+  font-size: 1rem;
+  font-weight: 600;
+  transition: all 0.2s ease;
+  cursor: pointer;
+  border: none;
+  font-family: inherit;
+}
+
+.error-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.error-button:active {
+  transform: translateY(0);
+}
+
+.error-button-primary {
+  background: var(--brand-primary, #2563eb);
+  color: white;
+}
+
+.error-button-primary:hover {
+  background: var(--brand-primary-hover, #1d4ed8);
+}
+
+.error-button-secondary {
+  background: var(--bg-secondary, #E5E7EB);
+  color: var(--text, #264653);
+}
+
+.error-button-secondary:hover {
+  background: var(--bg-tertiary, #D1D5DB);
+}
+
+/* Dark theme support */
+.dark .error-boundary-container {
+  background: var(--background-dark, #1a202c);
+}
+
+.dark .error-icon {
+  color: var(--error-color-dark, #f87171);
+}
+
+.dark .error-title {
+  color: var(--text-dark, #f8fafc);
+}
+
+.dark .error-description {
+  color: var(--text-secondary-dark, #94a3b8);
+}
+
+.dark .error-details {
+  background: var(--bg-secondary-dark, #1e293b);
+  border-color: var(--border-color-dark, #334155);
+}
+
+.dark .error-details-summary {
+  color: var(--text-dark, #f8fafc);
+}
+
+.dark .error-details-content {
+  border-color: var(--border-color-dark, #334155);
+}
+
+.dark .error-details-content strong {
+  color: var(--text-dark, #f8fafc);
+}
+
+.dark .error-details-content pre {
+  background: var(--bg-tertiary-dark, #0f172a);
+  color: var(--error-color-dark, #f87171);
+}
+
+.dark .error-button-secondary {
+  background: var(--bg-secondary-dark, #334155);
+  color: var(--text-dark, #f8fafc);
+}
+
+.dark .error-button-secondary:hover {
+  background: var(--bg-tertiary-dark, #475569);
+}
+
+/* Responsive adjustments */
+@media (max-width: 640px) {
+  .error-actions {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .error-button {
+    width: 100%;
+    justify-content: center;
+  }
+}

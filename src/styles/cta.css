@@ -1,0 +1,34 @@
+.cta-gradient-btn{
+  position:relative;display:inline-flex;align-items:center;justify-content:center;
+  border-radius:9999px;padding:3px;text-decoration:none;cursor:pointer;
+  background:linear-gradient(90deg, var(--brand-primary, #2A9D8F), var(--highlight, #E76F51));
+  transition:transform .25s ease,filter .25s ease, box-shadow .25s ease
+}
+.cta-gradient-btn:hover{transform:translateY(-1px);box-shadow:0 8px 24px -10px rgba(0,0,0,.25)}
+.cta-gradient-btn:active{transform:translateY(0)}
+.cta-gradient-btn:focus-visible{outline:none;box-shadow:0 0 0 3px color-mix(in srgb, var(--brand-color,#22d3ee) 35%, transparent)}
+
+.cta-gradient-btn .inner{
+  position:relative;display:inline-flex;align-items:center;gap:.6rem;
+  border-radius:9999px;padding:.7rem 1.75rem;font-weight:700;font-size:14px;
+  color: var(--text, #264653);
+  background: color-mix(in srgb, var(--surface, #ffffff) 88%, transparent);
+  border:1px solid color-mix(in srgb, var(--text, #264653) 12%, transparent);
+}
+@media (min-width:768px){.cta-gradient-btn .inner{font-size:16px;padding:.8rem 1.9rem}}
+
+/* Dark theme overrides use the same CSS variables already defined in the app */
+/* :root[data-theme='dark'] .cta-gradient-btn .inner,
+[data-theme='dark'] .cta-gradient-btn .inner{ */
+  /* background:rgba(2,6,23,.72); */
+  /* color:var(--text-color,#ffffff); */
+  /* border-color:rgba(255,255,255,.12) */
+  /* } */
+
+.cta-gradient-btn .arrow{width:18px;height:18px;stroke:currentColor;transition:transform .25s ease}
+.cta-gradient-btn:hover .arrow{transform:translateX(4px)}
+
+.cta-gradient-btn .shine{position:absolute;inset:-2px;border-radius:inherit;pointer-events:none;
+  background:linear-gradient(90deg,rgba(255,255,255,.5),rgba(255,255,255,0) 40%,rgba(255,255,255,.5) 60%,rgba(255,255,255,0));
+  filter:blur(6px);opacity:.28;transition:opacity .25s ease}
+.cta-gradient-btn:hover .shine{opacity:.5}

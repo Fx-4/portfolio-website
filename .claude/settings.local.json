@@ -1,0 +1,26 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npm run dev:*)",
+      "Bash(npx shadcn@latest mcp init:*)",
+      "Bash(netstat:*)",
+      "Bash(findstr:*)",
+      "Bash(where /r . *.log 2)",
+      "Bash(nul)",
+      "Bash(dir:*)",
+      "Bash(npm install:*)",
+      "Bash(npm uninstall:*)",
+      "Bash(npx @react-bits/cli add lanyard)",
+      "WebFetch(domain:www.reactbits.dev)",
+      "Bash(npx shadcn@latest add:*)",
+      "Bash(npx @react-bits/cli add:*)",
+      "Bash(npm run lint)",
+      "Bash(npm run build:*)",
+      "Bash(\"D:\\uii\\belajar mandiri\\website-portofolio\\src\\components\\NotFound.jsx\")",
+      "Bash(git init:*)",
+      "Bash(git add:*)"
+    ],
+    "deny": [],
+    "ask": []
+  }
+}

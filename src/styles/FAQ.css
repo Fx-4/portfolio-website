@@ -1,0 +1,216 @@
+/* FAQ.css */
+:root {
+    /* Using variables from App.css */
+    --faq-border-color: rgba(229, 231, 235, 0.2);
+    --faq-bg-color: var(--surface);
+    --faq-highlight: var(--brand-primary);
+    --faq-transition-duration: 0.3s;
+    --faq-transition-timing: cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  
+  [data-theme="dark"] {
+    --faq-border-color: rgba(74, 85, 104, 0.2);
+    --faq-bg-color: var(--surface);
+  }
+  
+  .faq-section {
+    max-width: 1200px;
+    margin: 4rem auto;
+    padding: 0 1rem;
+    display: flex;
+    justify-content: space-between;
+    gap: 1.5rem;
+    flex-direction: column;
+    background-color: var(--background);
+    color: var(--text);
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+  
+  .faq-header {
+    flex: 1;
+    visibility: visible !important;
+    opacity: 1 !important;
+  }
+  
+  .faq-title-container {
+    margin-bottom: 1rem;
+    display: flex;
+    width: fit-content;
+    align-items: center;
+    gap: 0.5rem;
+    color: var(--brand-primary);
+    visibility: visible !important;
+    opacity: 1 !important;
+  }
+  
+  .faq-icon {
+    color: currentColor;
+  }
+  
+  .faq-subtitle {
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    font-size: 0.875rem;
+    text-transform: uppercase;
+    font-weight: 600;
+    letter-spacing: 1px;
+    line-height: 1;
+    color: currentColor;
+    visibility: visible !important;
+    opacity: 1 !important;
+  }
+
+  /* Force visibility for FAQ header elements - override AOS */
+  .faq-section [data-aos],
+  .faq-header [data-aos],
+  .faq-section .aos-init {
+    opacity: 1 !important;
+    visibility: visible !important;
+    transform: none !important;
+  }
+  
+  .faq-heading {
+    margin-bottom: 2rem;
+    font-size: 2rem;
+    font-weight: 700;
+    line-height: 1.2;
+    color: var(--text);
+    visibility: visible !important;
+    opacity: 1 !important;
+  }
+
+  .heading-text {
+    margin-right: 0.25em;
+    display: inline-block;
+    overflow-y: hidden;
+    white-space: nowrap;
+    visibility: visible !important;
+    opacity: 1 !important;
+  }
+
+  .heading-char {
+    display: inline-block;
+    opacity: 1 !important;
+    visibility: visible !important;
+    transition: transform 0.3s ease;
+  }
+  
+  .heading-char:hover {
+    transform: translateY(-5px);
+  }
+  
+  .faq-content-container {
+    width: 100%;
+  }
+  
+  .faq-item {
+    margin-bottom: 1rem;
+    border-radius: 1rem;
+    border: 1px solid var(--faq-border-color);
+    background-color: var(--faq-bg-color);
+    overflow: hidden;
+    transition: all var(--faq-transition-duration) var(--faq-transition-timing);
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.07);
+  }
+  
+  .faq-item:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+  }
+  
+  .faq-button {
+    display: flex;
+    flex: 1;
+    justify-content: space-between;
+    gap: 0.5rem;
+    padding: 1rem;
+    text-align: left;
+    font-size: 1rem;
+    font-weight: 500;
+    color: var(--text);
+    width: 100%;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    transition: all var(--faq-transition-duration) var(--faq-transition-timing);
+  }
+  
+  .faq-button:focus {
+    outline: none;
+  }
+  
+  .faq-button:focus-visible {
+    box-shadow: 0 0 0 2px var(--brand-primary);
+  }
+  
+  .faq-number {
+    color: var(--text-muted);
+    margin-right: 0.5rem;
+    font-weight: 600;
+    opacity: 0.8;
+    min-width: 2ch;
+  }
+  
+  .chevron {
+    margin-left: auto;
+    width: 1rem;
+    height: 1rem;
+    flex-shrink: 0;
+    transition: transform var(--faq-transition-duration) var(--faq-transition-timing);
+    color: var(--brand-primary);
+  }
+  
+  .chevron.rotate {
+    transform: rotate(180deg);
+  }
+  
+  .faq-content-wrapper {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height var(--faq-transition-duration) var(--faq-transition-timing);
+  }
+  
+  .faq-content-wrapper.open {
+    max-height: 1000px; /* Large enough value to accommodate content */
+  }
+  
+  .faq-content {
+    padding: 0 1rem 1rem 1rem;
+    font-size: 1rem;
+    color: var(--text-muted);
+    opacity: 0;
+    transform: translateY(-10px);
+    transition: opacity var(--faq-transition-duration) var(--faq-transition-timing),
+                transform var(--faq-transition-duration) var(--faq-transition-timing);
+  }
+  
+  .faq-content.open {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  
+  /* Text gradient effect for titles */
+  .text-gradient-faq {
+    background: linear-gradient(to right, var(--brand-primary), var(--brand-primary-hover));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  
+  @media (min-width: 640px) {
+    .faq-section {
+      flex-direction: row;
+    }
+    
+    .faq-content-container {
+      width: 66.666667%;
+    }
+    
+    .faq-heading {
+      font-size: 2.5rem;
+    }
+  }
+  
+  @media (min-width: 768px) {
+    .faq-heading {
+      font-size: 3rem;
+    }
+  }

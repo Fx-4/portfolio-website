@@ -1,0 +1,68 @@
+/* Scroll Fade Overlay - Creates gradient fade effect */
+
+.scroll-fade-overlay {
+  position: fixed;
+  left: 0;
+  right: 0;
+  width: 100%;
+  height: 100px;
+  pointer-events: none;
+  z-index: 999;
+  transition: opacity 0.3s ease;
+}
+
+/* Top gradient - fades content into background at top */
+.scroll-fade-top {
+  top: 0;
+  background: linear-gradient(
+    to bottom,
+    var(--background, #F4F4F4) 0%,
+    rgba(244, 244, 244, 0.9) 20%,
+    rgba(244, 244, 244, 0.6) 50%,
+    rgba(244, 244, 244, 0.2) 80%,
+    rgba(244, 244, 244, 0) 100%
+  );
+}
+
+/* Bottom gradient - fades content into background at bottom */
+.scroll-fade-bottom {
+  bottom: 0;
+  background: linear-gradient(
+    to top,
+    var(--background, #F4F4F4) 0%,
+    rgba(244, 244, 244, 0.9) 20%,
+    rgba(244, 244, 244, 0.6) 50%,
+    rgba(244, 244, 244, 0.2) 80%,
+    rgba(244, 244, 244, 0) 100%
+  );
+}
+
+/* Dark theme gradients */
+[data-theme='dark'] .scroll-fade-top {
+  background: linear-gradient(
+    to bottom,
+    #1D3557 0%,
+    rgba(29, 53, 87, 0.9) 20%,
+    rgba(29, 53, 87, 0.6) 50%,
+    rgba(29, 53, 87, 0.2) 80%,
+    rgba(29, 53, 87, 0) 100%
+  );
+}
+
+[data-theme='dark'] .scroll-fade-bottom {
+  background: linear-gradient(
+    to top,
+    #1D3557 0%,
+    rgba(29, 53, 87, 0.9) 20%,
+    rgba(29, 53, 87, 0.6) 50%,
+    rgba(29, 53, 87, 0.2) 80%,
+    rgba(29, 53, 87, 0) 100%
+  );
+}
+
+/* Optional: Adjust height for mobile */
+@media (max-width: 768px) {
+  .scroll-fade-overlay {
+    height: 80px;
+  }
+}

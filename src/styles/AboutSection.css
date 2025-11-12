@@ -1,0 +1,80 @@
+/* About Section - Custom Layout */
+
+.about-section-wrapper {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-top: clamp(2rem, 4vw, 3rem);
+}
+
+.about-section-container {
+  width: 100%;
+  max-width: 1200px;
+  padding: 0 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+/* Desktop Layout - 3 Column Grid */
+@media (min-width: 1024px) {
+  .about-section-container {
+    display: grid;
+    grid-template-columns: 320px 2rem 1fr;
+    gap: 2.5rem;
+    align-items: start;
+  }
+}
+
+/* Profile Column (Left) */
+.about-profile-column {
+  display: flex;
+  justify-content: center;
+}
+
+@media (min-width: 1024px) {
+  .about-profile-column {
+    justify-content: flex-start;
+    grid-column: 1;
+  }
+}
+
+/* Gap Column (Center) - Empty space */
+.about-gap-column {
+  display: none;
+}
+
+@media (min-width: 1024px) {
+  .about-gap-column {
+    display: block;
+    grid-column: 2;
+  }
+}
+
+/* Text Column (Right) */
+.about-text-column {
+  width: 100%;
+}
+
+@media (min-width: 1024px) {
+  .about-text-column {
+    grid-column: 3;
+  }
+}
+
+/* Tablet adjustments */
+@media (min-width: 768px) and (max-width: 1023px) {
+  .about-section-container {
+    max-width: 720px;
+    padding: 0 2rem;
+    gap: 2.5rem;
+  }
+}
+
+/* Mobile adjustments */
+@media (max-width: 767px) {
+  .about-section-container {
+    padding: 0 1.5rem;
+    gap: 2rem;
+  }
+}

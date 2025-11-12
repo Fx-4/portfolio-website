@@ -1,0 +1,219 @@
+/* EnhancedAboutText.css - Typography Enhancement */
+
+.enhanced-about-text {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: clamp(1rem, 2vw, 1.5rem);
+  /* Performance optimization for animations */
+  will-change: opacity, transform;
+}
+
+.about-paragraph {
+  margin: 0;
+  line-height: 1.8;
+  text-align: justify;
+  color: var(--text-color, #264653);
+  transition: color 0.3s ease;
+  max-width: 100%;
+  hyphens: auto;
+  /* Performance optimization for blur transitions */
+  will-change: opacity, filter, transform;
+  /* Use GPU acceleration */
+  transform: translateZ(0);
+  backface-visibility: hidden;
+}
+
+/* Drop Cap - First Letter Enhancement */
+.drop-cap {
+  float: left;
+  font-size: clamp(3.5rem, 8vw, 4.5rem);
+  line-height: 0.85;
+  font-weight: 700;
+  margin-right: clamp(0.375rem, 1vw, 0.5rem);
+  margin-top: clamp(0.25rem, 0.5vw, 0.375rem);
+
+  /* Gradient text effect */
+  background: linear-gradient(
+    135deg,
+    #2A9D8F 0%,
+    #264653 50%,
+    #2A9D8F 100%
+  );
+  background-size: 200% 200%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+
+  /* Subtle glow effect */
+  filter: drop-shadow(0 2px 8px rgba(42, 157, 143, 0.3));
+
+  /* Animation */
+  animation: gradientShift 6s ease infinite;
+}
+
+@keyframes gradientShift {
+  0%, 100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+/* Name Gradient - Haikal Hifzhi Helmy */
+.name-gradient {
+  font-weight: 700;
+  background: linear-gradient(
+    120deg,
+    #2A9D8F 0%,
+    #1d7468 25%,
+    #2A9D8F 50%,
+    #1d7468 75%,
+    #2A9D8F 100%
+  );
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: shimmer 3s linear infinite;
+  position: relative;
+  display: inline-block;
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: 0% center;
+  }
+  100% {
+    background-position: 200% center;
+  }
+}
+
+/* Keyword Highlighting */
+.keyword {
+  position: relative;
+  font-weight: 600;
+  color: #2A9D8F;
+  transition: all 0.3s ease;
+  display: inline-block;
+  padding: 0 0.125rem;
+}
+
+.keyword::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    #2A9D8F 50%,
+    transparent 100%
+  );
+  opacity: 0;
+  transform: scaleX(0);
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.keyword:hover {
+  color: #1d7468;
+  transform: translateY(-1px);
+}
+
+.keyword:hover::after {
+  opacity: 1;
+  transform: scaleX(1);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .drop-cap {
+    font-size: clamp(3rem, 7vw, 3.5rem);
+    margin-right: clamp(0.25rem, 0.75vw, 0.375rem);
+  }
+}
+
+@media (max-width: 480px) {
+  .drop-cap {
+    font-size: clamp(2.5rem, 6vw, 3rem);
+    margin-right: 0.25rem;
+    margin-top: 0.125rem;
+  }
+
+  .about-paragraph {
+    line-height: 1.65;
+  }
+}
+
+/* Dark Theme Support */
+[data-theme='dark'] .about-paragraph {
+  color: var(--text-color, #E9C46A);
+}
+
+[data-theme='dark'] .drop-cap {
+  background: linear-gradient(
+    135deg,
+    #E76F51 0%,
+    #E9C46A 50%,
+    #E76F51 100%
+  );
+  background-size: 200% 200%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  filter: drop-shadow(0 2px 8px rgba(231, 111, 81, 0.3));
+}
+
+[data-theme='dark'] .name-gradient {
+  background: linear-gradient(
+    120deg,
+    #E9C46A 0%,
+    #c4a65b 25%,
+    #E9C46A 50%,
+    #c4a65b 75%,
+    #E9C46A 100%
+  );
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+[data-theme='dark'] .keyword {
+  color: #E76F51;
+}
+
+[data-theme='dark'] .keyword::after {
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    #E76F51 50%,
+    transparent 100%
+  );
+}
+
+[data-theme='dark'] .keyword:hover {
+  color: #d4624a;
+}
+
+/* Reduced Motion Support */
+@media (prefers-reduced-motion: reduce) {
+  .drop-cap,
+  .name-gradient,
+  .keyword,
+  .keyword::after {
+    animation: none;
+    transition: none;
+  }
+
+  .drop-cap {
+    background-position: 0% 50%;
+  }
+
+  .name-gradient {
+    background-position: 0% center;
+  }
+}

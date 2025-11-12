@@ -1,0 +1,125 @@
+.notfound-container {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-center: center;
+  background: var(--background, #F4F4F4);
+  padding: 2rem;
+}
+
+.notfound-content {
+  text-align: center;
+  max-width: 500px;
+}
+
+.notfound-error-code {
+  font-size: clamp(6rem, 15vw, 10rem);
+  font-weight: 800;
+  color: var(--brand-primary, #2563eb);
+  line-height: 1;
+  margin-bottom: 1rem;
+  font-family: 'Clash Display', system-ui, sans-serif;
+  text-shadow: 2px 2px 0 rgba(37, 99, 235, 0.1);
+}
+
+.notfound-title {
+  font-size: clamp(1.75rem, 4vw, 2.5rem);
+  font-weight: 700;
+  color: var(--text, #264653);
+  margin-bottom: 1rem;
+}
+
+.notfound-description {
+  font-size: clamp(1rem, 2vw, 1.125rem);
+  color: var(--text-secondary, #6B7280);
+  margin-bottom: 2.5rem;
+  line-height: 1.6;
+}
+
+.notfound-actions {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.notfound-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.875rem 1.75rem;
+  border-radius: 9999px;
+  font-size: 1rem;
+  font-weight: 600;
+  transition: all 0.2s ease;
+  cursor: pointer;
+  border: none;
+  font-family: inherit;
+}
+
+.notfound-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.notfound-button:active {
+  transform: translateY(0);
+}
+
+.notfound-button-primary {
+  background: var(--brand-primary, #2563eb);
+  color: white;
+}
+
+.notfound-button-primary:hover {
+  background: var(--brand-primary-hover, #1d4ed8);
+}
+
+.notfound-button-secondary {
+  background: var(--bg-secondary, #E5E7EB);
+  color: var(--text, #264653);
+}
+
+.notfound-button-secondary:hover {
+  background: var(--bg-tertiary, #D1D5DB);
+}
+
+/* Dark theme support */
+.dark .notfound-container {
+  background: var(--background-dark, #1a202c);
+}
+
+.dark .notfound-error-code {
+  color: var(--brand-primary-dark, #60a5fa);
+  text-shadow: 2px 2px 0 rgba(96, 165, 250, 0.1);
+}
+
+.dark .notfound-title {
+  color: var(--text-dark, #f8fafc);
+}
+
+.dark .notfound-description {
+  color: var(--text-secondary-dark, #94a3b8);
+}
+
+.dark .notfound-button-secondary {
+  background: var(--bg-secondary-dark, #334155);
+  color: var(--text-dark, #f8fafc);
+}
+
+.dark .notfound-button-secondary:hover {
+  background: var(--bg-tertiary-dark, #475569);
+}
+
+/* Responsive adjustments */
+@media (max-width: 640px) {
+  .notfound-actions {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .notfound-button {
+    width: 100%;
+    justify-content: center;
+  }
+}

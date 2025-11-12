@@ -1,0 +1,58 @@
+.text-rotate {
+    display: flex;
+    position: relative;
+    transform-origin: 50% 50% 0px;
+    min-width: 280px; /* Adjust this value based on your longest text */
+  }
+  
+  .rotating-text-main {
+    display: inline-block;
+    position: relative;
+    transform-origin: 50% 50% 0px;
+    min-width: 280px; /* Same as above */
+  }
+  
+  .text-rotate-sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+  }
+  
+  .text-rotate-word {
+    display: inline-flex;
+    white-space: pre;
+  }
+  
+  .text-rotate-element {
+    display: inline-block;
+    will-change: transform;
+    transform-origin: 50% 50% 0px;
+  }
+  
+  .text-rotate-space {
+    display: inline-block;
+    width: 0.3em;
+    white-space: pre;
+  }
+
+  .rotating-text-ptag {
+    transform: scale(0.95531, 1);
+    transform-origin: 50% 50% 0px;
+    display: flex;
+    align-items: baseline;
+    gap: 0.5rem;
+  }
+  
+  /* Responsive adjustments */
+  @media (max-width: 768px) {
+    .text-rotate,
+    .rotating-text-main {
+      min-width: 200px; /* Smaller width for mobile */
+    }
+  }

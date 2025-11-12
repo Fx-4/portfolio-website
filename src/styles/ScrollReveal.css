@@ -1,0 +1,161 @@
+/* AboutMe.css */
+.about-section {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  background-color: var(--background);
+  overflow: hidden;
+}
+
+.about-container {
+  text-align: center;
+  margin: 0 auto;
+  width: 100%;
+  overflow: hidden;
+}
+
+.about-reveal-container {
+  text-align: center;
+  overflow: hidden;
+}
+
+
+
+.about-text {
+  font-size: clamp(1.6rem, 4vw, 3rem);
+  line-height: 1.5;
+  font-weight: 600;
+  color: var(--text-color);
+}
+
+.scroll-reveal-text {
+  font-style: normal;
+  font-weight: 500;
+  font-size: clamp(1.1rem, 2.5vw, 1.4rem);
+  padding-left: 2.5rem;
+  padding-right: 2.5rem;
+  text-align: left;
+  /* top is important, bottom smaller */
+  margin-top: 0.75rem;
+  margin-bottom: 0.5rem;
+  line-height: 1.7;
+  max-width: 100%;
+  width: 100%;
+  box-sizing: border-box;
+  overflow-wrap: break-word;
+  /* avoid clipping vertically; keep horizontal clipped */
+  overflow-x: hidden;
+  overflow-y: visible;
+  /* extend content box slightly at bottom for all paragraphs */
+  padding-bottom: 0.2rem;
+}
+
+/* Specifically extend bottom content for paragraph 2 */
+.scroll-reveal .scroll-reveal-text:nth-of-type(2) {
+  padding-bottom: 0.7rem; /* was 0.6rem */
+}
+
+.scroll-reveal {
+  width: 100%;
+  max-width: 100%;
+  padding-left: 2rem;
+  padding-right: 2rem;
+  box-sizing: border-box;
+  /* top padding bigger, bottom smaller */
+  padding-top: 0.75rem;
+  padding-bottom: 0.25rem;
+  overflow-x: hidden;
+  overflow-y: visible;
+}
+
+.word {
+  display: inline-block;
+  margin-right: 0.15em;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .about-section {
+    padding: 1rem;
+    overflow: hidden;
+  }
+  
+  .scroll-reveal-text {
+    font-size: clamp(1rem, 4vw, 1.2rem);
+    line-height: 1.6;
+    padding-left: 2rem;
+    padding-right: 2rem;
+    box-sizing: border-box;
+    overflow-wrap: break-word;
+    /* top is important, bottom smaller on tablet */
+    margin-top: 0.6rem;
+    margin-bottom: 0.4rem;
+    overflow-x: hidden;
+    overflow-y: visible;
+    padding-bottom: 0.2rem; /* keep slight bottom padding */
+  }
+
+  .scroll-reveal .scroll-reveal-text:nth-of-type(2) {
+    padding-bottom: 0.6rem; /* was 0.5rem */
+  }
+  
+  .scroll-reveal {
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+    /* vertical padding only: keep top bigger */
+    padding-top: 0.6rem;
+    padding-bottom: 0.2rem;
+    overflow-x: hidden;
+    overflow-y: visible;
+  }
+  
+  .word {
+    margin-right: 0.1em;
+  }
+}
+
+@media (max-width: 480px) {
+  .scroll-reveal-text {
+    font-size: clamp(0.95rem, 4.5vw, 1.1rem);
+    line-height: 1.5;
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+    box-sizing: border-box;
+    overflow-wrap: break-word;
+    /* top important, bottom smaller on mobile */
+    margin-top: 0.5rem;
+    margin-bottom: 0.35rem;
+    overflow-x: hidden;
+    overflow-y: visible;
+    padding-bottom: 0.2rem;
+  }
+
+  .scroll-reveal .scroll-reveal-text:nth-of-type(2) {
+    padding-bottom: 0.5rem; /* was 0.45rem */
+  }
+  
+  .scroll-reveal {
+    padding: 0 1rem;
+    /* vertical padding only: keep top bigger */
+    padding-top: 0.5rem;
+    padding-bottom: 0.2rem;
+    overflow-x: hidden;
+    overflow-y: visible;
+  }
+}
+
+.text-lg {
+  font-size: 25px; /* 18px */
+  line-height: 1.75rem; /* 28px */
+}
+
+.leading-relaxed {
+  line-height: 1.625;
+}
+
+/* Theme support */
+[data-theme='dark'] .about-text {
+  color: var(--text-color);
+}
