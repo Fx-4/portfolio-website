@@ -124,14 +124,12 @@ SocialLink.propTypes = {
 };
 
 const Footer = () => {
-  const [animationComplete, setAnimationComplete] = useState(false);
-  
   useEffect(() => {
     AOS.init();
   }, []);
 
   const handleAnimationComplete = () => {
-    setAnimationComplete(true);
+    // Animation complete callback
   };
 
   return (
