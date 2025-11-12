@@ -53,7 +53,7 @@
 }
 
 .highlight {
-  color: var(--primary);
+  color: var(--highlight);
   display: inline-block;
 }
 
