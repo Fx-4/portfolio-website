@@ -11,7 +11,7 @@
   --bg-color: #F4F4F4;
   --text-color: #264653;
   --underline: #2A9D8F; /* Warna khusus untuk underline */
-  --highlight: #2A9D8F; /* Bisa pakai warna yang berbeda */
+  --highlight: #2A9D8F !important; /* Hijau teal untuk light theme */
 
 }
 
@@ -29,7 +29,7 @@
   --brand-primary: #E76F51;    /* New coral primary for dark mode */
   --brand-primary-hover: #E9C46A; /* Yellow secondary for hover states */
   --underline: #E76F51; /* Warna khusus untuk underline */
-  --highlight: #E76F51; /* Bisa pakai warna yang berbeda */
+  --highlight: #E76F51 !important; /* Orange coral untuk dark theme */
   --bg-color: #1D3557;
   --text-color: #E9C46A;
 

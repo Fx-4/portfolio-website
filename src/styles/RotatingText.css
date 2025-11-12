@@ -11,12 +11,26 @@
     transform-origin: 50% 50% 0px;
     min-width: 280px; /* Same as above */
   }
+
+  /* Highlight theme colors for rotating text */
+  .rotating-text-main.highlight {
+    color: var(--highlight) !important;
+  }
+
+  .rotating-text-main.highlight .text-rotate-element {
+    color: var(--highlight) !important;
+  }
+
+  .rotating-text-main.highlight .text-rotate-word {
+    color: var(--highlight) !important;
+  }
   
   .text-rotate-sr-only {
     position: absolute;
     width: 1px;
     height: 1px;
     padding: 0;
+    
     margin: -1px;
     overflow: hidden;
     clip: rect(0, 0, 0, 0);
