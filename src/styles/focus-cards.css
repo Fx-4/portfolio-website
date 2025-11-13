@@ -151,33 +151,49 @@
 /* --- Mobile responsiveness --- */
 @media (max-width: 767px) {
   .focus-cards-grid {
-    gap: 1.25rem;
+    grid-template-columns: 1fr; /* Single column untuk mobile */
+    gap: 2rem;
     padding-left: 1rem;
     padding-right: 1rem;
   }
 
   .focus-card {
-    height: 14rem; /* sedikit lebih pendek agar muat di layar kecil */
-    border-radius: 0.75rem;
+    height: 18rem; /* Lebih tinggi untuk mobile agar tidak penyet */
+    border-radius: 1rem;
+    max-width: 100%; /* Full width */
   }
 
   .focus-card-overlay {
-    padding: 1rem 0.75rem;
+    padding: 1.25rem 1rem;
     /* tambahkan gradien tipis untuk keterbacaan teks di atas gambar */
-    background: linear-gradient(to top, rgba(0,0,0,0.45) 0%, rgba(0,0,0,0.2) 40%, rgba(0,0,0,0) 80%);
+    background: linear-gradient(to top, rgba(0,0,0,0.5) 0%, rgba(0,0,0,0.25) 40%, rgba(0,0,0,0) 80%);
   }
 
   .focus-card-title {
-    font-size: 1.125rem;
-    line-height: 1.5rem;
+    font-size: 1.25rem;
+    line-height: 1.75rem;
   }
 }
 
-@media (max-width: 420px) {
-  .focus-card { height: 12.5rem; }
-  .focus-card-title { font-size: 1rem; line-height: 1.375rem; }
+@media (max-width: 430px) {
+  .focus-cards-grid {
+    gap: 1.5rem;
+  }
+
+  .focus-card { 
+    height: 16rem; /* Sedikit lebih pendek untuk layar sangat kecil */
+  }
+  
+  .focus-card-title { 
+    font-size: 1.125rem; 
+    line-height: 1.5rem; 
+  }
+  
   /* Ganti teks untuk perangkat sentuh kecil */
-  .focus-card[style*="cursor: pointer"] .focus-card-overlay::after { content: "Tap to learn more"; font-size: 0.7rem; }
+  .focus-card[style*="cursor: pointer"] .focus-card-overlay::after { 
+    content: "Tap to learn more"; 
+    font-size: 0.7rem; 
+  }
 }
 
 /* Matikan efek hover berat di perangkat sentuh */
