@@ -1,18 +1,54 @@
 :root {
+  /* Spacing & Layout */
+  --spacing: 0.25rem;
+  --radius: 0.5rem;
+  --radius-xl: 0.75rem;
+  --radius-2xl: 1rem;
+  --radius-3xl: 1.5rem;
+  
+  /* Typography */
+  --text-xs: 0.75rem;
+  --text-sm: 0.875rem;
+  --text-base: 1rem;
+  --text-xl: 1.25rem;
+  --text-2xl: 1.5rem;
+  --text-3xl: 1.875rem;
+  --font-weight-normal: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+  
+  /* Blur Effects */
+  --blur-xs: 4px;
+  --blur-md: 12px;
+  --blur-lg: 16px;
+  
+  /* Transitions */
+  --ease-in-out: cubic-bezier(0.4, 0, 0.2, 1);
+  --default-transition-duration: 0.15s;
+  --default-transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  
   /* Primary brand color - using the new teal */
-  --brand-primary: #2A9D8F;    /* New teal primary */
-  --brand-primary-hover: #264653; /* New dark blue secondary */
+  --brand-primary: #2A9D8F;
+  --brand-primary-hover: #264653;
   
   /* Light theme defaults */
-  --background: #F4F4F4;        /* New light background */
-  --surface: #ffffff;          /* Light surface for contrast */
-  --text: #264653;             /* Using secondary color for text */
-  --text-muted: #515d63;       /* Muted version of text color */
+  --background: #F4F4F4;
+  --surface: #ffffff;
+  --text: #264653;
+  --text-primary: #264653;
+  --text-secondary: #515d63;
+  --text-muted: #515d63;
+  --text-inverse: #ffffff;
   --bg-color: #F4F4F4;
   --text-color: #264653;
-  --underline: #2A9D8F; /* Warna khusus untuk underline */
-  --highlight: #2A9D8F !important; /* Hijau teal untuk light theme */
-
+  --underline: #2A9D8F;
+  --highlight: #2A9D8F !important;
+  
+  /* Glass effect colors for light theme */
+  --backdrop: rgba(244, 244, 244, 0.8);
+  --bg-700: rgba(0, 0, 0, 0.05);
+  --bg-800: rgba(0, 0, 0, 0.1);
 }
 
 .dark {
@@ -22,17 +58,24 @@
 
 /* Dark theme */
 [data-theme="dark"] {
-  --background: #1D3557;        /* New dark background */
-  --surface: #234167;          /* Slightly lighter than background */
-  --text: #E9C46A;             /* New yellow text color */
-  --text-muted: #c4a65b;       /* Muted version of yellow text */
-  --brand-primary: #E76F51;    /* New coral primary for dark mode */
-  --brand-primary-hover: #E9C46A; /* Yellow secondary for hover states */
-  --underline: #E76F51; /* Warna khusus untuk underline */
-  --highlight: #E76F51 !important; /* Orange coral untuk dark theme */
+  --background: #1D3557;
+  --surface: #234167;
+  --text: #E9C46A;
+  --text-primary: #E9C46A;
+  --text-secondary: #c4a65b;
+  --text-muted: #c4a65b;
+  --text-inverse: #1D3557;
+  --brand-primary: #E76F51;
+  --brand-primary-hover: #E9C46A;
+  --underline: #E76F51;
+  --highlight: #E76F51 !important;
   --bg-color: #1D3557;
   --text-color: #E9C46A;
-
+  
+  /* Glass effect colors for dark theme */
+  --backdrop: rgba(29, 53, 87, 0.8);
+  --bg-700: rgba(41, 72, 113, 0.6);
+  --bg-800: rgba(29, 53, 87, 0.9);
 }
 
 /* Base styles */

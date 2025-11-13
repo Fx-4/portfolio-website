@@ -115,31 +115,41 @@ const Navbar = () => {
   const endWidth = isMobile ? 90 : 40;
   const currentWidth = startWidth - (startWidth - endWidth) * scrollProgress;
 
-  // Calculate opacity and blur based on scroll - start hampir transparan
-  const startOpacity = 0.15; // Sedikit lebih tinggi untuk dark theme
-  const endOpacity = 0.85; // Solid saat scroll
+  // Calculate opacity and blur based on scroll - main opacity untuk efek kaca
+  // Dark theme: opacity rendah untuk efek transparan kaca
+  const startOpacity = isDark ? 0.1 : 0.15; // Sangat transparan di awal
+  const endOpacity = isDark ? 0.75 : 0.85; // Semi-transparan, tidak full solid
   const currentOpacity = startOpacity + (endOpacity - startOpacity) * scrollProgress;
 
-  const startBlur = 15; // Blur tipis di awal
-  const endBlur = 40; // Blur kuat saat scroll
-  const currentBlur = startBlur + (endBlur - startBlur) * scrollProgress;
+  // Backdrop blur menggunakan CSS variable
+  const backdropBlur = scrollProgress > 0.05 ? 12 : 0; // 12px blur saat scroll
+  const backdropSaturate = 100;
 
-  // Shadow muncul bertahap dari 0
+  // Shadow dengan multiple layers untuk efek glass yang lebih realistis
   const currentShadow = scrollProgress > 0.05 
-    ? `0 8px 32px 0 rgba(0, 0, 0, ${scrollProgress * 0.3})`
+    ? `0 8px 32px 0 rgba(0, 0, 0, ${scrollProgress * 0.15}), 
+       0 4px 6px -1px rgba(0, 0, 0, ${scrollProgress * 0.1}),
+       inset 0 1px 1px 0 rgba(255, 255, 255, ${scrollProgress * 0.15}),
+       inset 0 -1px 1px 0 rgba(0, 0, 0, ${scrollProgress * 0.1})`
     : 'none';
+  
+  // Border untuk glass effect - menggunakan bg-700 color
+  const glassBorder = scrollProgress > 0.05 
+    ? `1px solid ${isDark ? 'rgba(41, 72, 113, 0.6)' : 'rgba(0, 0, 0, 0.05)'}`
+    : '1px solid transparent';
 
-  // Dynamic navbar style dengan warna yang match background
+  // Dynamic navbar style dengan design system yang lebih sophisticated
   const navbarStyle = {
     pointerEvents: 'auto',
     width: `${currentWidth}%`,
-    background: isDark 
-      ? `linear-gradient(135deg, rgba(29, 53, 87, ${currentOpacity}), rgba(35, 65, 103, ${currentOpacity * 0.9}))`
-      : `linear-gradient(135deg, rgba(244, 244, 244, ${currentOpacity}), rgba(255, 255, 255, ${currentOpacity * 0.85}))`,
-    backdropFilter: `blur(${currentBlur}px) saturate(${150 + scrollProgress * 100}%)`,
-    WebkitBackdropFilter: `blur(${currentBlur}px) saturate(${150 + scrollProgress * 100}%)`,
+    backgroundColor: isDark 
+      ? `rgba(29, 53, 87, ${currentOpacity})`
+      : `rgba(244, 244, 244, ${currentOpacity})`,
+    backdropFilter: `blur(${backdropBlur}px) saturate(${backdropSaturate}%)`,
+    WebkitBackdropFilter: `blur(${backdropBlur}px) saturate(${backdropSaturate}%)`,
     boxShadow: currentShadow,
-    border: 'none',
+    border: glassBorder,
+    transition: `all var(--default-transition-duration, 0.15s) var(--ease-in-out, cubic-bezier(0.4, 0, 0.2, 1))`,
   };
 
   return (
