@@ -25,7 +25,21 @@ function Home() {
   }, []);
 
   return (
-    <div className="bg-gray-50" style={{ overflowX: 'hidden', width: '100%', maxWidth: '100vw', backgroundColor: 'var(--background, #f8fafc)' }}>
+    <div className="bg-gray-50 home-container" style={{ overflowX: 'hidden', width: '100%', maxWidth: '100vw', backgroundColor: 'var(--background, #f8fafc)' }}>
+      <style>{`
+        /* Add padding top for mobile only */
+        @media (max-width: 768px) {
+          .home-container {
+            padding-top: 30px;
+          }
+        }
+        
+        @media (max-width: 430px) {
+          .home-container {
+            padding-top: 15px;
+          }
+        }
+      `}</style>
       <Loading
         isLoading={isLoading}
         pingEndpoint="/api/ping"
