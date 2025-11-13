@@ -25,7 +25,7 @@ const Navbar = () => {
   const location = useLocation();
   const [isDark, setIsDark] = useState(false);
   const [animating, setAnimating] = useState(false);
-  const [scrollState, setScrollState] = useState('top'); // 'top', 'scrolling', 'scrolled'
+  const [scrollProgress, setScrollProgress] = useState(0); // 0 to 1 untuk smooth transition
 
   const updateTheme = (dark) => {
     document.documentElement.setAttribute('data-theme', dark ? 'dark' : 'light');
@@ -41,42 +41,43 @@ const Navbar = () => {
     updateTheme(initialTheme === 'dark');
   }, []);
 
-  // Handle scroll with class-based approach
+  // Reset scroll state when route changes
   useEffect(() => {
-    let frameId = null;
+    // Scroll to top on route change
+    window.scrollTo(0, 0);
+    setScrollProgress(0);
+  }, [location.pathname]);
 
+  // Handle scroll with smooth progressive approach
+  useEffect(() => {
     const handleScroll = () => {
-      if (frameId) {
-        cancelAnimationFrame(frameId);
-      }
+      // Get scroll position from multiple sources
+      const scrollY = Math.max(
+        window.scrollY,
+        window.pageYOffset,
+        document.documentElement.scrollTop,
+        document.body.scrollTop,
+        0
+      );
 
-      frameId = requestAnimationFrame(() => {
-        // Try multiple methods to get scroll position
-        const scrollY = window.scrollY
-          || window.pageYOffset
-          || document.documentElement.scrollTop
-          || document.body.scrollTop
-          || 0;
-
-        if (scrollY === 0) {
-          setScrollState('top');
-        } else if (scrollY < 100) {
-          setScrollState('scrolling');
-        } else {
-          setScrollState('scrolled');
-        }
-      });
+      // Calculate progress: 0 at top, 1 at 300px scroll
+      // Smooth transition dari 0-300px
+      const maxScroll = 300;
+      const progress = Math.min(scrollY / maxScroll, 1);
+      
+      setScrollProgress(progress);
     };
 
-    // Add scroll listener to window (most reliable)
-    window.addEventListener('scroll', handleScroll, { passive: true });
-    handleScroll(); // Initial call
+    // Add multiple scroll listeners for better compatibility
+    window.addEventListener('scroll', handleScroll, { passive: true, capture: true });
+    document.addEventListener('scroll', handleScroll, { passive: true, capture: true });
+    
+    // Initial call
+    handleScroll();
 
     return () => {
-      window.removeEventListener('scroll', handleScroll);
-      if (frameId) {
-        cancelAnimationFrame(frameId);
-      }
+      window.removeEventListener('scroll', handleScroll, { capture: true });
+      document.removeEventListener('scroll', handleScroll, { capture: true });
     };
   }, []);
 
@@ -106,12 +107,44 @@ const Navbar = () => {
     requestAnimationFrame(() => setAnimating(true));
   };
 
-  // Build class names
-  const navbarClasses = `navbar navbar-${scrollState}`;
+  // Calculate dynamic width based on scroll progress
+  // Desktop: 80% -> 40% (shrink 40%)
+  // Mobile: 95% -> 90% (shrink 5%)
+  const isMobile = typeof window !== 'undefined' && window.innerWidth <= 768;
+  const startWidth = isMobile ? 95 : 80;
+  const endWidth = isMobile ? 90 : 40;
+  const currentWidth = startWidth - (startWidth - endWidth) * scrollProgress;
+
+  // Calculate opacity and blur based on scroll - start hampir transparan
+  const startOpacity = 0.15; // Sedikit lebih tinggi untuk dark theme
+  const endOpacity = 0.85; // Solid saat scroll
+  const currentOpacity = startOpacity + (endOpacity - startOpacity) * scrollProgress;
+
+  const startBlur = 15; // Blur tipis di awal
+  const endBlur = 40; // Blur kuat saat scroll
+  const currentBlur = startBlur + (endBlur - startBlur) * scrollProgress;
+
+  // Shadow muncul bertahap dari 0
+  const currentShadow = scrollProgress > 0.05 
+    ? `0 8px 32px 0 rgba(0, 0, 0, ${scrollProgress * 0.3})`
+    : 'none';
+
+  // Dynamic navbar style dengan warna yang match background
+  const navbarStyle = {
+    pointerEvents: 'auto',
+    width: `${currentWidth}%`,
+    background: isDark 
+      ? `linear-gradient(135deg, rgba(29, 53, 87, ${currentOpacity}), rgba(35, 65, 103, ${currentOpacity * 0.9}))`
+      : `linear-gradient(135deg, rgba(244, 244, 244, ${currentOpacity}), rgba(255, 255, 255, ${currentOpacity * 0.85}))`,
+    backdropFilter: `blur(${currentBlur}px) saturate(${150 + scrollProgress * 100}%)`,
+    WebkitBackdropFilter: `blur(${currentBlur}px) saturate(${150 + scrollProgress * 100}%)`,
+    boxShadow: currentShadow,
+    border: 'none',
+  };
 
   return (
     <header className="navbar-header" style={{ pointerEvents: 'auto', zIndex: 9999 }}>
-      <nav className={navbarClasses} style={{ pointerEvents: 'auto' }}>
+      <nav className="navbar" style={navbarStyle}>
         <Link className="navbar-brand" to="/">
           F-4
         </Link>
