@@ -5,7 +5,7 @@ export const SOCIAL_LINKS = {
   email: 'Haikalhelmy12@gmail.com',
   linkedin: 'https://www.linkedin.com/in/haikal-helmy-875787305/',
   github: 'https://github.com/Fx-4',
-  instagram: 'https://www.instagram.com/haikalhelmy/',
+  instagram: 'https://www.instagram.com/kal12._/',
   // Twitter removed as per user request
 };
 

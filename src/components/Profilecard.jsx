@@ -1,4 +1,6 @@
 
+import { useState, useEffect, useRef } from 'react';
+import { motion } from 'framer-motion';
 import PropTypes from 'prop-types';
 import '../styles/Profilecard.css';
 import profileImg from '../assets/profile/Profile.png';
@@ -7,18 +9,60 @@ const ProfileCard = ({
   avatarUrl = profileImg,
   name = 'Haikal Hifzhi Helmy',
   title = 'Informatics Student',
-  handle = 'haikalhelmy',
   status = 'Available',
   contactText = 'Contact',
-  linkedinUrl,
   className = '',
   compact = false,
   compactStyle = 'split', // 'default', 'badge', 'split', 'floating', 'pill', 'icon-grid'
 }) => {
-  const computedLinkedinUrl = linkedinUrl || `https://www.linkedin.com/in/${handle}`;
+  const [isVisible, setIsVisible] = useState(false);
+  const cardRef = useRef(null);
+
+  useEffect(() => {
+    if (!cardRef.current) return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        setIsVisible(entry.isIntersecting);
+      },
+      {
+        threshold: 0.2,
+        rootMargin: '0px'
+      }
+    );
+
+    observer.observe(cardRef.current);
+    return () => observer.disconnect();
+  }, []);
+
+  const cardVariants = {
+    hidden: {
+      opacity: 0,
+      scale: 0.9,
+      filter: 'blur(8px)',
+      y: 30
+    },
+    visible: {
+      opacity: 1,
+      scale: 1,
+      filter: 'blur(0px)',
+      y: 0,
+      transition: {
+        duration: 0.9,
+        ease: [0.25, 0.1, 0.25, 1],
+        delay: 0.1
+      }
+    }
+  };
 
   return (
-    <div className={`profile-card-wrapper ${compact ? `compact-mode compact-${compactStyle}` : ''} ${className}`.trim()}>
+    <motion.div
+      ref={cardRef}
+      className={`profile-card-wrapper ${compact ? `compact-mode compact-${compactStyle}` : ''} ${className}`.trim()}
+      initial="hidden"
+      animate={isVisible ? "visible" : "hidden"}
+      variants={cardVariants}
+    >
       <div className="profile-card">
         {/* Dot Pattern Background */}
         <div className="profile-card-dot-pattern"></div>
@@ -87,10 +131,8 @@ const ProfileCard = ({
           {/* Contact Button */}
           <a
             className="profile-contact-btn"
-            href={computedLinkedinUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label={`Connect with ${name} on LinkedIn`}
+            href="/contact"
+            aria-label={`Contact ${name}`}
           >
             <span className="btn-icon">
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -102,7 +144,7 @@ const ProfileCard = ({
           </a>
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 };
 
@@ -110,13 +152,11 @@ ProfileCard.propTypes = {
   avatarUrl: PropTypes.string,
   name: PropTypes.string,
   title: PropTypes.string,
-  handle: PropTypes.string,
   status: PropTypes.string,
   contactText: PropTypes.string,
-  linkedinUrl: PropTypes.string,
   className: PropTypes.string,
   compact: PropTypes.bool,
-  compactStyle: PropTypes.oneOf(['default', 'badge', 'split', 'floating', 'pill', 'icon-grid']),
+  compactStyle: PropTypes.oneOf(['default', 'badge', 'split', 'floating', 'pill', 'icon-grid'])
 };
 
 export default ProfileCard;

@@ -11,7 +11,7 @@ function About() {
       <ScrollFadeOverlay />
       <Navbar />
 
-      <section className="max-w-[1400px] mx-auto px-4 xs:px-6 sm:px-12 md:px-16 lg:px-20 xl:px-24 2xl:px-28" style={{ textAlign: 'center', overflowX: 'hidden', width: '100%', paddingTop: 'clamp(80px, 12vw, 120px)', paddingBottom: 'clamp(60px, 12vw, 95px)' }}>
+      <section className="max-w-[1400px] mx-auto px-4 xs:px-6 sm:px-12 md:px-16 lg:px-20 xl:px-24 2xl:px-28" style={{ textAlign: 'center', overflowX: 'hidden', width: '100%', paddingBottom: 'clamp(60px, 12vw, 95px)' }}>
         {/* About Section */}
         <AboutSection />
 

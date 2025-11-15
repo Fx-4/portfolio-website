@@ -296,44 +296,155 @@ const AboutSection = () => {
             {/* Right Column: Bio Text */}
             <motion.div
               className="about-bio"
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.2 }}
-              viewport={{ once: true }}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, amount: 0.3 }}
+              transition={{ staggerChildren: 0.06, delayChildren: 0.2 }}
             >
-              <p>
-                Hi, I&apos;m <strong>Haikal Hifzhi Helmy</strong>, an{' '}
-                <TooltipCard content="Studying Informatics Engineering with focus on Software Development">
-                  <span className="keyword">Informatics student</span>
-                </TooltipCard>{' '}
-                passionate about{' '}
-                <TooltipCard content="Building innovative solutions using modern web technologies">
-                  <span className="keyword">technology</span>
-                </TooltipCard>{' '}
-                and innovation. My journey began with a deep curiosity about how technology can simplify human life, both physically and virtually. This passion has driven me to explore{' '}
-                <TooltipCard content="JavaScript, React, Next.js, Python, Java & more">
-                  <span className="keyword">programming</span>
-                </TooltipCard>
-                , software development, and problem-solving.
-              </p>
-              <p>
-                I thrive in{' '}
-                <TooltipCard content="Team projects, open-source contributions & tech communities">
-                  <span className="keyword">collaborative environments</span>
-                </TooltipCard>
-                , love tackling challenges, and continuously seek opportunities to learn and grow. My goal is to create impactful technological solutions that contribute to society and put Indonesia on the global innovation map.
-              </p>
-              <p>
-                Currently, I&apos;m pursuing a{' '}
-                <TooltipCard content="Studying at both UII Yogyakarta (Indonesia) and Nanjing Xiaozhuang University (China)">
-                  <span className="keyword">unique double degree program</span>
-                </TooltipCard>
-                , studying both at Universitas Islam Indonesia in Yogyakarta and Nanjing Xiaozhuang University in China, gaining diverse perspectives and international experience in{' '}
-                <TooltipCard content="Full-stack development, UI/UX design, database management & DevOps">
-                  <span className="keyword">software engineering</span>
-                </TooltipCard>
-                .
-              </p>
+              <motion.p
+                variants={{
+                  hidden: {},
+                  visible: { transition: { staggerChildren: 0.06 } }
+                }}
+              >
+                {[
+                  "Hi, I'm ",
+                  { text: "Haikal Hifzhi Helmy", bold: true },
+                  ", an ",
+                  { text: "Informatics student", keyword: true, tooltip: "Studying Informatics Engineering with focus on Software Development" },
+                  " passionate about ",
+                  { text: "technology", keyword: true, tooltip: "Building innovative solutions using modern web technologies" },
+                  " and innovation. My journey began with a deep curiosity about how technology can simplify human life, both physically and virtually. This passion has driven me to explore ",
+                  { text: "programming", keyword: true, tooltip: "JavaScript, React, Next.js, Python, Java & more" },
+                  ", software development, and problem-solving."
+                ].map((item, index) => {
+                  const wordVariants = {
+                    hidden: { opacity: 0, filter: 'blur(4px)', y: 10 },
+                    visible: { opacity: 1, filter: 'blur(0px)', y: 0, transition: { duration: 0.6 } }
+                  };
+
+                  if (typeof item === 'string') {
+                    return item.split(' ').map((word, i) => (
+                      <motion.span
+                        key={`${index}-${i}`}
+                        variants={wordVariants}
+                        style={{ display: 'inline-block', marginRight: '0.25em' }}
+                      >
+                        {word}
+                      </motion.span>
+                    ));
+                  } else if (item.bold) {
+                    return (
+                      <motion.strong
+                        key={index}
+                        variants={wordVariants}
+                        style={{ display: 'inline-block', marginRight: '0.25em' }}
+                      >
+                        {item.text}
+                      </motion.strong>
+                    );
+                  } else if (item.keyword) {
+                    return (
+                      <TooltipCard key={index} content={item.tooltip}>
+                        <motion.span
+                          variants={wordVariants}
+                          className="keyword"
+                          style={{ display: 'inline-block', marginRight: '0.25em' }}
+                        >
+                          {item.text}
+                        </motion.span>
+                      </TooltipCard>
+                    );
+                  }
+                  return null;
+                })}
+              </motion.p>
+              <motion.p
+                variants={{
+                  hidden: {},
+                  visible: { transition: { staggerChildren: 0.06, delayChildren: 0.5 } }
+                }}
+              >
+                {[
+                  "I thrive in ",
+                  { text: "collaborative environments", keyword: true, tooltip: "Team projects, open-source contributions & tech communities" },
+                  ", love tackling challenges, and continuously seek opportunities to learn and grow. My goal is to create impactful technological solutions that contribute to society and put Indonesia on the global innovation map."
+                ].map((item, index) => {
+                  const wordVariants = {
+                    hidden: { opacity: 0, filter: 'blur(4px)', y: 10 },
+                    visible: { opacity: 1, filter: 'blur(0px)', y: 0, transition: { duration: 0.6 } }
+                  };
+
+                  if (typeof item === 'string') {
+                    return item.split(' ').map((word, i) => (
+                      <motion.span
+                        key={`${index}-${i}`}
+                        variants={wordVariants}
+                        style={{ display: 'inline-block', marginRight: '0.25em' }}
+                      >
+                        {word}
+                      </motion.span>
+                    ));
+                  } else if (item.keyword) {
+                    return (
+                      <TooltipCard key={index} content={item.tooltip}>
+                        <motion.span
+                          variants={wordVariants}
+                          className="keyword"
+                          style={{ display: 'inline-block', marginRight: '0.25em' }}
+                        >
+                          {item.text}
+                        </motion.span>
+                      </TooltipCard>
+                    );
+                  }
+                  return null;
+                })}
+              </motion.p>
+              <motion.p
+                variants={{
+                  hidden: {},
+                  visible: { transition: { staggerChildren: 0.06, delayChildren: 0.8 } }
+                }}
+              >
+                {[
+                  "Currently, I'm pursuing a ",
+                  { text: "unique double degree program", keyword: true, tooltip: "Studying at both UII Yogyakarta (Indonesia) and Nanjing Xiaozhuang University (China)" },
+                  ", studying both at Universitas Islam Indonesia in Yogyakarta and Nanjing Xiaozhuang University in China, gaining diverse perspectives and international experience in ",
+                  { text: "software engineering", keyword: true, tooltip: "Full-stack development, UI/UX design, database management & DevOps" },
+                  "."
+                ].map((item, index) => {
+                  const wordVariants = {
+                    hidden: { opacity: 0, filter: 'blur(4px)', y: 10 },
+                    visible: { opacity: 1, filter: 'blur(0px)', y: 0, transition: { duration: 0.6 } }
+                  };
+
+                  if (typeof item === 'string') {
+                    return item.split(' ').map((word, i) => (
+                      <motion.span
+                        key={`${index}-${i}`}
+                        variants={wordVariants}
+                        style={{ display: 'inline-block', marginRight: '0.25em' }}
+                      >
+                        {word}
+                      </motion.span>
+                    ));
+                  } else if (item.keyword) {
+                    return (
+                      <TooltipCard key={index} content={item.tooltip}>
+                        <motion.span
+                          variants={wordVariants}
+                          className="keyword"
+                          style={{ display: 'inline-block', marginRight: '0.25em' }}
+                        >
+                          {item.text}
+                        </motion.span>
+                      </TooltipCard>
+                    );
+                  }
+                  return null;
+                })}
+              </motion.p>
               <div className="about-cta">
                 <a href={resumePDF} className="resume-button" download="Haikal_Hifzhi_Helmy_Resume.pdf" target="_blank" rel="noopener noreferrer">
                   <Download size={16} className="button-icon" />

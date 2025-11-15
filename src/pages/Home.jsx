@@ -64,7 +64,7 @@ function Home() {
       />
 
       {/* Hero Text Animation */}
-      <section className="max-w-[1400px] mx-auto px-4 xs:px-6 sm:px-12 md:px-16 lg:px-20 xl:px-24 2xl:px-28 py-6 sm:py-8 md:py-12 lg:py-16" style={{ textAlign: 'center', overflowX: 'hidden', width: '100%', paddingBottom: 'clamp(60px, 12vw, 95px)' }}>
+      <section className="max-w-[1400px] mx-auto px-4 xs:px-6 sm:px-12 md:px-16 lg:px-20 xl:px-24 2xl:px-28 py-6 sm:py-8 md:py-12 lg:py-16" style={{ textAlign: 'center', overflowX: 'hidden', width: '100%', paddingTop: 'clamp(80px, 12vw, 120px)', paddingBottom: 'clamp(60px, 12vw, 95px)' }}>
         <ShinyText text="</> About Me" />
 
         {/* About Section - 3 Column Layout: Profile (Left) | Gap (Center) | Text (Right) */}
