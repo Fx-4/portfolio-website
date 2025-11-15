@@ -16,13 +16,13 @@
   gap: 2rem;
 }
 
-/* Desktop Layout - 3 Column Grid */
+/* Desktop Layout - 2:2 Grid (Equal columns) */
 @media (min-width: 1024px) {
   .about-section-container {
     display: grid;
-    grid-template-columns: 320px 2rem 1fr;
+    grid-template-columns: 1fr 1fr;
     gap: 2.5rem;
-    align-items: start;
+    align-items: stretch;
   }
 }
 
@@ -30,35 +30,31 @@
 .about-profile-column {
   display: flex;
   justify-content: center;
+  align-items: stretch;
 }
 
 @media (min-width: 1024px) {
   .about-profile-column {
     justify-content: flex-start;
-    grid-column: 1;
   }
 }
 
-/* Gap Column (Center) - Empty space */
+/* Gap Column - Hidden in 2:2 layout */
 .about-gap-column {
   display: none;
-}
-
-@media (min-width: 1024px) {
-  .about-gap-column {
-    display: block;
-    grid-column: 2;
-  }
 }
 
 /* Text Column (Right) */
 .about-text-column {
   width: 100%;
+  display: flex;
+  align-items: stretch;
 }
 
 @media (min-width: 1024px) {
   .about-text-column {
-    grid-column: 3;
+    display: flex;
+    align-items: stretch;
   }
 }
 

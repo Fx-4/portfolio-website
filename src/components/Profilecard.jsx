@@ -12,12 +12,17 @@ const ProfileCard = ({
   contactText = 'Contact',
   linkedinUrl,
   className = '',
+  compact = false,
+  compactStyle = 'split', // 'default', 'badge', 'split', 'floating', 'pill', 'icon-grid'
 }) => {
   const computedLinkedinUrl = linkedinUrl || `https://www.linkedin.com/in/${handle}`;
 
   return (
-    <div className={`profile-card-wrapper ${className}`.trim()}>
+    <div className={`profile-card-wrapper ${compact ? `compact-mode compact-${compactStyle}` : ''} ${className}`.trim()}>
       <div className="profile-card">
+        {/* Dot Pattern Background */}
+        <div className="profile-card-dot-pattern"></div>
+
         {/* Glassmorphism card background */}
         <div className="profile-card-background"></div>
 
@@ -40,11 +45,43 @@ const ProfileCard = ({
           <p className="profile-title">{title}</p>
 
           <div className="profile-handle-status">
-            <span className="profile-handle">@{handle}</span>
             <span className="profile-status">
               <span className="status-dot"></span>
               {status}
             </span>
+          </div>
+
+          {/* Interactive Stats Pills */}
+          <div className="profile-stats-pills">
+            <div className="stat-pill pill-education" data-tooltip="Currently Studying">
+              <div className="pill-icon">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M22 10v6M2 10l10-5 10 5-10 5z"></path>
+                  <path d="M6 12v5c3 3 9 3 12 0v-5"></path>
+                </svg>
+              </div>
+              <span className="pill-text">Student</span>
+            </div>
+            
+            <div className="stat-pill pill-work" data-tooltip="Seeking Opportunities">
+              <div className="pill-icon">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect>
+                  <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path>
+                </svg>
+              </div>
+              <span className="pill-text">Open to Work</span>
+            </div>
+            
+            <div className="stat-pill pill-location" data-tooltip="Based in Indonesia">
+              <div className="pill-icon">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                  <circle cx="12" cy="10" r="3"></circle>
+                </svg>
+              </div>
+              <span className="pill-text">Indonesia</span>
+            </div>
           </div>
 
           {/* Contact Button */}
@@ -78,6 +115,8 @@ ProfileCard.propTypes = {
   contactText: PropTypes.string,
   linkedinUrl: PropTypes.string,
   className: PropTypes.string,
+  compact: PropTypes.bool,
+  compactStyle: PropTypes.oneOf(['default', 'badge', 'split', 'floating', 'pill', 'icon-grid']),
 };
 
 export default ProfileCard;

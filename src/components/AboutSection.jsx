@@ -7,6 +7,7 @@ import AOS from 'aos';
 import 'aos/dist/aos.css';
 import '../styles/About.css';
 import EducationTimeline from './EducationTimeline';
+import TooltipCard from './TooltipCard';
 // Import your image - update the path if needed
 import profileImage from '../assets/profile/Profile.png';
 // Import resume PDF
@@ -230,7 +231,7 @@ const AboutSection = () => {
   }, []);
 
   return (
-    <section className="about-section" id="about">
+    <section className="about-section" id="about" style={{ paddingTop: '40px' }}>
       <div className="about-container">
         {/* Simple Header */}
         <motion.div
@@ -248,44 +249,35 @@ const AboutSection = () => {
         {/* Profile & Bio Section */}
         <div className="about-content-wrapper" data-aos="fade-up">
           <div className="about-content">
-            {/* Photo container */}
-            <motion.div
-              className="profile-photo-container"
-              initial={{ opacity: 0, scale: 0.9 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.5 }}
-              viewport={{ once: true }}
-            >
-              <div className="profile-photo-wrapper">
-                <img
-                  src={profileImage}
-                  alt="Haikal Hifzhi Helmy Profile"
-                  className="profile-photo"
-                  loading="lazy"
-                />
-                <div className="photo-overlay"></div>
-                <div className="photo-badge">Developer & Designer</div>
-              </div>
-            </motion.div>
+            {/* Left Column: Photo + Stats */}
+            <div className="profile-left-column">
+              <motion.div
+                className="profile-photo-container"
+                initial={{ opacity: 0, scale: 0.9 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.5 }}
+                viewport={{ once: true }}
+              >
+                <div className="profile-photo-wrapper">
+                  <img
+                    src={profileImage}
+                    alt="Haikal Hifzhi Helmy Profile"
+                    className="profile-photo"
+                    loading="lazy"
+                  />
+                  <div className="photo-overlay"></div>
+                  <div className="photo-badge">Developer & Designer</div>
+                </div>
+              </motion.div>
 
-            {/* Bio Text */}
-            <motion.div
-              className="about-bio"
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.2 }}
-              viewport={{ once: true }}
-            >
-              <p>
-                Hi, I&apos;m <strong>Haikal Hifzhi Helmy</strong>, an Informatics student passionate about technology and innovation. My journey began with a deep curiosity about how technology can simplify human life, both physically and virtually. This passion has driven me to explore programming, software development, and problem-solving.
-              </p>
-              <p>
-                I thrive in collaborative environments, love tackling challenges, and continuously seek opportunities to learn and grow. My goal is to create impactful technological solutions that contribute to society and put Indonesia on the global innovation map.
-              </p>
-              <p>
-                Currently, I&apos;m pursuing a unique double degree program, studying both at Universitas Islam Indonesia in Yogyakarta and Nanjing Xiaozhuang University in China, gaining diverse perspectives and international experience in software engineering.
-              </p>
-              <div className="bio-stats">
+              {/* Stats moved to left column */}
+              <motion.div 
+                className="bio-stats"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: 0.3 }}
+                viewport={{ once: true }}
+              >
                 <div className="stat-item">
                   <span className="stat-number">2+</span>
                   <span className="stat-label">Years Learning</span>
@@ -298,7 +290,50 @@ const AboutSection = () => {
                   <span className="stat-number">2</span>
                   <span className="stat-label">Countries</span>
                 </div>
-              </div>
+              </motion.div>
+            </div>
+
+            {/* Right Column: Bio Text */}
+            <motion.div
+              className="about-bio"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.2 }}
+              viewport={{ once: true }}
+            >
+              <p>
+                Hi, I&apos;m <strong>Haikal Hifzhi Helmy</strong>, an{' '}
+                <TooltipCard content="Studying Informatics Engineering with focus on Software Development">
+                  <span className="keyword">Informatics student</span>
+                </TooltipCard>{' '}
+                passionate about{' '}
+                <TooltipCard content="Building innovative solutions using modern web technologies">
+                  <span className="keyword">technology</span>
+                </TooltipCard>{' '}
+                and innovation. My journey began with a deep curiosity about how technology can simplify human life, both physically and virtually. This passion has driven me to explore{' '}
+                <TooltipCard content="JavaScript, React, Next.js, Python, Java & more">
+                  <span className="keyword">programming</span>
+                </TooltipCard>
+                , software development, and problem-solving.
+              </p>
+              <p>
+                I thrive in{' '}
+                <TooltipCard content="Team projects, open-source contributions & tech communities">
+                  <span className="keyword">collaborative environments</span>
+                </TooltipCard>
+                , love tackling challenges, and continuously seek opportunities to learn and grow. My goal is to create impactful technological solutions that contribute to society and put Indonesia on the global innovation map.
+              </p>
+              <p>
+                Currently, I&apos;m pursuing a{' '}
+                <TooltipCard content="Studying at both UII Yogyakarta (Indonesia) and Nanjing Xiaozhuang University (China)">
+                  <span className="keyword">unique double degree program</span>
+                </TooltipCard>
+                , studying both at Universitas Islam Indonesia in Yogyakarta and Nanjing Xiaozhuang University in China, gaining diverse perspectives and international experience in{' '}
+                <TooltipCard content="Full-stack development, UI/UX design, database management & DevOps">
+                  <span className="keyword">software engineering</span>
+                </TooltipCard>
+                .
+              </p>
               <div className="about-cta">
                 <a href={resumePDF} className="resume-button" download="Haikal_Hifzhi_Helmy_Resume.pdf" target="_blank" rel="noopener noreferrer">
                   <Download size={16} className="button-icon" />

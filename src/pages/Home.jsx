@@ -25,7 +25,7 @@ function Home() {
   }, []);
 
   return (
-    <div className="bg-gray-50 home-container" style={{ overflowX: 'hidden', width: '100%', maxWidth: '100vw', backgroundColor: 'var(--background, #f8fafc)' }}>
+    <div className="bg-gray-50 home-container" style={{ overflowX: 'hidden', width: '100%', maxWidth: '100vw', backgroundColor: 'var(--background)' }}>
       <style>{`
         /* Add padding top for mobile only */
         @media (max-width: 768px) {
@@ -71,8 +71,9 @@ function Home() {
         <div className="about-section-wrapper">
           <div className="about-section-container">
             {/* Profile Card - Left Column */}
+            {/* Try: 'default', 'badge', 'split', 'floating', 'pill', 'icon-grid' */}
             <div className="about-profile-column">
-              <ProfileCard />
+              <ProfileCard compact={true} compactStyle="split" />
             </div>
 
             {/* Gap - Center Column (Empty space) */}

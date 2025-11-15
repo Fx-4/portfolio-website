@@ -20,7 +20,65 @@
   }
   
   .about-section {
-    padding: 60px 20px 80px;
+    /* CSS Variables */
+    --spacing: 0.25rem;
+    --radius: 0.5rem;
+    --radius-xl: 0.75rem;
+    --radius-2xl: 1rem;
+    --radius-3xl: 1.5rem;
+    --text-xs: 0.75rem;
+    --text-sm: 0.875rem;
+    --text-base: 1rem;
+    --text-xl: 1.25rem;
+    --text-2xl: 1.5rem;
+    --text-3xl: 1.875rem;
+    --font-weight-normal: 400;
+    --font-weight-medium: 500;
+    --font-weight-semibold: 600;
+    --font-weight-bold: 700;
+    --blur-xs: 4px;
+    --blur-md: 12px;
+    --blur-lg: 16px;
+    --ease-in-out: cubic-bezier(0.4, 0, 0.2, 1);
+    --default-transition-duration: 0.15s;
+    --default-transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    
+    /* Light Theme Colors (Default) */
+    --background: #F4F4F4;
+    --surface: #FFFFFF;
+    --text: #264653;
+    --text-secondary: #515d63;
+    --text-muted: #515d63;
+    --text-inverse: #FFFFFF;
+    --brand-primary: #2A9D8F;
+    --brand-primary-hover: #21867a;
+    --underline: #2A9D8F;
+    --bg-color: #F4F4F4;
+    --backdrop: rgba(244, 244, 244, 0.8);
+    --bg-700: rgba(255, 255, 255, 0.6);
+    --bg-800: rgba(244, 244, 244, 0.9);
+    --border-color: rgba(42, 157, 143, 0.2);
+    --border-color-scrolled: rgba(42, 157, 143, 0.3);
+    --brand-color: #2A9D8F;
+    --text-color: #264653;
+    --text-hover: #2A9D8F;
+    --text-primary: #264653;
+    --active-bg: rgba(42, 157, 143, 0.1);
+    --active-dot: #2A9D8F;
+    --icon-color: #264653;
+    --gap-size: 1.5rem;
+    --animation-timing: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    --animation-duration: 0.5s;
+    --hover-lift: translateY(-8px);
+    --card-border-radius: 1rem;
+    --photo-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    --card-shadow: 0 10px 30px -5px rgba(0, 0, 0, 0.05);
+    --card-hover-shadow: 0 15px 35px -5px rgba(0, 0, 0, 0.1);
+    --text-rgb: 44, 53, 66;
+    --brand-primary-rgb: 42, 157, 143;
+    
+    /* Base Styles */
+    padding: 0 16px 60px;
     max-width: 1200px;
     margin: 0 auto;
     color: var(--text, #264653);
@@ -28,12 +86,49 @@
     overflow: visible;
     min-height: 100vh;
     z-index: 1;
+    font-family: 'Montserrat';
+    line-height: 1.5;
+    text-align: left;
+    box-sizing: border-box;
+    scrollbar-width: none;
+    transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+  }
+
+  /* Dark Theme Override */
+  [data-theme="dark"] .about-section {
+    --background: #1D3557;
+    --surface: #234167;
+    --text: #E9C46A;
+    --text-secondary: #c4a65b;
+    --text-muted: #c4a65b;
+    --text-inverse: #1D3557;
+    --brand-primary: #E76F51;
+    --brand-primary-hover: #E9C46A;
+    --underline: #E76F51;
+    --bg-color: #1D3557;
+    --backdrop: rgba(29, 53, 87, 0.8);
+    --bg-700: rgba(41, 72, 113, 0.6);
+    --bg-800: rgba(29, 53, 87, 0.9);
+    --border-color: rgba(233, 196, 106, 0.2);
+    --border-color-scrolled: rgba(233, 196, 106, 0.3);
+    --brand-color: #E76F51;
+    --text-color: #E9C46A;
+    --text-hover: #E76F51;
+    --text-primary: #E9C46A;
+    --active-bg: rgba(231, 111, 81, 0.1);
+    --active-dot: #E76F51;
+    --icon-color: #E9C46A;
+    --photo-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+    --card-shadow: 0 10px 30px -5px rgba(0, 0, 0, 0.2);
+    --card-hover-shadow: 0 15px 35px -5px rgba(0, 0, 0, 0.3);
+    --text-rgb: 229, 233, 240;
+    --brand-primary-rgb: 231, 111, 81;
   }
 
   .about-container {
     display: flex;
     flex-direction: column;
-    gap: 4rem;
+    gap: 2.5rem;
     position: relative;
     z-index: 2;
   }
@@ -41,7 +136,7 @@
   /* New Simple Header */
   .about-header {
     text-align: center;
-    margin-bottom: 3rem;
+    margin-bottom: 1.5rem;
   }
 
   .about-main-title {
@@ -49,7 +144,7 @@
     font-weight: 700;
     color: var(--text-color, #264653);
     margin-bottom: 1rem;
-    background: linear-gradient(135deg, #2A9D8F 0%, #264653 100%);
+    background: linear-gradient(135deg, var(--brand-primary) 0%, var(--text-color) 100%);
     -webkit-background-clip: text;
     background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -180,16 +275,42 @@
   .about-content {
     display: flex;
     flex-direction: column;
-    gap: 3rem;
+    gap: 2rem;
     position: relative;
   }
   
+  @media (min-width: 768px) {
+    .about-content {
+      display: grid;
+      grid-template-columns: 2fr 5fr;
+      gap: 2.5rem;
+      align-items: start;
+    }
+  }
+  
   /* ---- SIMPLIFIED PHOTO STYLING ---- */
+  
+  /* Left Column: Photo + Stats */
+  .profile-left-column {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    align-items: center;
+  }
+  
+  @media (min-width: 768px) {
+    .profile-left-column {
+      width: 280px;
+      flex-shrink: 0;
+      align-items: flex-start;
+    }
+  }
+  
   .profile-photo-container {
-    margin-bottom: 2rem;
     max-width: 100%;
     position: relative;
     z-index: 2;
+    flex-shrink: 0;
   }
   
   .profile-photo-wrapper {
@@ -201,6 +322,13 @@
     /* Simple rounded bottom corners as requested */
     border-radius: 0 0 999px 999px;
     box-shadow: var(--photo-shadow);
+  }
+  
+  @media (min-width: 768px) {
+    .profile-photo-wrapper {
+      max-width: 100%;
+      margin: 0;
+    }
   }
   
   .profile-photo {
@@ -245,41 +373,103 @@
   
   /* Bio Section */
   .about-bio {
-    max-width: 800px;
+    max-width: 100%;
     position: relative;
+    text-align: left;
+  }
+  
+  @media (min-width: 768px) {
+    .about-bio {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
   }
   
   .about-bio p {
-    font-size: 1.125rem;
+    font-size: 1.0625rem;
     line-height: 1.7;
     margin-bottom: 1.5rem;
     color: var(--text-muted, #515d63) !important;
     position: relative;
-    transition: color 0.3s ease;
+    transition: all 0.3s ease;
     display: block !important;
     visibility: visible !important;
     opacity: 1 !important;
+    text-align: left;
+  }
+  
+  .about-bio p:hover {
+    color: var(--text, #264653);
+    transform: translateX(4px);
+  }
+  
+  .about-bio p strong {
+    color: var(--brand-primary, #2A9D8F);
+    font-weight: 600;
+  }
+  
+  /* Keyword styling for tooltips in About page */
+  .about-bio .keyword {
+    color: var(--brand-primary, #2A9D8F);
+    font-weight: 500;
+    text-decoration: underline;
+    text-decoration-color: var(--brand-primary, #2A9D8F);
+    text-decoration-thickness: 1px;
+    text-underline-offset: 2px;
+    cursor: help;
+    transition: all 0.2s ease;
+  }
+  
+  .about-bio .keyword:hover {
+    color: var(--brand-primary-hover, #E9C46A);
+    text-decoration-color: var(--brand-primary-hover, #E9C46A);
   }
   
   .about-bio p:hover {
     color: var(--text, #264653);
   }
   
-  /* Bio Stats */
+  /* Bio Stats - Now in left column */
   .bio-stats {
     display: flex;
-    flex-wrap: wrap;
-    gap: 2rem;
-    margin: 2rem 0;
+    flex-direction: column;
+    gap: 1rem;
+    width: 100%;
     position: relative;
+  }
+  
+  @media (min-width: 768px) {
+    .bio-stats {
+      margin-top: 0.5rem;
+    }
   }
   
   .stat-item {
     display: flex;
     flex-direction: column;
     align-items: center;
+    gap: 0.5rem;
+    padding: 1rem;
+    background: var(--surface, #ffffff);
+    border-radius: 0.75rem;
+    box-shadow: var(--card-shadow);
+    transition: all 0.3s ease;
     text-align: center;
     position: relative;
+  }
+  
+  .stat-item:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--card-hover-shadow);
+  }
+  
+  @media (min-width: 768px) {
+    .stat-item {
+      align-items: flex-start;
+      text-align: left;
+    }
   }
   
   .stat-number {
@@ -723,7 +913,7 @@
   
   @media (min-width: 768px) {
     .about-section {
-      padding: 100px 40px;
+      padding: 25px 40px;
     }
     
     .about-title {

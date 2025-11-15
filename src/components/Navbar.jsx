@@ -41,10 +41,12 @@ const Navbar = () => {
     updateTheme(initialTheme === 'dark');
   }, []);
 
-  // Reset scroll state when route changes
+  // Auto scroll to top when route changes
   useEffect(() => {
-    // Scroll to top on route change
+    // Force immediate scroll to top - more reliable
     window.scrollTo(0, 0);
+    document.documentElement.scrollTop = 0;
+    document.body.scrollTop = 0;
     setScrollProgress(0);
   }, [location.pathname]);
 
@@ -149,7 +151,7 @@ const Navbar = () => {
     WebkitBackdropFilter: `blur(${backdropBlur}px) saturate(${backdropSaturate}%)`,
     boxShadow: currentShadow,
     border: glassBorder,
-    transition: `all var(--default-transition-duration, 0.15s) var(--ease-in-out, cubic-bezier(0.4, 0, 0.2, 1))`,
+    transition: 'none',
   };
 
   return (

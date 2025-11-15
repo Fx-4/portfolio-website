@@ -1,7 +1,6 @@
 import { motion } from 'framer-motion';
 import { useEffect, useRef, useState } from 'react';
 import PropTypes from 'prop-types';
-import TooltipCard from './TooltipCard';
 import '../styles/EnhancedAboutText.css';
 
 const EnhancedAboutText = ({
@@ -85,43 +84,9 @@ const EnhancedAboutText = ({
       animate={inView ? "visible" : "hidden"}
       variants={containerVariants}
     >
-      {/* Paragraph 1 - Introduction */}
+      {/* Short intro for Home page - No tooltips */}
       <motion.p variants={paragraphVariants} className="about-paragraph">
-        Hi, I&apos;m <span className="name-gradient">Haikal Hifzhi Helmy</span>, an{' '}
-        <TooltipCard content="Studying Informatics Engineering with focus on Software Development">
-          <span className="keyword">Informatics student</span>
-        </TooltipCard>{' '}
-        passionate about{' '}
-        <TooltipCard content="Building innovative solutions using modern web technologies">
-          <span className="keyword">technology</span>
-        </TooltipCard>{' '}
-        and innovation. My journey began with a deep curiosity about how technology can simplify human life, both physically and virtually. This passion has driven me to explore{' '}
-        <TooltipCard content="JavaScript, React, Next.js, Python, Java & more">
-          <span className="keyword">programming</span>
-        </TooltipCard>
-        , software development, and problem-solving.
-      </motion.p>
-
-      {/* Paragraph 2 - Goals and Vision */}
-      <motion.p variants={paragraphVariants} className="about-paragraph">
-        I thrive in{' '}
-        <TooltipCard content="Team projects, open-source contributions & tech communities">
-          <span className="keyword">collaborative environments</span>
-        </TooltipCard>
-        , love tackling challenges, and continuously seek opportunities to learn and grow. My goal is to create impactful technological solutions that contribute to society and put Indonesia on the global innovation map.
-      </motion.p>
-
-      {/* Paragraph 3 - Education & Experience */}
-      <motion.p variants={paragraphVariants} className="about-paragraph">
-        Currently pursuing a{' '}
-        <TooltipCard content="Studying at both UII Yogyakarta (Indonesia) and Nanjing Xiaozhuang University (China)">
-          <span className="keyword">unique double degree program</span>
-        </TooltipCard>
-        , I&apos;m gaining diverse perspectives and international experience in{' '}
-        <TooltipCard content="Full-stack development, UI/UX design, database management & DevOps">
-          <span className="keyword">software engineering</span>
-        </TooltipCard>
-        . This journey has equipped me with both technical skills and cross-cultural insights that shape my approach to building innovative solutions. Let&apos;s connect and build something amazing together!
+        Hi, I&apos;m <span className="name-gradient">Haikal Hifzhi Helmy</span>, an <span className="keyword">Informatics student</span> passionate about <span className="keyword">technology</span> and innovation. Currently pursuing a <span className="keyword">double degree program</span>, I&apos;m focused on creating impactful solutions that contribute to society and put Indonesia on the global innovation map.
       </motion.p>
     </motion.div>
   );
