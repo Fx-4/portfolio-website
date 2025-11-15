@@ -117,6 +117,11 @@ h1[role="heading"] {
   h1[role="heading"] {
     font-size: clamp(1.5rem, 5vw, 1.75rem);
   }
+  
+  /* Mobile only adjustments */
+  .flex.w-full.flex-col.gap-10 {
+    gap: 2rem;
+  }
 }
 
 /* Layout styles */
@@ -134,13 +139,35 @@ h1[role="heading"] {
   margin: 0 auto;
 }
 
-/* Form Container */
+/* Responsive flex-row for desktop */
+@media (min-width: 640px) {
+  .sm\:flex-row {
+    flex-direction: row !important;
+  }
+  
+  .sm\:gap-8 {
+    gap: 2rem !important;
+  }
+  
+  /* Form and profile card side by side */
+  .flex.w-full.flex-col.gap-10.sm\:flex-row.sm\:gap-8 > form.w-full {
+    width: 60%;
+    max-width: 60%;
+  }
+
+  .flex.w-full.flex-col.gap-10.sm\:flex-row.sm\:gap-8 > div.h-full {
+    width: 40%;
+    max-width: 40%;
+  }
+}
+
+/* Form Container - Mobile */
 .flex.w-full.flex-col.gap-10 > form.w-full {
   width: 100%;
   max-width: 100%;
 }
 
-/* Profile Card Container */
+/* Profile Card Container - Mobile */
 .flex.w-full.flex-col.gap-10 > div.h-full {
   width: 100%;
   max-width: 100%;
@@ -200,6 +227,16 @@ input, textarea {
   font-size: 0.875rem;
   transition: border-color 0.2s ease;
   color: var(--text);
+}
+
+@media (max-width: 480px) {
+  input, textarea {
+    font-size: 16px; /* Prevent zoom on iOS */
+  }
+  
+  label {
+    font-size: 0.8125rem;
+  }
 }
 
 [data-theme="dark"] input,
@@ -277,6 +314,12 @@ button[type="submit"] {
   cursor: pointer;
 }
 
+@media (max-width: 480px) {
+  button[type="submit"] {
+    width: 100%;
+  }
+}
+
 button[type="submit"]:hover {
   background-color: var(--brand-primary-hover);
   transform: translateY(-2px);
@@ -345,6 +388,18 @@ button[type="submit"]:disabled {
 
 .p-6 {
   padding: 2rem;
+}
+
+@media (max-width: 768px) {
+  .p-6 {
+    padding: 1.25rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .p-6 {
+    padding: 1rem;
+  }
 }
 
 .shadow {
@@ -429,6 +484,13 @@ button[type="submit"]:disabled {
   margin: 0 auto;
 }
 
+@media (max-width: 480px) {
+  .aspect-square {
+    width: 80px;
+    height: 80px;
+  }
+}
+
 .overflow-hidden {
   overflow: hidden;
 }
@@ -482,6 +544,13 @@ button[type="submit"]:disabled {
   justify-content: center;
   gap: 1.5rem;
   color: var(--text-muted);
+  flex-wrap: wrap;
+}
+
+@media (max-width: 480px) {
+  .opacity-container {
+    gap: 1rem;
+  }
 }
 
 @media (min-width: 640px) {
