@@ -1,5 +1,6 @@
 
 import { useState, useEffect, useRef } from 'react';
+import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import PropTypes from 'prop-types';
 import '../styles/Profilecard.css';
@@ -130,9 +131,9 @@ const ProfileCard = ({
           </div>
 
           {/* Contact Button */}
-          <a
+          <Link
+            to="/contact"
             className="profile-contact-btn"
-            href="/contact"
             aria-label={`Contact ${name}`}
           >
             <span className="btn-icon">
@@ -142,7 +143,7 @@ const ProfileCard = ({
               </svg>
             </span>
             {contactText}
-          </a>
+          </Link>
         </div>
       </div>
     </motion.div>
