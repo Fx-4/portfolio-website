@@ -73,7 +73,7 @@ function Home() {
             {/* Profile Card - Left Column */}
             {/* Try: 'default', 'badge', 'split', 'floating', 'pill', 'icon-grid' */}
             <div className="about-profile-column">
-              <ProfileCard compact={true} compactStyle="split" />
+              <ProfileCard compact={true} compactStyle="split" location="China" />
             </div>
 
             {/* Gap - Center Column (Empty space) */}

@@ -11,6 +11,7 @@ const ProfileCard = ({
   title = 'Informatics Student',
   status = 'Available',
   contactText = 'Contact',
+  location = 'China', // Update this manually when you travel
   className = '',
   compact = false,
   compactStyle = 'split', // 'default', 'badge', 'split', 'floating', 'pill', 'icon-grid'
@@ -117,14 +118,14 @@ const ProfileCard = ({
               <span className="pill-text">Open to Work</span>
             </div>
             
-            <div className="stat-pill pill-location" data-tooltip="Based in Indonesia">
+            <div className="stat-pill pill-location" data-tooltip={`Currently in ${location}`}>
               <div className="pill-icon">
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                   <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
                   <circle cx="12" cy="10" r="3"></circle>
                 </svg>
               </div>
-              <span className="pill-text">Indonesia</span>
+              <span className="pill-text">{location}</span>
             </div>
           </div>
 
@@ -154,6 +155,7 @@ ProfileCard.propTypes = {
   title: PropTypes.string,
   status: PropTypes.string,
   contactText: PropTypes.string,
+  location: PropTypes.string,
   className: PropTypes.string,
   compact: PropTypes.bool,
   compactStyle: PropTypes.oneOf(['default', 'badge', 'split', 'floating', 'pill', 'icon-grid'])
