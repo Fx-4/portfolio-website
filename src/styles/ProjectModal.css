@@ -26,8 +26,8 @@
 }
 
 .project-modal-container {
-  background: var(--background, #0a0a0a);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: var(--background);
+  border: 1px solid var(--border-color, rgba(255, 255, 255, 0.1));
   border-radius: 20px;
   max-width: 900px;
   width: 100%;
@@ -36,6 +36,11 @@
   position: relative;
   animation: slideUp 0.4s cubic-bezier(0.16, 1, 0.3, 1);
   box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+}
+
+[data-theme="light"] .project-modal-container {
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
 }
 
 @keyframes slideUp {
@@ -73,8 +78,8 @@
   position: absolute;
   top: 20px;
   right: 20px;
-  background: rgba(255, 255, 255, 0.1);
-  border: 1px solid rgba(255, 255, 255, 0.2);
+  background: var(--surface);
+  border: 1px solid var(--border-color, rgba(255, 255, 255, 0.2));
   border-radius: 50%;
   width: 40px;
   height: 40px;
@@ -84,15 +89,23 @@
   cursor: pointer;
   z-index: 10;
   transition: all 0.3s ease;
-  color: rgba(255, 255, 255, 0.8);
+  color: var(--text);
   font-size: 18px;
 }
 
+[data-theme="light"] .project-modal-close {
+  border: 1px solid rgba(0, 0, 0, 0.15);
+}
+
 .project-modal-close:hover {
-  background: rgba(255, 255, 255, 0.2);
-  border-color: rgba(255, 255, 255, 0.4);
+  background: var(--surface-hover, rgba(255, 255, 255, 0.2));
+  border-color: var(--brand-primary);
   transform: rotate(90deg);
-  color: white;
+  color: var(--brand-primary);
+}
+
+[data-theme="light"] .project-modal-close:hover {
+  background: rgba(0, 0, 0, 0.05);
 }
 
 /* Modal Content */
@@ -123,7 +136,7 @@
   left: 0;
   right: 0;
   height: 100px;
-  background: linear-gradient(to top, var(--background, #0a0a0a), transparent);
+  background: linear-gradient(to top, var(--background), transparent);
 }
 
 /* Project Details */
@@ -160,7 +173,7 @@
 .project-modal-title {
   font-size: clamp(28px, 4vw, 36px);
   font-weight: 700;
-  color: white;
+  color: var(--text);
   margin: 0 0 12px 0;
   line-height: 1.2;
 }
@@ -170,7 +183,7 @@
   display: flex;
   align-items: center;
   gap: 8px;
-  color: rgba(255, 255, 255, 0.6);
+  color: var(--text-muted);
   font-size: 14px;
   margin-bottom: 24px;
 }
@@ -181,7 +194,7 @@
 
 /* Description */
 .project-modal-description {
-  color: rgba(255, 255, 255, 0.8);
+  color: var(--text);
   font-size: 16px;
   line-height: 1.7;
   margin-bottom: 32px;
@@ -198,7 +211,7 @@
   gap: 10px;
   font-size: 18px;
   font-weight: 600;
-  color: white;
+  color: var(--text);
   margin: 0 0 16px 0;
 }
 
@@ -215,9 +228,9 @@
 }
 
 .project-modal-tech-tag {
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  color: rgba(255, 255, 255, 0.9);
+  background: var(--surface);
+  border: 1px solid var(--border-color, rgba(255, 255, 255, 0.1));
+  color: var(--text);
   padding: 8px 16px;
   border-radius: 8px;
   font-size: 14px;
@@ -225,10 +238,19 @@
   transition: all 0.3s ease;
 }
 
+[data-theme="light"] .project-modal-tech-tag {
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  background: rgba(0, 0, 0, 0.03);
+}
+
 .project-modal-tech-tag:hover {
-  background: rgba(255, 255, 255, 0.1);
-  border-color: rgba(255, 255, 255, 0.2);
+  background: var(--surface-hover);
+  border-color: var(--brand-primary);
   transform: translateY(-2px);
+}
+
+[data-theme="light"] .project-modal-tech-tag:hover {
+  background: rgba(0, 0, 0, 0.05);
 }
 
 /* Action Buttons */
@@ -261,16 +283,26 @@
 }
 
 .project-modal-button-github {
-  background: rgba(255, 255, 255, 0.1);
-  color: white;
-  border: 1px solid rgba(255, 255, 255, 0.2);
+  background: var(--surface);
+  color: var(--text);
+  border: 1px solid var(--border-color, rgba(255, 255, 255, 0.2));
+}
+
+[data-theme="light"] .project-modal-button-github {
+  background: rgba(0, 0, 0, 0.03);
+  border: 1px solid rgba(0, 0, 0, 0.15);
 }
 
 .project-modal-button-github:hover {
-  background: rgba(255, 255, 255, 0.15);
-  border-color: rgba(255, 255, 255, 0.3);
+  background: var(--surface-hover);
+  border-color: var(--brand-primary);
   transform: translateY(-2px);
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+}
+
+[data-theme="light"] .project-modal-button-github:hover {
+  background: rgba(0, 0, 0, 0.05);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
 }
 
 .project-modal-button-demo {
