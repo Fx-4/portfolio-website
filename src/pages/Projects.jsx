@@ -83,7 +83,7 @@ function Projects() {
               <FocusCards cards={filteredProjects} />
             ) : (
               <div style={{ 
-                color: 'rgba(255, 255, 255, 0.6)', 
+                color: 'var(--text-muted)', 
                 fontSize: '16px',
                 padding: '60px 20px',
                 textAlign: 'center'
