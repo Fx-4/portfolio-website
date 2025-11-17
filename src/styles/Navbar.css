@@ -146,10 +146,33 @@
   font-weight: bold;
   text-decoration: none;
   transition: opacity 0.3s ease;
+  display: flex;
+  align-items: center;
+  height: 100%;
+}
+
+.navbar-logo {
+  height: 32px;
+  width: auto;
+  transition: all 0.3s ease;
+}
+
+/* Light theme - Teal color */
+.navbar-logo {
+  filter: invert(54%) sepia(48%) saturate(438%) hue-rotate(121deg) brightness(93%) contrast(87%);
+}
+
+/* Dark theme - Coral color */
+[data-theme="dark"] .navbar-logo {
+  filter: invert(55%) sepia(48%) saturate(1090%) hue-rotate(327deg) brightness(100%) contrast(88%);
 }
 
 .navbar-brand:hover {
   opacity: 0.8;
+}
+
+.navbar-brand:hover .navbar-logo {
+  transform: scale(1.05);
 }
 
 .nav-links {

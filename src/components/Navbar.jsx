@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import '../styles/Navbar.css';
+import logo from '../assets/logos/logo.svg';
 
 const NavItem = ({ to = "/", children = "", isActive = false }) => (
   <li className="nav-item" style={{ pointerEvents: 'auto' }}>
@@ -30,6 +31,17 @@ const Navbar = () => {
   const updateTheme = (dark) => {
     document.documentElement.setAttribute('data-theme', dark ? 'dark' : 'light');
     localStorage.setItem('theme', dark ? 'dark' : 'light');
+    
+    // Update favicon
+    const faviconPath = dark 
+      ? '/src/assets/logos/logo-dark.svg' 
+      : '/src/assets/logos/logo-light.svg';
+    
+    const favicon = document.getElementById('favicon');
+    const appleIcon = document.getElementById('apple-icon');
+    
+    if (favicon) favicon.href = faviconPath;
+    if (appleIcon) appleIcon.href = faviconPath;
   };
 
   // Initialize theme
@@ -158,7 +170,7 @@ const Navbar = () => {
     <header className="navbar-header" style={{ pointerEvents: 'auto', zIndex: 9999 }}>
       <nav className="navbar" style={navbarStyle}>
         <Link className="navbar-brand" to="/">
-          F-4
+          <img src={logo} alt="F-4 Logo" className="navbar-logo" />
         </Link>
 
         <ul className="nav-links">
