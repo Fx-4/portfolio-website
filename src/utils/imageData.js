@@ -5,6 +5,7 @@ import image3 from '../assets/images/SecondLife.png';
 import image4 from '../assets/images/Nutrikids.png';  
 import image5 from '../assets/images/veriflair.png';
 import image6 from '../assets/images/Tenang.in.png';
+import image7 from '../assets/images/IdeaSparkV.png';
 
 
 export const focusCardsData = [
@@ -66,6 +67,16 @@ export const focusCardsData = [
       technologies: ["React", "Node.js", "PostgreSQL", "Socket.io", "Redux"],
       date: { month: "October", year: 2024 },
       githubUrl: "https://github.com/Wibson27/Tenang.in",
+      demoUrl: null
+    },
+    {
+      src: image7,
+      title: "Generate Idea",
+      category: "Web Development",
+      description: "Platform AI-powered untuk menghasilkan ide kreatif dan inovatif. Generate Idea menggunakan teknologi machine learning untuk membantu brainstorming dan pengembangan konsep dengan antarmuka yang intuitif dan responsif.",
+      technologies: ["React", "JavaScript", "CSS3", "AI Integration", "REST API"],
+      date: { month: "November", year: 2024 },
+      githubUrl: "https://github.com/Fx-4/Generate-Idea",
       demoUrl: null
     }
   ];

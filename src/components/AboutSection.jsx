@@ -279,16 +279,16 @@ const AboutSection = () => {
                 viewport={{ once: true }}
               >
                 <div className="stat-item">
-                  <span className="stat-number">2+</span>
-                  <span className="stat-label">Years Learning</span>
+                  <span className="stat-number">9+</span>
+                  <span className="stat-label">Organizations</span>
                 </div>
                 <div className="stat-item">
-                  <span className="stat-number">10+</span>
-                  <span className="stat-label">Projects Built</span>
+                  <span className="stat-number">6+</span>
+                  <span className="stat-label">Certifications</span>
                 </div>
                 <div className="stat-item">
                   <span className="stat-number">2</span>
-                  <span className="stat-label">Countries</span>
+                  <span className="stat-label">Gold Awards</span>
                 </div>
               </motion.div>
             </div>
