@@ -95,16 +95,26 @@ const VelocityText = ({
   });
 
   const directionFactor = useRef(1);
+  const isActiveRef = useRef(true);
+
+  useEffect(() => {
+    isActiveRef.current = true;
+    return () => {
+      isActiveRef.current = false;
+    };
+  }, []);
 
   useAnimationFrame((t, delta) => {
+    if (!isActiveRef.current) return;
+
     let moveBy = directionFactor.current * baseVelocity * (delta / 1000);
-    
+
     if (velocityFactor.get() < 0) {
       directionFactor.current = -1;
     } else if (velocityFactor.get() > 0) {
       directionFactor.current = 1;
     }
-    
+
     moveBy += directionFactor.current * moveBy * velocityFactor.get();
     baseX.set(baseX.get() + moveBy);
   });

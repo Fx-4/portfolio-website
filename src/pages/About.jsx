@@ -1,6 +1,5 @@
 // src/pages/About.jsx
 import Navbar from '../components/Navbar';
-
 import Footer from '../components/Footer';
 import AboutSection from '../components/AboutSection';
 import ScrollFadeOverlay from '../components/ScrollFadeOverlay';
@@ -11,7 +10,7 @@ function About() {
       <ScrollFadeOverlay />
       <Navbar />
 
-      <section className="max-w-[1400px] mx-auto px-4 xs:px-6 sm:px-12 md:px-16 lg:px-20 xl:px-24 2xl:px-28" style={{ textAlign: 'center', overflowX: 'hidden', width: '100%', paddingBottom: 'clamp(60px, 12vw, 95px)' }}>
+      <section className="max-w-[1400px] mx-auto px-3 xs:px-4 sm:px-8 md:px-12 lg:px-16 xl:px-20 2xl:px-24" style={{ textAlign: 'center', overflowX: 'hidden', width: '100%', paddingBottom: 'clamp(40px, 8vw, 80px)' }}>
         {/* About Section */}
         <AboutSection />
 

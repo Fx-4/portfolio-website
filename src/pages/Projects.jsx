@@ -8,6 +8,7 @@ import ShinyText from '../components/ShinyText';
 import ScrollFadeOverlay from '../components/ScrollFadeOverlay';
 import CategoryFilter from '../components/CategoryFilter';
 import SearchBar from '../components/SearchBar';
+import JourneySection from '../components/JourneySection';
 
 
 function Projects() {
@@ -33,7 +34,7 @@ function Projects() {
       // Filter by search query
       if (searchQuery.trim()) {
         const query = searchQuery.toLowerCase();
-        filtered = filtered.filter(project => 
+        filtered = filtered.filter(project =>
           project.title.toLowerCase().includes(query) ||
           project.description.toLowerCase().includes(query) ||
           project.category.toLowerCase().includes(query) ||
@@ -58,40 +59,46 @@ function Projects() {
         <ScrollFadeOverlay />
         <Navbar />
 
-        <section className="max-w-[1400px] mx-auto px-4 xs:px-6 sm:px-12 md:px-16 lg:px-20 xl:px-24 2xl:px-28 py-6 sm:py-8 md:py-12 lg:py-16" style={{ textAlign: 'center', overflowX: 'hidden', width: '100%', paddingBottom: 'clamp(60px, 12vw, 95px)' }}>
-          <div className="My Project" style={{ paddingTop: 'clamp(60px, 10vw, 80px)', paddingBottom: 'clamp(20px, 3vw, 32px)' }}>
-            <ShinyText text="</> My Project"  />
+        <section className="max-w-[1400px] mx-auto px-3 xs:px-4 sm:px-8 md:px-12 lg:px-16 xl:px-20 2xl:px-24" style={{ textAlign: 'center', overflowX: 'hidden', width: '100%', paddingBottom: 'clamp(40px, 8vw, 80px)' }}>
+          {/* Development Projects Section */}
+          <div style={{ paddingTop: 'clamp(60px, 10vw, 80px)', marginBottom: 'clamp(80px, 12vw, 120px)' }}>
+            <div style={{ marginBottom: 'clamp(24px, 4vw, 32px)' }}>
+              <ShinyText text="</> Development Projects" />
+            </div>
+
+            {/* Search Bar */}
+            <SearchBar
+              value={searchQuery}
+              onChange={handleSearchChange}
+              placeholder="Search projects by name, category, or technology..."
+            />
+
+            {/* Category Filter */}
+            <CategoryFilter
+              categories={categories}
+              activeCategory={activeCategory}
+              onCategoryChange={handleCategoryChange}
+            />
+
+            {/* Projects Grid */}
+            <div style={{ paddingTop: '20px' }}>
+              {filteredProjects.length > 0 ? (
+                <FocusCards cards={filteredProjects} />
+              ) : (
+                <div style={{
+                  color: 'var(--text-muted)',
+                  fontSize: '16px',
+                  padding: '60px 20px',
+                  textAlign: 'center'
+                }}>
+                  No projects found matching your criteria. Try adjusting your search or filter.
+                </div>
+              )}
+            </div>
           </div>
 
-          {/* Search Bar */}
-          <SearchBar 
-            value={searchQuery}
-            onChange={handleSearchChange}
-            placeholder="Search projects by name, category, or technology..."
-          />
-
-          {/* Category Filter */}
-          <CategoryFilter 
-            categories={categories}
-            activeCategory={activeCategory}
-            onCategoryChange={handleCategoryChange}
-          />
-
-          {/* Projects Grid */}
-          <div style={{ paddingBottom: 'clamp(60px, 12vw, 100px)', paddingTop: '0px' }}>
-            {filteredProjects.length > 0 ? (
-              <FocusCards cards={filteredProjects} />
-            ) : (
-              <div style={{ 
-                color: 'var(--text-muted)', 
-                fontSize: '16px',
-                padding: '60px 20px',
-                textAlign: 'center'
-              }}>
-                No projects found matching your criteria. Try adjusting your search or filter.
-              </div>
-            )}
-          </div>
+          {/* Photography & Design Section */}
+          <JourneySection />
 
           {/* Footer with consistent spacing */}
           <div style={{ paddingTop: 'clamp(40px, 8vw, 60px)' }}>

@@ -116,6 +116,10 @@ function Home() {
               "FRONTEND DEVELOPER UI/UX DESIGNER"
             ]}
             className="text-3xl font-bold text-center mb-8"
+            numCopies={4}
+            velocity={30}
+            damping={30}
+            stiffness={300}
           />
         </section>
 

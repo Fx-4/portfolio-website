@@ -1,4 +1,4 @@
-import { Hand, ArrowUpRight, Github, Linkedin, Instagram, Mail, Paintbrush } from 'lucide-react';
+import { Hand, ArrowUpRight, Github, Linkedin, Instagram, Mail } from 'lucide-react';
 import { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import 'aos/dist/aos.css';
@@ -100,11 +100,6 @@ const Header = () => {
               href={SOCIAL_LINKS.instagram}
               icon={Instagram}
               label="INSTAGRAM"
-            />
-            <SocialLink
-              href="https://behance.net/yourusername"
-              icon={Paintbrush}
-              label="BEHANCE"
             />
             <SocialLink
               href={`mailto:${SOCIAL_LINKS.email}`}
