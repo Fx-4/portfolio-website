@@ -406,6 +406,13 @@
   background: rgba(231, 111, 81, 0.2);
 }
 
+[data-theme='dark'] .timeline-line {
+  background: linear-gradient(180deg,
+    rgba(231, 111, 81, 0.2),
+    rgba(231, 111, 81, 0.8),
+    rgba(231, 111, 81, 0.2));
+}
+
 /* Responsive */
 @media (min-width: 768px) {
   .education-card {

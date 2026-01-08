@@ -20,7 +20,7 @@
     "gsap": "^3.12.7",
     "lucide-react": "^0.475.0",
     "motion": "^12.4.7",
-    "nodemailer": "^7.0.10",
+    "nodemailer": "^7.0.12",
     "nprogress": "^0.2.0",
     "prop-types": "^15.8.1",
     "react": "^18.2.0",
