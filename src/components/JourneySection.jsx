@@ -1,12 +1,12 @@
 import { useState } from 'react';
 import { journeyData } from '../utils/journeyData';
-import Masonry from './Masonry';
+// import Masonry from './Masonry'; // Temporarily commented out for redesign
 import ShinyText from './ShinyText';
 
 function JourneySection() {
   const [selectedCarousel, setSelectedCarousel] = useState(null);
   const [selectedImage, setSelectedImage] = useState(null);
-  const [selectedPhoto, setSelectedPhoto] = useState(null);
+  // const [selectedPhoto, setSelectedPhoto] = useState(null); // Temporarily commented out for redesign
   const [puzzlePieces, setPuzzlePieces] = useState([]);
   const [draggedIndex, setDraggedIndex] = useState(null);
 
@@ -29,13 +29,14 @@ function JourneySection() {
     setSelectedImage(null);
   };
 
-  const openPhoto = (photo) => {
-    setSelectedPhoto(photo);
-  };
+  // Temporarily commented out for redesign
+  // const openPhoto = (photo) => {
+  //   setSelectedPhoto(photo);
+  // };
 
-  const closePhoto = () => {
-    setSelectedPhoto(null);
-  };
+  // const closePhoto = () => {
+  //   setSelectedPhoto(null);
+  // };
 
   const handleDragStart = (index) => {
     setDraggedIndex(index);
@@ -61,8 +62,8 @@ function JourneySection() {
 
   return (
     <div className="journey-section" style={{ paddingTop: '0', paddingBottom: '0' }}>
-      {/* Photography Section */}
-      <div style={{ marginBottom: 'clamp(80px, 12vw, 120px)' }}>
+      {/* Photography Section - Temporarily commented out for redesign */}
+      {/* <div style={{ marginBottom: 'clamp(80px, 12vw, 120px)' }}>
         <div style={{ marginBottom: 'clamp(20px, 3vw, 24px)' }}>
           <ShinyText text="</> Photography" />
         </div>
@@ -76,7 +77,6 @@ function JourneySection() {
           Capturing moments and stories through the lens
         </p>
 
-        {/* Scrollable Container with Fixed Height */}
         <div style={{
           maxWidth: '1200px',
           margin: '0 auto',
@@ -141,7 +141,6 @@ function JourneySection() {
           </div>
         </div>
 
-        {/* Scroll Indicator */}
         <div style={{
           textAlign: 'center',
           marginTop: '16px',
@@ -151,7 +150,7 @@ function JourneySection() {
         }}>
           ↓ Scroll down to see more photos ↓
         </div>
-      </div>
+      </div> */}
 
       {/* Design Section */}
       <div>
@@ -626,8 +625,8 @@ function JourneySection() {
         </div>
       )}
 
-      {/* Photography Preview Modal */}
-      {selectedPhoto && (
+      {/* Photography Preview Modal - Temporarily commented out for redesign */}
+      {/* {selectedPhoto && (
         <div
           style={{
             position: 'fixed',
@@ -699,7 +698,6 @@ function JourneySection() {
               ×
             </button>
 
-            {/* Large Photo Display */}
             <div style={{
               width: '100%',
               display: 'flex',
@@ -760,7 +758,7 @@ function JourneySection() {
             </div>
           </div>
         </div>
-      )}
+      )} */}
     </div>
   );
 }

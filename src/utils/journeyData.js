@@ -18,8 +18,8 @@ import indo05 from '../assets/journey/photography/indo/indo-05.jpg';
 
 // China Photography imports
 import chinaSeptDay7_01 from '../assets/journey/photography/china/china-sept-day7-01.jpg';
-import chinaOktDay5_01 from '../assets/journey/photography/china/china-okt-day5-01.jpg';
-import chinaNov02 from '../assets/journey/photography/china/china-nov-02.jpg';
+// import chinaOktDay5_01 from '../assets/journey/photography/china/china-okt-day5-01.jpg';
+// import chinaNov02 from '../assets/journey/photography/china/china-nov-02.jpg';
 import chinaEdited01 from '../assets/journey/photography/china/china-edited-01.jpg';
 import chinaEdited02 from '../assets/journey/photography/china/china-edited-02.jpg';
 import chinaSept01 from '../assets/journey/photography/china/china-sept-01.jpg';
@@ -183,14 +183,14 @@ export const journeyData = {
       year: 2024,
       location: 'Indonesia'
     },
-    {
-      id: 'photo-16',
-      src: chinaOktDay5_01,
-      title: 'Artistic urban photography with strong visual storytelling and atmospheric mood',
-      category: 'Urban Photography',
-      year: 2024,
-      location: 'China'
-    },
+    // {
+    //   id: 'photo-16',
+    //   src: chinaOktDay5_01,
+    //   title: 'Artistic urban photography with strong visual storytelling and atmospheric mood',
+    //   category: 'Urban Photography',
+    //   year: 2024,
+    //   location: 'China'
+    // },
     {
       id: 'photo-17',
       src: chinaEdited02,
@@ -199,14 +199,14 @@ export const journeyData = {
       year: 2024,
       location: 'China'
     },
-    {
-      id: 'photo-18',
-      src: chinaNov02,
-      title: 'Lifestyle photography documenting everyday moments with artistic perspective',
-      category: 'Lifestyle Photography',
-      year: 2024,
-      location: 'China'
-    },
+    // {
+    //   id: 'photo-18',
+    //   src: chinaNov02,
+    //   title: 'Lifestyle photography documenting everyday moments with artistic perspective',
+    //   category: 'Lifestyle Photography',
+    //   year: 2024,
+    //   location: 'China'
+    // },
     {
       id: 'photo-19',
       src: chinaSept01,
