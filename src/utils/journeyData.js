@@ -17,7 +17,7 @@ import indo03 from '../assets/journey/photography/indo/indo-03.jpg';
 import indo05 from '../assets/journey/photography/indo/indo-05.jpg';
 
 // China Photography imports
-import chinaSeptDay7_01 from '../assets/journey/photography/china/china-sept-day7-01.jpg';
+// import chinaSeptDay7_01 from '../assets/journey/photography/china/china-sept-day7-01.jpg';
 // import chinaOktDay5_01 from '../assets/journey/photography/china/china-okt-day5-01.jpg';
 // import chinaNov02 from '../assets/journey/photography/china/china-nov-02.jpg';
 import chinaEdited01 from '../assets/journey/photography/china/china-edited-01.jpg';
@@ -159,14 +159,14 @@ export const journeyData = {
       year: 2024,
       location: 'Indonesia'
     },
-    {
-      id: 'photo-14',
-      src: chinaSeptDay7_01,
-      title: 'Vibrant street photography capturing the essence of urban life and culture in China',
-      category: 'Street Photography',
-      year: 2024,
-      location: 'China'
-    },
+    // {
+    //   id: 'photo-14',
+    //   src: chinaSeptDay7_01,
+    //   title: 'Vibrant street photography capturing the essence of urban life and culture in China',
+    //   category: 'Street Photography',
+    //   year: 2024,
+    //   location: 'China'
+    // },
     {
       id: 'photo-14a',
       src: indoIMG20231220,

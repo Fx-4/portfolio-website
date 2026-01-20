@@ -167,7 +167,7 @@ const Navbar = () => {
   };
 
   return (
-    <header className="navbar-header" style={{ pointerEvents: 'auto', zIndex: 9999 }}>
+    <header className="navbar-header">
       <nav className="navbar" style={navbarStyle}>
         <Link className="navbar-brand" to="/">
           <img src={logo} alt="F-4 Logo" className="navbar-logo" />
