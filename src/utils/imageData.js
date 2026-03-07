@@ -1,11 +1,12 @@
 // src/data/imageData.js
 import image1 from '../assets/images/Smartlearn.png';
-import image2 from '../assets/images/HistoricalJogja.png';       
+import image2 from '../assets/images/HistoricalJogja.png';
 import image3 from '../assets/images/SecondLife.png';
-import image4 from '../assets/images/Nutrikids.png';  
+import image4 from '../assets/images/Nutrikids.png';
 import image5 from '../assets/images/veriflair.png';
 import image6 from '../assets/images/Tenang.in.png';
 import image7 from '../assets/images/IdeaSparkV.png';
+import image8 from '../assets/images/HanziNarrative.png';
 
 
 export const focusCardsData = [
@@ -78,5 +79,15 @@ export const focusCardsData = [
       date: { month: "November", year: 2024 },
       githubUrl: "https://github.com/Fx-4/Generate-Idea",
       demoUrl: null
+    },
+    {
+      src: image8,
+      title: "Hanzi Narrative",
+      category: "Web Development",
+      description: "Platform edukasi interaktif tentang karakter Hanzi (汉字) yang menyajikan sejarah, struktur penulisan, dan panduan visual tentang aksara Tionghoa. Dilengkapi dengan infographic poster, animasi stroke order, dan materi HSK 1–6.",
+      technologies: ["React", "Vite", "CSS3", "HTML5", "JavaScript"],
+      date: { month: "March", year: 2026 },
+      githubUrl: "https://github.com/Fx-4/HanziNarrative",
+      demoUrl: "https://hanzi-narrative.vercel.app/landing"
     }
   ];
