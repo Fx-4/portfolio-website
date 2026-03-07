@@ -166,3 +166,42 @@
     height: 22px;
   }
 }
+
+/* Mobile M — 375px */
+@media (max-width: 375px) {
+  .search-bar-wrapper {
+    padding: 9px 12px;
+    border-radius: 11px;
+  }
+
+  .search-input {
+    font-size: 12.5px;
+  }
+
+  .search-icon {
+    margin-right: 7px;
+    font-size: 13px;
+  }
+}
+
+/* Mobile S — 320px */
+@media (max-width: 320px) {
+  .search-bar-wrapper {
+    padding: 8px 10px;
+    border-radius: 10px;
+  }
+
+  .search-input {
+    font-size: 12px;
+  }
+
+  .search-icon {
+    font-size: 12px;
+    margin-right: 6px;
+  }
+
+  .search-clear-button {
+    width: 20px;
+    height: 20px;
+  }
+}

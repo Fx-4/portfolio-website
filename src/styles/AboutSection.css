@@ -74,3 +74,23 @@
     gap: 2rem;
   }
 }
+
+/* Mobile M — 375px */
+@media (max-width: 375px) {
+  .about-section-container {
+    padding: 0 1rem;
+    gap: 1.5rem;
+  }
+
+  .about-section-wrapper {
+    margin-top: clamp(1.25rem, 3vw, 2rem);
+  }
+}
+
+/* Mobile S — 320px */
+@media (max-width: 320px) {
+  .about-section-container {
+    padding: 0 0.75rem;
+    gap: 1.25rem;
+  }
+}

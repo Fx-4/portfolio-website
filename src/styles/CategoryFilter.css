@@ -286,3 +286,35 @@
     border-radius: 10px;
   }
 }
+
+/* Mobile M — 375px */
+@media (max-width: 375px) {
+  .category-filter-wrapper {
+    gap: 7px;
+    padding: 0 6px;
+  }
+
+  .category-filter-button {
+    padding: 7px 13px;
+    font-size: 12px;
+    border-radius: 9px;
+  }
+}
+
+/* Mobile S — 320px */
+@media (max-width: 320px) {
+  .category-filter-container {
+    padding: 0 0 clamp(16px, 3vw, 20px) 0;
+  }
+
+  .category-filter-wrapper {
+    gap: 6px;
+    padding: 0 4px;
+  }
+
+  .category-filter-button {
+    padding: 6px 11px;
+    font-size: 11px;
+    border-radius: 8px;
+  }
+}

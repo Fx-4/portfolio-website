@@ -295,6 +295,62 @@
   }
 }
 
+/* Mobile M — 375px */
+@media (max-width: 375px) {
+  .focus-card {
+    height: 250px;
+    border-radius: 0.875rem;
+  }
+
+  .focus-card-hover-title {
+    font-size: 0.975rem;
+  }
+
+  .focus-card-hover-panel {
+    padding: 1.5rem 1.25rem 1.25rem;
+  }
+
+  .focus-card-cta {
+    font-size: 0.68rem;
+    padding: 0.4rem 0.875rem;
+  }
+
+  .focus-card-tech-list {
+    gap: 0.25rem;
+    margin-bottom: 0.875rem;
+  }
+}
+
+/* Mobile S — 320px */
+@media (max-width: 320px) {
+  .focus-card {
+    height: 230px;
+    border-radius: 0.75rem;
+  }
+
+  .focus-card-hover-title {
+    font-size: 0.9rem;
+  }
+
+  .focus-card-hover-category {
+    font-size: 0.55rem;
+    letter-spacing: 0.12em;
+  }
+
+  .focus-card-hover-panel {
+    padding: 1.25rem 1rem 1rem;
+  }
+
+  .focus-card-cta {
+    font-size: 0.65rem;
+    padding: 0.35rem 0.75rem;
+  }
+
+  .focus-cards-grid {
+    gap: 0.75rem;
+  }
+}
+
 /* Touch devices: disable blur + hover transitions */
 @media (hover: none) {
   .focus-card:hover {
