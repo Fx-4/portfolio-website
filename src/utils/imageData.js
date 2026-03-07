@@ -7,6 +7,7 @@ import image5 from '../assets/images/veriflair.png';
 import image6 from '../assets/images/Tenang.in.png';
 import image7 from '../assets/images/IdeaSparkV.png';
 import image8 from '../assets/images/HanziNarrative.png';
+import image9 from '../assets/images/SajiGo.png';
 
 
 export const focusCardsData = [
@@ -89,5 +90,15 @@ export const focusCardsData = [
       date: { month: "March", year: 2026 },
       githubUrl: "https://github.com/Fx-4/HanziNarrative",
       demoUrl: "https://hanzi-narrative.vercel.app/landing"
+    },
+    {
+      src: image9,
+      title: "SajiGo",
+      category: "Web Development",
+      description: "Platform digital manajemen pesanan restoran modern dengan QR Code ordering, pembayaran QRIS & e-wallet otomatis, dan dashboard analitik realtime berbasis AI. Tersedia dalam paket Basic, Pro, dan Elite untuk skala bisnis apapun.",
+      technologies: ["React", "Vite", "JavaScript", "CSS3", "AI Analytics"],
+      date: { month: "March", year: 2026 },
+      githubUrl: null,
+      demoUrl: "https://saji-go.vercel.app/"
     }
   ];
