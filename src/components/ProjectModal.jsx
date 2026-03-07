@@ -1,20 +1,17 @@
 import { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import '../styles/ProjectModal.css';
-import { FaGithub, FaExternalLinkAlt, FaTimes, FaCalendarAlt, FaFolder, FaCode } from 'react-icons/fa';
+import { FaGithub, FaExternalLinkAlt, FaTimes, FaCalendarAlt } from 'react-icons/fa';
 
 const ProjectModal = ({ project, isOpen, onClose }) => {
-  // Close modal on ESC key press
   useEffect(() => {
     const handleEsc = (e) => {
-      if (e.key === 'Escape') {
-        onClose();
-      }
+      if (e.key === 'Escape') onClose();
     };
 
     if (isOpen) {
       document.addEventListener('keydown', handleEsc);
-      document.body.style.overflow = 'hidden'; // Prevent background scroll
+      document.body.style.overflow = 'hidden';
     }
 
     return () => {
@@ -26,88 +23,76 @@ const ProjectModal = ({ project, isOpen, onClose }) => {
   if (!isOpen || !project) return null;
 
   const handleBackdropClick = (e) => {
-    if (e.target === e.currentTarget) {
-      onClose();
-    }
+    if (e.target === e.currentTarget) onClose();
   };
 
   return (
-    <div className="project-modal-backdrop" onClick={handleBackdropClick}>
-      <div className="project-modal-container">
-        {/* Close Button */}
-        <button className="project-modal-close" onClick={onClose} aria-label="Close modal">
+    <div className="pm-backdrop" onClick={handleBackdropClick}>
+      <div className="pm-container">
+        {/* Close button */}
+        <button className="pm-close" onClick={onClose} aria-label="Close modal">
           <FaTimes />
         </button>
 
-        {/* Modal Content */}
-        <div className="project-modal-content">
-          {/* Project Image */}
-          <div className="project-modal-image-container">
-            <img 
-              src={project.src} 
+        <div className="pm-layout">
+          {/* ── Left: Image Panel ── */}
+          <div className="pm-image-panel">
+            <img
+              src={project.src}
               alt={project.title}
-              className="project-modal-image"
+              className="pm-image"
             />
-            <div className="project-modal-image-overlay" />
+            <div className="pm-image-overlay">
+              <div className="pm-image-overlay-content">
+                <span className="pm-image-category">{project.category}</span>
+                <h2 className="pm-image-title">{project.title}</h2>
+              </div>
+            </div>
           </div>
 
-          {/* Project Details */}
-          <div className="project-modal-details">
-            {/* Category Badge */}
-            <div className="project-modal-category">
-              <FaFolder />
-              <span>{project.category}</span>
-            </div>
-
-            {/* Title */}
-            <h2 className="project-modal-title">{project.title}</h2>
-
-            {/* Date */}
-            <div className="project-modal-date">
+          {/* ── Right: Details Panel ── */}
+          <div className="pm-details-panel">
+            {/* Date row */}
+            <div className="pm-date-row">
               <FaCalendarAlt />
               <span>{project.date.month} {project.date.year}</span>
             </div>
 
-            {/* Description */}
-            <p className="project-modal-description">
-              {project.description}
-            </p>
+            {/* Overview */}
+            <div className="pm-section">
+              <span className="pm-section-label">Overview</span>
+              <p className="pm-description">{project.description}</p>
+            </div>
 
-            {/* Technologies Section */}
-            <div className="project-modal-section">
-              <h3 className="project-modal-section-title">
-                <FaCode />
-                Technologies Used
-              </h3>
-              <div className="project-modal-technologies">
-                {project.technologies.map((tech, index) => (
-                  <span key={index} className="project-modal-tech-tag">
-                    {tech}
-                  </span>
+            {/* Tech Stack */}
+            <div className="pm-section">
+              <span className="pm-section-label">Tech Stack</span>
+              <div className="pm-tech-grid">
+                {project.technologies.map((tech, i) => (
+                  <span key={i} className="pm-tech-item">{tech}</span>
                 ))}
               </div>
             </div>
 
             {/* Action Buttons */}
-            <div className="project-modal-actions">
+            <div className="pm-actions">
               {project.githubUrl && (
                 <a
                   href={project.githubUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="project-modal-button project-modal-button-github"
+                  className="pm-btn pm-btn-github"
                 >
                   <FaGithub />
-                  <span>View on GitHub</span>
+                  <span>View Code</span>
                 </a>
               )}
-              
               {project.demoUrl && (
                 <a
                   href={project.demoUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="project-modal-button project-modal-button-demo"
+                  className="pm-btn pm-btn-demo"
                 >
                   <FaExternalLinkAlt />
                   <span>Live Demo</span>

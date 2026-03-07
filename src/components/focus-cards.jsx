@@ -1,43 +1,58 @@
 import React, { useState } from "react";
 import PropTypes from 'prop-types';
+import { FiArrowRight } from 'react-icons/fi';
 import '../styles/focus-cards.css';
 import ProjectModal from './ProjectModal';
 
-const Card = React.memo(({
-  card,
-  index,
-  hovered,
-  setHovered,
-  onCardClick
-}) => {
+const Card = React.memo(({ card, index, hovered, setHovered, onCardClick }) => {
   const isBlurred = hovered !== null && hovered !== index;
-  const isOverlayVisible = hovered === index;
-  
-  const handleCardClick = () => {
-    onCardClick(card);
-  };
-  
+  const num = String(index + 1).padStart(2, '0');
+
   return (
     <div
+      className={`focus-card${isBlurred ? ' blurred' : ''}`}
       onMouseEnter={() => setHovered(index)}
       onMouseLeave={() => setHovered(null)}
-      onClick={handleCardClick}
-      className={`focus-card ${isBlurred ? 'blurred' : ''}`}
-      style={{ cursor: card.url ? 'pointer' : 'default' }}
+      onClick={() => onCardClick(card)}
     >
-      <img
-        src={card.src}
-        alt={card.title}
-        className="focus-card-image"
-      />
-      <div className={`focus-card-overlay ${isOverlayVisible ? 'visible' : 'hidden'}`}>
-        <div className="focus-card-title">
-          {card.title}
+      {/* Project image */}
+      <img src={card.src} alt={card.title} className="focus-card-image" />
+
+      {/* Always-on bottom gradient */}
+      <div className="focus-card-gradient" />
+
+      {/* Number badge */}
+      <span className="focus-card-number">{num}</span>
+
+      {/* Footer: category + title (visible by default, hides on hover) */}
+      <div className="focus-card-footer">
+        <div className="focus-card-footer-category">{card.category}</div>
+        <div className="focus-card-footer-title">{card.title}</div>
+      </div>
+
+      {/* Hover reveal panel */}
+      <div className="focus-card-hover-panel">
+        <div className="focus-card-hover-category">{card.category}</div>
+        <div className="focus-card-hover-title">{card.title}</div>
+        <p className="focus-card-hover-desc">{card.description}</p>
+        <div className="focus-card-tech-list">
+          {card.technologies.slice(0, 3).map((tech, i) => (
+            <span key={i} className="focus-card-tech-chip">{tech}</span>
+          ))}
+          {card.technologies.length > 3 && (
+            <span className="focus-card-tech-chip">+{card.technologies.length - 3}</span>
+          )}
+        </div>
+        <div className="focus-card-cta">
+          <span>View Project</span>
+          <FiArrowRight />
         </div>
       </div>
     </div>
   );
 });
+
+Card.displayName = "Card";
 
 Card.propTypes = {
   card: PropTypes.shape({
@@ -46,10 +61,7 @@ Card.propTypes = {
     category: PropTypes.string,
     description: PropTypes.string,
     technologies: PropTypes.arrayOf(PropTypes.string),
-    date: PropTypes.shape({
-      month: PropTypes.string,
-      year: PropTypes.number
-    }),
+    date: PropTypes.shape({ month: PropTypes.string, year: PropTypes.number }),
     githubUrl: PropTypes.string,
     demoUrl: PropTypes.string
   }).isRequired,
@@ -58,8 +70,6 @@ Card.propTypes = {
   setHovered: PropTypes.func.isRequired,
   onCardClick: PropTypes.func.isRequired
 };
-
-Card.displayName = "Card";
 
 function FocusCards({ cards }) {
   const [hovered, setHovered] = useState(null);
@@ -73,9 +83,9 @@ function FocusCards({ cards }) {
 
   const handleCloseModal = () => {
     setIsModalOpen(false);
-    setTimeout(() => setSelectedProject(null), 300); // Clear after animation
+    setTimeout(() => setSelectedProject(null), 300);
   };
-  
+
   return (
     <>
       <div className="focus-cards-grid">
@@ -108,10 +118,7 @@ FocusCards.propTypes = {
       category: PropTypes.string,
       description: PropTypes.string,
       technologies: PropTypes.arrayOf(PropTypes.string),
-      date: PropTypes.shape({
-        month: PropTypes.string,
-        year: PropTypes.number
-      }),
+      date: PropTypes.shape({ month: PropTypes.string, year: PropTypes.number }),
       githubUrl: PropTypes.string,
       demoUrl: PropTypes.string
     })

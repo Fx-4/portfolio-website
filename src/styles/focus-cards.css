@@ -1,203 +1,324 @@
-/* src/styles/focus-cards.css */
+/* ======================================
+   FOCUS CARDS — Editorial Magazine Style
+   ====================================== */
 
-/* Card container */
+/* Grid */
 .focus-cards-grid {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 2.5rem;
-    max-width: 64rem;
-    margin-left: auto;
-    margin-right: auto;
-    width: 100%;
-    transition: all 0.3s ease;
-  }
-  
-  /* Media query for medium screens and up */
-  @media (min-width: 768px) {
-    .focus-cards-grid {
-      grid-template-columns: repeat(3, 1fr);
-      padding-left: 2rem;
-      padding-right: 2rem;
-    }
-  }
-  
-  /* Individual card */
-  .focus-card {
-    position: relative;
-    border-radius: 1rem;
-    background-color: var(--surface);
-    overflow: hidden;
-    height: 15rem;
-    width: 100%;
-    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.07);
-    transition: all 0.3s ease;
-  }
-  
-  /* Card hover effect similar to .card in App.css */
-  .focus-card:hover {
-    transform: translateY(-5px);
-  }
-  
-  /* Card when blurred */
-  .focus-card.blurred {
-    filter: blur(4px);
-    transform: scale(0.98);
-  }
-  
-  /* Media query for medium screens and up */
-  @media (min-width: 768px) {
-    .focus-card {
-      height: 24rem;
-    }
-  }
-  
-  /* Card image */
-  .focus-card-image {
-    position: absolute;
-    inset: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transition: transform 0.3s ease;
-  }
-  
-  /* Card overlay */
-  .focus-card-overlay {
-    position: absolute;
-    inset: 0;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.25rem;
+  width: 100%;
+  padding: 0;
+}
 
-    display: flex;
-    align-items: flex-end;
-    padding: 2rem 1rem;
-    transition: opacity 0.3s ease;
+@media (min-width: 640px) {
+  .focus-cards-grid {
+    grid-template-columns: repeat(2, 1fr);
   }
-  
-  .focus-card-overlay.visible {
-    opacity: 1;
-  }
-  
-  .focus-card-overlay.hidden {
-    opacity: 0;
-  }
-  
-  /* Card title - using text-gradient from App.css */
-  .focus-card-title {
-    font-size: 1rem;
-    line-height: 1.5rem;
-    font-weight: 700;
-    /* Add contrast background */
-    position: relative;
-    padding: 0.5rem 1rem;
-    border-radius: 0.375rem;
-    /* Light theme: white text with dark background */
-    color: white;
-    background: rgba(42, 157, 143, 0.9); /* Teal for light theme */
-    backdrop-filter: blur(10px);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
-    z-index: 1;
-  }
+}
 
-  /* Dark theme adjustment */
-  [data-theme="dark"] .focus-card-title {
-    color: white;
-    background: rgba(231, 111, 81, 0.9); /* Coral for dark theme */
-    backdrop-filter: blur(10px);
+@media (min-width: 1024px) {
+  .focus-cards-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
   }
-  
-  @media (min-width: 768px) {
-    .focus-card-title {
-      font-size: 1.5rem;
-      line-height: 2rem;
-    }
-  }
-  
-  /* Dark theme adjustments */
-  [data-theme="dark"] .focus-card {
-    background-color: var(--surface);
-  }
-  
-  /* Apply glass effect from App.css for a more cohesive look */
-  .focus-card.glass-effect {
-    background: rgba(var(--surface), 0.05);
-    backdrop-filter: blur(10px);
-    border: 1px solid rgba(var(--text), 0.1);
-  } 
+}
 
-  /* Add this to your focus-cards.css file */
+/* ---- Card Base ---- */
+.focus-card {
+  position: relative;
+  border-radius: 1.25rem;
+  overflow: hidden;
+  height: 400px;
+  cursor: pointer;
+  background: var(--surface);
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+              filter 0.3s ease,
+              opacity 0.3s ease,
+              box-shadow 0.3s ease;
+}
 
-/* Indicate clickable cards with a subtle effect */
-.focus-card[style*="cursor: pointer"]:hover {
-    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
-    transform: translateY(-8px);
-  }
-  
-  /* Add a subtle animation for the overlay when hovering on clickable cards */
-  .focus-card[style*="cursor: pointer"]:hover .focus-card-overlay {
-    opacity: 1;
-  }
-  
-  /* Optional: Add a small indicator that the card is clickable */
-  .focus-card[style*="cursor: pointer"] .focus-card-overlay::after {
-    content: "Click to learn more";
-    position: absolute;
-    bottom: 1rem;
-    left: 1rem;
-    font-size: 0.75rem;
-    opacity: 0.8;
-    color: #fff;
-    transition: opacity 0.3s ease;
-  }
+.focus-card:hover {
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.25);
+  transform: translateY(-4px);
+}
 
-/* --- Mobile responsiveness --- */
+/* Blurred siblings */
+.focus-card.blurred {
+  filter: blur(2px);
+  transform: scale(0.97);
+  opacity: 0.55;
+}
+
+/* ---- Image ---- */
+.focus-card-image {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.65s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.focus-card:hover .focus-card-image {
+  transform: scale(1.06);
+}
+
+/* ---- Bottom gradient (always on) ---- */
+.focus-card-gradient {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0) 0%,
+    rgba(0, 0, 0, 0) 35%,
+    rgba(0, 0, 0, 0.65) 100%
+  );
+  transition: opacity 0.4s ease;
+  z-index: 1;
+}
+
+.focus-card:hover .focus-card-gradient {
+  opacity: 0;
+}
+
+/* ---- Number badge ---- */
+.focus-card-number {
+  position: absolute;
+  top: 1.25rem;
+  left: 1.25rem;
+  font-size: 0.7rem;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  color: rgba(255, 255, 255, 0.6);
+  z-index: 3;
+  font-variant-numeric: tabular-nums;
+}
+
+/* ---- Footer (default visible, hides on hover) ---- */
+.focus-card-footer {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 1.5rem 1.5rem 1.75rem;
+  z-index: 2;
+  transition: opacity 0.35s ease, transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.focus-card:hover .focus-card-footer {
+  opacity: 0;
+  transform: translateY(8px);
+}
+
+.focus-card-footer-category {
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--brand-primary);
+  margin-bottom: 0.35rem;
+}
+
+.focus-card-footer-title {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: #ffffff;
+  line-height: 1.3;
+}
+
+/* ---- Hover reveal panel ---- */
+.focus-card-hover-panel {
+  position: absolute;
+  inset: 0;
+  padding: 2rem 1.75rem 1.75rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  z-index: 4;
+  background: linear-gradient(
+    135deg,
+    rgba(0, 0, 0, 0.94) 0%,
+    rgba(0, 0, 0, 0.88) 100%
+  );
+  opacity: 0;
+  transition: opacity 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.focus-card:hover .focus-card-hover-panel {
+  opacity: 1;
+}
+
+.focus-card-hover-category {
+  font-size: 0.62rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--brand-primary);
+  margin-bottom: 0.45rem;
+}
+
+.focus-card-hover-title {
+  font-size: 1.4rem;
+  font-weight: 800;
+  color: #ffffff;
+  line-height: 1.2;
+  margin-bottom: 0.85rem;
+}
+
+.focus-card-hover-desc {
+  font-size: 0.8rem;
+  line-height: 1.65;
+  color: rgba(255, 255, 255, 0.72);
+  margin-bottom: 1.15rem;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+/* ---- Tech chips ---- */
+.focus-card-tech-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+  margin-bottom: 1.35rem;
+}
+
+.focus-card-tech-chip {
+  font-size: 0.65rem;
+  font-weight: 600;
+  padding: 0.25rem 0.65rem;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: rgba(255, 255, 255, 0.82);
+  letter-spacing: 0.04em;
+  white-space: nowrap;
+}
+
+/* ---- CTA Button ---- */
+.focus-card-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: #ffffff;
+  background: var(--brand-primary);
+  padding: 0.55rem 1.2rem;
+  border-radius: 999px;
+  align-self: flex-start;
+  letter-spacing: 0.02em;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.focus-card:hover .focus-card-cta {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.35);
+}
+
+.focus-card-cta svg {
+  transition: transform 0.2s ease;
+  font-size: 0.85rem;
+}
+
+.focus-card:hover .focus-card-cta svg {
+  transform: translateX(3px);
+}
+
+/* ======================================
+   MOBILE & TOUCH DEVICES
+   ====================================== */
+
 @media (max-width: 767px) {
   .focus-cards-grid {
-    grid-template-columns: 1fr; /* Single column untuk mobile */
-    gap: 2rem;
-    padding-left: 1rem;
-    padding-right: 1rem;
+    grid-template-columns: 1fr;
+    gap: 1rem;
+    padding-left: 0;
+    padding-right: 0;
   }
 
   .focus-card {
-    height: 18rem; /* Lebih tinggi untuk mobile agar tidak penyet */
+    height: 300px;
     border-radius: 1rem;
-    max-width: 100%; /* Full width */
   }
 
-  .focus-card-overlay {
-    padding: 1.25rem 1rem;
-    /* tambahkan gradien tipis untuk keterbacaan teks di atas gambar */
-    background: linear-gradient(to top, rgba(0,0,0,0.5) 0%, rgba(0,0,0,0.25) 40%, rgba(0,0,0,0) 80%);
+  /* On mobile, always show the hover panel as a soft overlay */
+  .focus-card-hover-panel {
+    opacity: 1;
+    background: linear-gradient(
+      to bottom,
+      rgba(0, 0, 0, 0) 0%,
+      rgba(0, 0, 0, 0.75) 55%,
+      rgba(0, 0, 0, 0.94) 100%
+    );
   }
 
-  .focus-card-title {
-    font-size: 1.25rem;
-    line-height: 1.75rem;
+  /* Hide long description on mobile to keep it clean */
+  .focus-card-hover-desc {
+    display: none;
+  }
+
+  /* Footer is redundant now */
+  .focus-card-footer {
+    display: none;
+  }
+
+  .focus-card.blurred {
+    filter: none;
+    opacity: 1;
+    transform: none;
+  }
+
+  .focus-card-hover-title {
+    font-size: 1.15rem;
+  }
+
+  .focus-card-cta {
+    font-size: 0.72rem;
+    padding: 0.45rem 1rem;
   }
 }
 
 @media (max-width: 430px) {
-  .focus-cards-grid {
-    gap: 1.5rem;
+  .focus-card {
+    height: 270px;
   }
 
-  .focus-card { 
-    height: 16rem; /* Sedikit lebih pendek untuk layar sangat kecil */
-  }
-  
-  .focus-card-title { 
-    font-size: 1.125rem; 
-    line-height: 1.5rem; 
-  }
-  
-  /* Ganti teks untuk perangkat sentuh kecil */
-  .focus-card[style*="cursor: pointer"] .focus-card-overlay::after { 
-    content: "Tap to learn more"; 
-    font-size: 0.7rem; 
+  .focus-card-hover-title {
+    font-size: 1.05rem;
   }
 }
 
-/* Matikan efek hover berat di perangkat sentuh */
+/* Touch devices: disable blur + hover transitions */
 @media (hover: none) {
-  .focus-card:hover { transform: none; }
-  .focus-card[style*="cursor: pointer"]:hover .focus-card-overlay { opacity: 1; }
+  .focus-card:hover {
+    transform: none;
+    box-shadow: none;
+  }
+
+  .focus-card-hover-panel {
+    opacity: 1;
+    background: linear-gradient(
+      to bottom,
+      rgba(0, 0, 0, 0) 0%,
+      rgba(0, 0, 0, 0.72) 50%,
+      rgba(0, 0, 0, 0.92) 100%
+    );
+  }
+
+  .focus-card-footer {
+    display: none;
+  }
+
+  .focus-card-hover-desc {
+    display: none;
+  }
+
+  .focus-card.blurred {
+    filter: none;
+    opacity: 1;
+    transform: none;
+  }
 }
