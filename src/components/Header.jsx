@@ -52,12 +52,6 @@ const Header = () => {
       <div className="header-blob header-blob-2" aria-hidden="true" />
 
       <div data-aos="fade" data-aos-duration="300" className="header-content">
-        {/* Availability badge */}
-        <div className="availability-badge">
-          <span className="availability-pulse" aria-hidden="true" />
-          Open to opportunities
-        </div>
-
         <p className="greeting">
           <span className="wave-container">
             <Hand className="wave-icon" size={24} />
