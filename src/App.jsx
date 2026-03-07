@@ -2,6 +2,8 @@
 import { lazy, Suspense } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Loading from './components/Loading';
+import CustomCursor from './components/CustomCursor';
+import ScrollProgress from './components/ScrollProgress';
 import './App.css';
 
 // Lazy load route components for better performance
@@ -19,6 +21,10 @@ function App() {
         v7_relativeSplatPath: true
       }}
     >
+      {/* Global premium elements — outside routes so they persist across pages */}
+      <CustomCursor />
+      <ScrollProgress />
+
       <Suspense fallback={<Loading isLoading={true} />}>
         <Routes>
           <Route path="/" element={<Home />} />

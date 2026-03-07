@@ -1,0 +1,24 @@
+/* ============================
+   SCROLL PROGRESS BAR
+   ============================ */
+
+.scroll-progress-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 2.5px;
+  min-width: 0;
+  max-width: 100%;
+  background: linear-gradient(
+    90deg,
+    var(--brand-primary) 0%,
+    color-mix(in srgb, var(--brand-primary) 55%, #E76F51 45%) 100%
+  );
+  z-index: 100000;
+  border-radius: 0 2px 2px 0;
+  /* Smooth but snappy */
+  transition: width 0.12s linear;
+  /* Subtle glow */
+  box-shadow: 0 0 8px color-mix(in srgb, var(--brand-primary) 70%, transparent);
+  pointer-events: none;
+}

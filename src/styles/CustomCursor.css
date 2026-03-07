@@ -1,0 +1,110 @@
+/* ============================
+   CUSTOM CURSOR
+   ============================ */
+
+/* Hide on touch / coarse pointer */
+@media (hover: none), (pointer: coarse) {
+  .cc-wrap { display: none !important; }
+}
+
+/* Hide native cursor only on hover-capable devices */
+@media (hover: hover) and (pointer: fine) {
+  * { cursor: none !important; }
+}
+
+.cc-wrap {
+  position: fixed;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  z-index: 99999;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+.cc-wrap.cc-visible {
+  opacity: 1;
+}
+
+/* ---- Dot (snaps instantly to mouse) ---- */
+.cc-dot {
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  background: var(--brand-primary);
+  border-radius: 50%;
+  will-change: transform;
+  transition:
+    width 0.25s cubic-bezier(0.16, 1, 0.3, 1),
+    height 0.25s cubic-bezier(0.16, 1, 0.3, 1),
+    opacity 0.25s ease,
+    background 0.2s ease;
+}
+
+/* ---- Ring (lags behind, lerped in JS) ---- */
+.cc-ring {
+  position: absolute;
+  width: 40px;
+  height: 40px;
+  border: 1.5px solid var(--brand-primary);
+  border-radius: 50%;
+  opacity: 0.55;
+  will-change: transform;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition:
+    width 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+    height 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+    border-color 0.25s ease,
+    background 0.35s ease,
+    opacity 0.3s ease;
+}
+
+/* ============================
+   CURSOR STATES
+   ============================ */
+
+/* --- Pointer (over links/buttons) --- */
+.cc-pointer .cc-ring {
+  width: 56px;
+  height: 56px;
+  opacity: 0.75;
+  background: rgba(42, 157, 143, 0.07);
+  border-color: var(--brand-primary);
+}
+
+[data-theme="dark"] .cc-pointer .cc-ring {
+  background: rgba(231, 111, 81, 0.07);
+}
+
+.cc-pointer .cc-dot {
+  width: 6px;
+  height: 6px;
+}
+
+/* --- View (over project cards/images) --- */
+.cc-view .cc-ring {
+  width: 72px;
+  height: 72px;
+  border: none;
+  background: var(--brand-primary);
+  opacity: 0.95;
+}
+
+.cc-view .cc-dot {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+/* Label inside view ring */
+.cc-label {
+  font-size: 0.58rem;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  color: #ffffff;
+  text-transform: uppercase;
+  user-select: none;
+  line-height: 1;
+}
