@@ -8,12 +8,16 @@
   grid-template-columns: 1fr;
   gap: 1.25rem;
   width: 100%;
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
   padding: 0;
 }
 
 @media (min-width: 640px) {
   .focus-cards-grid {
     grid-template-columns: repeat(2, 1fr);
+    gap: 1.35rem;
   }
 }
 

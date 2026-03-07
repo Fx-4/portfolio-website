@@ -59,7 +59,7 @@ function Projects() {
         <ScrollFadeOverlay />
         <Navbar />
 
-        <section className="max-w-[1400px] mx-auto px-3 xs:px-4 sm:px-8 md:px-12 lg:px-16 xl:px-20 2xl:px-24" style={{ textAlign: 'center', overflowX: 'hidden', width: '100%', paddingBottom: 'clamp(40px, 8vw, 80px)' }}>
+        <section className="max-w-[1400px] mx-auto px-5 sm:px-10 md:px-14 lg:px-20 xl:px-24 2xl:px-28" style={{ textAlign: 'center', overflowX: 'hidden', width: '100%', paddingBottom: 'clamp(40px, 8vw, 80px)' }}>
           {/* Development Projects Section */}
           <div style={{ paddingTop: 'clamp(60px, 10vw, 80px)', marginBottom: 'clamp(80px, 12vw, 120px)' }}>
             <div style={{ marginBottom: 'clamp(24px, 4vw, 32px)' }}>
