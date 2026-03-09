@@ -18,7 +18,7 @@
   color: var(--brand-primary, #2563eb);
   line-height: 1;
   margin-bottom: 1rem;
-  font-family: 'Clash Display', system-ui, sans-serif;
+  font-family: var(--font-display);
   text-shadow: 2px 2px 0 rgba(37, 99, 235, 0.1);
 }
 

@@ -5,7 +5,13 @@
       "Bash(git push:*)",
       "WebSearch",
       "Bash(npm install)",
-      "Bash(npm audit:*)"
+      "Bash(npm audit:*)",
+      "WebFetch(domain:www.iglo.inc)",
+      "WebFetch(domain:devrajchatribin.com)",
+      "WebFetch(domain:www.awwwards.com)",
+      "WebFetch(domain:iglo.inc)",
+      "WebFetch(domain:purelanding.page)",
+      "WebFetch(domain:www.igloo.inc)"
     ],
     "deny": [],
     "ask": []

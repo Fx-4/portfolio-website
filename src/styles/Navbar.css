@@ -255,7 +255,7 @@
 
 .text-default {
   transform: translateY(0) skewY(0);
-  font-family: 'Inter', sans-serif;
+  font-family: var(--font-display);
   transition-property: transform;
   transition-duration: 500ms;
   display: block;

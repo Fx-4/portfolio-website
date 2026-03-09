@@ -86,7 +86,7 @@
     overflow: visible;
     min-height: 100vh;
     z-index: 1;
-    font-family: 'Montserrat';
+    font-family: var(--font-body);
     line-height: 1.5;
     text-align: left;
     box-sizing: border-box;
