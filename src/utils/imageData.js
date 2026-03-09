@@ -8,6 +8,7 @@ import image6 from '../assets/images/Tenang.in.png';
 import image7 from '../assets/images/IdeaSparkV.png';
 import image8 from '../assets/images/HanziNarrative.png';
 import image9 from '../assets/images/SajiGo.png';
+import image10 from '../assets/images/MentalEnergyCoach.png';
 
 
 export const focusCardsData = [
@@ -100,5 +101,15 @@ export const focusCardsData = [
       date: { month: "March", year: 2026 },
       githubUrl: null,
       demoUrl: "https://saji-go.vercel.app/"
+    },
+    {
+      src: image10,
+      title: "Focus Flow",
+      category: "Web Application",
+      description: "Aplikasi manajemen beban kognitif berbasis AI untuk meningkatkan produktivitas. Dilengkapi Mental Battery tracker, kalender mingguan drag-and-drop, proyeksi energi mental realtime, AI Task Breakdown, dan Pomodoro Timer.",
+      technologies: ["React", "TypeScript", "Tailwind CSS", "shadcn/ui", "AI Integration"],
+      date: { month: "March", year: 2026 },
+      githubUrl: "https://github.com/Fx-4/mental-energy-coach",
+      demoUrl: "https://mental-energy-coach.lovable.app"
     }
   ];
