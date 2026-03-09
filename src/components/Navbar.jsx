@@ -1,4 +1,4 @@
-import { Sun, Moon } from 'lucide-react';
+import { Sun, Moon, Menu, X } from 'lucide-react';
 import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import PropTypes from 'prop-types';
@@ -26,6 +26,7 @@ const Navbar = () => {
   const location = useLocation();
   const [isDark, setIsDark] = useState(false);
   const [animating, setAnimating] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
   const [scrollProgress, setScrollProgress] = useState(0); // 0 to 1 untuk smooth transition
 
   const updateTheme = (dark) => {
@@ -53,13 +54,13 @@ const Navbar = () => {
     updateTheme(initialTheme === 'dark');
   }, []);
 
-  // Auto scroll to top when route changes
+  // Auto scroll to top + close mobile menu when route changes
   useEffect(() => {
-    // Force immediate scroll to top - more reliable
     window.scrollTo(0, 0);
     document.documentElement.scrollTop = 0;
     document.body.scrollTop = 0;
     setScrollProgress(0);
+    setMenuOpen(false);
   }, [location.pathname]);
 
   // Handle scroll with smooth progressive approach
@@ -108,17 +109,32 @@ const Navbar = () => {
     return () => mediaQuery.removeEventListener('change', handleThemeChange);
   }, []);
 
-  const handleToggleTheme = () => {
-    // Simple smooth color morph - no fancy effects
-    setIsDark(prev => {
-      const next = !prev;
-      updateTheme(next);
-      return next;
-    });
+  const handleToggleTheme = (e) => {
+    const next = !isDark;
 
-    // Icon animation
+    // Capture the button's center for the circular reveal origin
+    const rect = e.currentTarget.getBoundingClientRect();
+    const x = Math.round(rect.left + rect.width / 2);
+    const y = Math.round(rect.top + rect.height / 2);
+    document.documentElement.style.setProperty('--vt-x', `${x}px`);
+    document.documentElement.style.setProperty('--vt-y', `${y}px`);
+
+    // Icon spin animation (runs independently of the view transition)
     setAnimating(false);
     requestAnimationFrame(() => setAnimating(true));
+
+    if (!document.startViewTransition) {
+      // Fallback: instant theme change for unsupported browsers
+      setIsDark(next);
+      updateTheme(next);
+      return;
+    }
+
+    // Circular reveal via View Transitions API
+    document.startViewTransition(() => {
+      setIsDark(next);
+      updateTheme(next);
+    });
   };
 
   // Calculate dynamic width based on scroll progress
@@ -167,34 +183,85 @@ const Navbar = () => {
   };
 
   return (
-    <header className="navbar-header">
-      <nav className="navbar" style={navbarStyle}>
-        <Link className="navbar-brand" to="/">
-          <img src={logo} alt="F-4 Logo" className="navbar-logo" />
-        </Link>
+    <>
+      <header className="navbar-header">
+        <nav className="navbar" style={navbarStyle}>
+          <Link className="navbar-brand" to="/">
+            <img src={logo} alt="F-4 Logo" className="navbar-logo" />
+          </Link>
 
-        <ul className="nav-links">
-          <NavItem to="/" isActive={location.pathname === '/'}>Home</NavItem>
-          <NavItem to="/about" isActive={location.pathname === '/about'}>About</NavItem>
-          <NavItem to="/projects" isActive={location.pathname === '/projects'}>Projects</NavItem>
-          <NavItem to="/contact" isActive={location.pathname === '/contact'}>Contact</NavItem>
-        </ul>
+          {/* Desktop nav links */}
+          <ul className="nav-links">
+            <NavItem to="/" isActive={location.pathname === '/'}>Home</NavItem>
+            <NavItem to="/about" isActive={location.pathname === '/about'}>About</NavItem>
+            <NavItem to="/projects" isActive={location.pathname === '/projects'}>Projects</NavItem>
+            <NavItem to="/contact" isActive={location.pathname === '/contact'}>Contact</NavItem>
+          </ul>
 
-        <button
-          aria-label="Toggle Theme"
-          type="button"
-          className="theme-toggle-button"
-          onClick={handleToggleTheme}
-        >
-          <div
-            className={`theme-toggle-icon ${animating ? 'animate' : ''}`}
-            onAnimationEnd={() => setAnimating(false)}
-          >
-            {isDark ? <Moon size={16} /> : <Sun size={16} />}
+          {/* Right side: theme toggle + hamburger */}
+          <div className="navbar-right">
+            <button
+              aria-label="Toggle Theme"
+              type="button"
+              className="theme-toggle-button"
+              onClick={handleToggleTheme}
+            >
+              <div
+                className={`theme-toggle-icon ${animating ? 'animate' : ''}`}
+                onAnimationEnd={() => setAnimating(false)}
+              >
+                {isDark ? <Moon size={16} /> : <Sun size={16} />}
+              </div>
+            </button>
+
+            {/* Hamburger — mobile only */}
+            <button
+              aria-label={menuOpen ? 'Close menu' : 'Open menu'}
+              type="button"
+              className="mobile-menu-btn"
+              onClick={() => setMenuOpen(prev => !prev)}
+            >
+              {menuOpen ? <X size={20} /> : <Menu size={20} />}
+            </button>
           </div>
+        </nav>
+      </header>
+
+      {/* Mobile full-screen overlay */}
+      <div className={`mobile-menu${menuOpen ? ' open' : ''}`} aria-hidden={!menuOpen}>
+        <button
+          aria-label="Close menu"
+          type="button"
+          className="mobile-menu-close"
+          onClick={() => setMenuOpen(false)}
+        >
+          <X size={24} />
         </button>
-      </nav>
-    </header>
+
+        <nav className="mobile-menu-nav">
+          <Link
+            to="/"
+            className={`mobile-nav-link${location.pathname === '/' ? ' active' : ''}`}
+            onClick={() => setMenuOpen(false)}
+          >Home</Link>
+          <Link
+            to="/about"
+            className={`mobile-nav-link${location.pathname === '/about' ? ' active' : ''}`}
+            onClick={() => setMenuOpen(false)}
+          >About</Link>
+          <Link
+            to="/projects"
+            className={`mobile-nav-link${location.pathname === '/projects' ? ' active' : ''}`}
+            onClick={() => setMenuOpen(false)}
+          >Projects</Link>
+          <Link
+            to="/contact"
+            className={`mobile-nav-link${location.pathname === '/contact' ? ' active' : ''}`}
+            onClick={() => setMenuOpen(false)}
+          >Contact</Link>
+        </nav>
+      </div>
+    </>
   );
 };
 
