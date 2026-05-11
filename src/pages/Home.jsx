@@ -196,17 +196,6 @@ function Home() {
                 </CardSwap>
               </div>
 
-              {/* Dive / submerge overlay — fades cards as they drop */}
-              <div aria-hidden="true" style={{
-                position: 'absolute',
-                bottom: 0,
-                left: 0,
-                right: 0,
-                height: `${Math.round(cardSize.height * 0.38)}px`,
-                background: 'linear-gradient(to bottom, transparent 0%, var(--background) 90%)',
-                pointerEvents: 'none',
-                zIndex: 20,
-              }} />
             </div>
 
             {/* Next arrow — desktop only */}
