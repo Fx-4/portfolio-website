@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect, useCallback, useRef } from 'react';
 import Header from '../components/Header';
 import Loading from '../components/Loading';
 import Navbar from '../components/Navbar';
@@ -31,7 +31,14 @@ function Home() {
   const [isLoading, setIsLoading] = useState(true);
   const [cardSize, setCardSize] = useState(() => getCardSize(window.innerWidth));
   const [activeCard, setActiveCard] = useState(0);
+  const cardSwapRef = useRef(null);
   const handleActiveChange = useCallback((i) => setActiveCard(i), []);
+  const handlePrev = useCallback(() => {
+    cardSwapRef.current?.goTo((activeCard - 1 + CARD_COUNT) % CARD_COUNT);
+  }, [activeCard]);
+  const handleNext = useCallback(() => {
+    cardSwapRef.current?.goTo((activeCard + 1) % CARD_COUNT);
+  }, [activeCard]);
 
   useEffect(() => {
     // Simulasi loading
@@ -122,73 +129,114 @@ function Home() {
           <ShinyText text="</> My Project" />
         </div>
         {/* CardSwap — featured projects */}
-        <div style={{
-          overflow: 'hidden',
-          width: '100%',
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-        }}>
-          <div style={{
-            display: 'flex',
-            alignItems: 'flex-end',
-            justifyContent: 'center',
-            height: `${cardSize.height + Math.round(cardSize.vDist * 3) + 30}px`,
-            width: '100%',
-            paddingBottom: '16px',
-          }}>
-            <CardSwap
-              width={cardSize.width}
-              height={cardSize.height}
-              cardDistance={cardSize.dist}
-              verticalDistance={cardSize.vDist}
-              delay={3500}
-              pauseOnHover
-              skewAmount={4}
-              easing="elastic"
-              onActiveChange={handleActiveChange}
+        <div style={{ overflow: 'hidden', width: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+
+          {/* Stack area: arrows flank the card on desktop, hidden on mobile */}
+          <div style={{ position: 'relative', width: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+
+            {/* Prev arrow — desktop only */}
+            <button
+              onClick={handlePrev}
+              aria-label="Previous project"
+              className="cs-nav-btn cs-nav-prev"
             >
-              {focusCardsData.slice(0, CARD_COUNT).map((project, i) => (
-                <Card
-                  key={i}
-                  onClick={() => project.demoUrl
-                    ? window.open(project.demoUrl, '_blank')
-                    : project.githubUrl
-                      ? window.open(project.githubUrl, '_blank')
-                      : null}
-                  style={{ cursor: project.demoUrl || project.githubUrl ? 'pointer' : 'default' }}
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M15 18l-6-6 6-6" />
+              </svg>
+            </button>
+
+            {/* Card stack + dive overlay */}
+            <div style={{ position: 'relative' }}>
+              <div style={{
+                display: 'flex',
+                alignItems: 'flex-end',
+                justifyContent: 'center',
+                height: `${cardSize.height + Math.round(cardSize.vDist * 3) + 30}px`,
+                paddingBottom: '16px',
+              }}>
+                <CardSwap
+                  ref={cardSwapRef}
+                  width={cardSize.width}
+                  height={cardSize.height}
+                  cardDistance={cardSize.dist}
+                  verticalDistance={cardSize.vDist}
+                  delay={3500}
+                  pauseOnHover
+                  skewAmount={4}
+                  easing="elastic"
+                  onActiveChange={handleActiveChange}
                 >
-                  <img
-                    src={project.src}
-                    alt={project.title}
-                    style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block', borderRadius: '16px' }}
-                  />
-                  <div style={{
-                    position: 'absolute',
-                    bottom: 0, left: 0, right: 0,
-                    padding: '0.875rem 1rem',
-                    background: 'linear-gradient(to top, rgba(0,0,0,0.72) 0%, transparent 100%)',
-                    borderRadius: '0 0 16px 16px',
-                  }}>
-                    <p style={{ margin: 0, color: '#fff', fontSize: '0.65rem', fontWeight: 500, opacity: 0.75, letterSpacing: '0.06em', textTransform: 'uppercase' }}>{project.category}</p>
-                    <p style={{ margin: '2px 0 0', color: '#fff', fontSize: '0.95rem', fontWeight: 700, fontFamily: 'var(--font-display)' }}>{project.title}</p>
-                  </div>
-                </Card>
-              ))}
-            </CardSwap>
+                  {focusCardsData.slice(0, CARD_COUNT).map((project, i) => (
+                    <Card
+                      key={i}
+                      onClick={() => project.demoUrl
+                        ? window.open(project.demoUrl, '_blank')
+                        : project.githubUrl
+                          ? window.open(project.githubUrl, '_blank')
+                          : null}
+                      style={{ cursor: project.demoUrl || project.githubUrl ? 'pointer' : 'default' }}
+                    >
+                      <img
+                        src={project.src}
+                        alt={project.title}
+                        style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block', borderRadius: '16px' }}
+                      />
+                      <div style={{
+                        position: 'absolute',
+                        bottom: 0, left: 0, right: 0,
+                        padding: '0.875rem 1rem',
+                        background: 'linear-gradient(to top, rgba(0,0,0,0.72) 0%, transparent 100%)',
+                        borderRadius: '0 0 16px 16px',
+                      }}>
+                        <p style={{ margin: 0, color: '#fff', fontSize: '0.65rem', fontWeight: 500, opacity: 0.75, letterSpacing: '0.06em', textTransform: 'uppercase' }}>{project.category}</p>
+                        <p style={{ margin: '2px 0 0', color: '#fff', fontSize: '0.95rem', fontWeight: 700, fontFamily: 'var(--font-display)' }}>{project.title}</p>
+                      </div>
+                    </Card>
+                  ))}
+                </CardSwap>
+              </div>
+
+              {/* Dive / submerge overlay — fades cards as they drop */}
+              <div aria-hidden="true" style={{
+                position: 'absolute',
+                bottom: 0,
+                left: 0,
+                right: 0,
+                height: `${Math.round(cardSize.height * 0.38)}px`,
+                background: 'linear-gradient(to bottom, transparent 0%, var(--background) 90%)',
+                pointerEvents: 'none',
+                zIndex: 20,
+              }} />
+            </div>
+
+            {/* Next arrow — desktop only */}
+            <button
+              onClick={handleNext}
+              aria-label="Next project"
+              className="cs-nav-btn cs-nav-next"
+            >
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M9 18l6-6-6-6" />
+              </svg>
+            </button>
           </div>
 
-          {/* Dot indicators */}
-          <div style={{ display: 'flex', gap: '8px', alignItems: 'center', paddingBottom: '8px' }}>
+          {/* Dots — always visible, clickable */}
+          <div style={{ display: 'flex', gap: '8px', alignItems: 'center', paddingTop: '4px', paddingBottom: '8px' }}>
             {focusCardsData.slice(0, CARD_COUNT).map((_, i) => (
-              <div
+              <button
                 key={i}
+                aria-label={`Go to project ${i + 1}`}
+                onClick={() => cardSwapRef.current?.goTo(i)}
                 style={{
                   width: activeCard === i ? '22px' : '8px',
                   height: '8px',
                   borderRadius: '999px',
                   background: activeCard === i ? 'var(--brand-primary)' : 'rgba(128,128,128,0.35)',
                   transition: 'width 0.35s cubic-bezier(0.16,1,0.3,1), background 0.35s ease',
+                  border: 'none',
+                  padding: 0,
+                  cursor: 'pointer',
                   flexShrink: 0,
                 }}
               />

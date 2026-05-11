@@ -1,4 +1,4 @@
-import React, { Children, cloneElement, forwardRef, isValidElement, useEffect, useMemo, useRef } from 'react';
+import React, { Children, cloneElement, forwardRef, isValidElement, useEffect, useImperativeHandle, useMemo, useRef } from 'react';
 import PropTypes from 'prop-types';
 import gsap from 'gsap';
 import './CardSwap.css';
@@ -31,7 +31,7 @@ const placeNow = (el, slot, skew) =>
     force3D: true,
   });
 
-const CardSwap = ({
+const CardSwap = forwardRef(({
   width = 440,
   height = 320,
   cardDistance = 55,
@@ -43,7 +43,7 @@ const CardSwap = ({
   skewAmount = 5,
   easing = 'elastic',
   children,
-}) => {
+}, ref) => {
   const config =
     easing === 'elastic'
       ? { ease: 'elastic.out(0.6,0.9)', durDrop: 2, durMove: 2, durReturn: 2, promoteOverlap: 0.9, returnDelay: 0.05 }
@@ -57,7 +57,15 @@ const CardSwap = ({
   const intervalRef = useRef();
   const container = useRef(null);
   const onActiveChangeRef = useRef(onActiveChange);
+  const swapFnRef = useRef(null);
+  const goToFnRef = useRef(null);
+
   useEffect(() => { onActiveChangeRef.current = onActiveChange; }, [onActiveChange]);
+
+  useImperativeHandle(ref, () => ({
+    swap: () => swapFnRef.current?.(),
+    goTo: (idx) => goToFnRef.current?.(idx),
+  }));
 
   useEffect(() => {
     const total = refs.length;
@@ -91,13 +99,41 @@ const CardSwap = ({
       });
     };
 
+    const goTo = (targetIdx) => {
+      const pos = order.current.indexOf(targetIdx);
+      if (pos === 0) return;
+
+      tlRef.current?.kill();
+      clearInterval(intervalRef.current);
+
+      const newOrder = [
+        ...order.current.slice(pos),
+        ...order.current.slice(0, pos),
+      ];
+      order.current = newOrder;
+
+      newOrder.forEach((cardIdx, slotIdx) => {
+        placeNow(refs[cardIdx].current, makeSlot(slotIdx, cardDistance, verticalDistance, total), skewAmount);
+      });
+
+      onActiveChangeRef.current?.(targetIdx);
+      intervalRef.current = window.setInterval(swap, delay);
+    };
+
+    swapFnRef.current = swap;
+    goToFnRef.current = goTo;
+
     swap();
     intervalRef.current = window.setInterval(swap, delay);
 
     if (pauseOnHover) {
       const node = container.current;
       const pause = () => { tlRef.current?.pause(); clearInterval(intervalRef.current); };
-      const resume = () => { tlRef.current?.play(); intervalRef.current = window.setInterval(swap, delay); };
+      const resume = () => {
+        tlRef.current?.play();
+        clearInterval(intervalRef.current);
+        intervalRef.current = window.setInterval(swap, delay);
+      };
       node.addEventListener('mouseenter', pause);
       node.addEventListener('mouseleave', resume);
       return () => {
@@ -126,7 +162,9 @@ const CardSwap = ({
       {rendered}
     </div>
   );
-};
+});
+
+CardSwap.displayName = 'CardSwap';
 
 CardSwap.propTypes = {
   width: PropTypes.number,
