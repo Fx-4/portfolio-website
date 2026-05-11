@@ -23,15 +23,22 @@
   width: 44px;
   height: 44px;
   border-radius: 50%;
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  background: var(--background);        /* opaque — blocks card overflow */
   color: var(--text);
   cursor: pointer;
   align-items: center;
   justify-content: center;
-  transition: background 0.2s ease, transform 0.2s ease, border-color 0.2s ease;
+  transition: background 0.2s ease, transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
   flex-shrink: 0;
-  z-index: 10;
+  position: relative;
+  z-index: 30;                           /* above cs-card z-index (max 5) */
+  box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+}
+
+[data-theme="light"] .cs-nav-btn {
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2px 12px rgba(0,0,0,0.08);
 }
 
 [data-theme="light"] .cs-nav-btn {
@@ -52,16 +59,21 @@
 }
 
 .cs-nav-prev {
-  margin-right: 40px;
+  margin-right: 28px;
 }
 
 .cs-nav-next {
-  margin-left: 40px;
+  margin-left: 28px;
+}
+
+@media (min-width: 768px) {
+  .cs-nav-prev { margin-right: 40px; }
+  .cs-nav-next { margin-left: 40px; }
 }
 
 @media (min-width: 1024px) {
-  .cs-nav-prev { margin-right: 56px; }
-  .cs-nav-next { margin-left: 56px; }
+  .cs-nav-prev { margin-right: 52px; }
+  .cs-nav-next { margin-left: 52px; }
 }
 
 /* Show arrows on tablet+ */

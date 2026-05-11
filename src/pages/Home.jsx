@@ -145,8 +145,8 @@ function Home() {
               </svg>
             </button>
 
-            {/* Card stack + dive overlay — overflow hidden ONLY here */}
-            <div style={{ position: 'relative', overflow: 'hidden' }}>
+            {/* Card stack wrapper */}
+            <div style={{ position: 'relative' }}>
               <div style={{
                 display: 'flex',
                 alignItems: 'flex-end',
