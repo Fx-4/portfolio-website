@@ -106,30 +106,43 @@ const CardSwap = forwardRef(({
       tlRef.current?.kill();
       clearInterval(intervalRef.current);
 
-      const newOrder = [
-        ...order.current.slice(pos),
-        ...order.current.slice(0, pos),
-      ];
-      order.current = newOrder;
+      // Rapid sequential swaps — same motion as normal swap but faster
+      // prevents cards from visually "passing through" each other
+      let remaining = pos;
+      const dur = 0.32;
 
-      // Animate all cards smoothly to their new slots
-      const tl = gsap.timeline();
-      tlRef.current = tl;
-      newOrder.forEach((cardIdx, slotIdx) => {
-        const slot = makeSlot(slotIdx, cardDistance, verticalDistance, total);
-        tl.set(refs[cardIdx].current, { zIndex: slot.zIndex }, 0);
-        tl.to(refs[cardIdx].current, {
-          x: slot.x,
-          y: slot.y,
-          z: slot.z,
-          duration: 0.55,
-          ease: 'power2.out',
-        }, 0);
-      });
-      tl.call(() => {
-        onActiveChangeRef.current?.(targetIdx);
-        intervalRef.current = window.setInterval(swap, delay);
-      });
+      const quickSwap = () => {
+        if (remaining === 0) {
+          intervalRef.current = window.setInterval(swap, delay);
+          return;
+        }
+        remaining--;
+
+        const [front, ...rest] = order.current;
+        const elFront = refs[front].current;
+        const tl = gsap.timeline({ onComplete: quickSwap });
+        tlRef.current = tl;
+
+        tl.to(elFront, { y: '+=420', duration: dur * 0.5, ease: 'power2.in' });
+        tl.addLabel('p', `-=${dur * 0.45}`);
+
+        rest.forEach((idx, i) => {
+          const el = refs[idx].current;
+          const slot = makeSlot(i, cardDistance, verticalDistance, refs.length);
+          tl.set(el, { zIndex: slot.zIndex }, 'p');
+          tl.to(el, { x: slot.x, y: slot.y, z: slot.z, duration: dur * 0.65, ease: 'power2.out' }, `p+=${i * 0.04}`);
+        });
+
+        const backSlot = makeSlot(refs.length - 1, cardDistance, verticalDistance, refs.length);
+        tl.call(() => { gsap.set(elFront, { zIndex: backSlot.zIndex }); }, undefined, 'p');
+        tl.to(elFront, { x: backSlot.x, y: backSlot.y, z: backSlot.z, duration: dur * 0.55, ease: 'power2.out' }, 'p');
+        tl.call(() => {
+          order.current = [...rest, front];
+          onActiveChangeRef.current?.(order.current[0]);
+        });
+      };
+
+      quickSwap();
     };
 
     swapFnRef.current = swap;

@@ -52,11 +52,16 @@
 }
 
 .cs-nav-prev {
-  margin-right: 20px;
+  margin-right: 40px;
 }
 
 .cs-nav-next {
-  margin-left: 20px;
+  margin-left: 40px;
+}
+
+@media (min-width: 1024px) {
+  .cs-nav-prev { margin-right: 56px; }
+  .cs-nav-next { margin-left: 56px; }
 }
 
 /* Show arrows on tablet+ */
