@@ -39,6 +39,7 @@ const CardSwap = ({
   delay = 4000,
   pauseOnHover = true,
   onCardClick,
+  onActiveChange,
   skewAmount = 5,
   easing = 'elastic',
   children,
@@ -55,10 +56,13 @@ const CardSwap = ({
   const tlRef = useRef(null);
   const intervalRef = useRef();
   const container = useRef(null);
+  const onActiveChangeRef = useRef(onActiveChange);
+  useEffect(() => { onActiveChangeRef.current = onActiveChange; }, [onActiveChange]);
 
   useEffect(() => {
     const total = refs.length;
     refs.forEach((r, i) => placeNow(r.current, makeSlot(i, cardDistance, verticalDistance, total), skewAmount));
+    onActiveChangeRef.current?.(order.current[0]);
 
     const swap = () => {
       if (order.current.length < 2) return;
@@ -81,7 +85,10 @@ const CardSwap = ({
       tl.addLabel('return', `promote+=${config.durMove * config.returnDelay}`);
       tl.call(() => { gsap.set(elFront, { zIndex: backSlot.zIndex }); }, undefined, 'return');
       tl.to(elFront, { x: backSlot.x, y: backSlot.y, z: backSlot.z, duration: config.durReturn, ease: config.ease }, 'return');
-      tl.call(() => { order.current = [...rest, front]; });
+      tl.call(() => {
+        order.current = [...rest, front];
+        onActiveChangeRef.current?.(order.current[0]);
+      });
     };
 
     swap();
@@ -129,6 +136,7 @@ CardSwap.propTypes = {
   delay: PropTypes.number,
   pauseOnHover: PropTypes.bool,
   onCardClick: PropTypes.func,
+  onActiveChange: PropTypes.func,
   skewAmount: PropTypes.number,
   easing: PropTypes.oneOf(['elastic', 'power1']),
   children: PropTypes.node,
