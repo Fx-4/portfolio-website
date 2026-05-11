@@ -107,14 +107,20 @@ const CardSwap = forwardRef(({
       clearInterval(intervalRef.current);
 
       const elTarget = refs[targetIdx].current;
-      const restOrder = order.current.filter(idx => idx !== targetIdx);
-      const newOrder = [targetIdx, ...restOrder];
+
+      // Build sequential rest: targetIdx+1, targetIdx+2, ... (wraps around)
+      // This keeps auto-swap going left-to-right after goTo instead of jumping
+      const sequentialRest = [];
+      for (let i = 1; i < total; i++) {
+        sequentialRest.push((targetIdx + i) % total);
+      }
+      const newOrder = [targetIdx, ...sequentialRest];
 
       const tl = gsap.timeline();
       tlRef.current = tl;
 
-      // ── Phase 1 (t=0): other cards shift to new slots simultaneously ──
-      restOrder.forEach((cardIdx, i) => {
+      // ── Phase 1 (t=0): other cards animate to sequential slots ──
+      sequentialRest.forEach((cardIdx, i) => {
         const el = refs[cardIdx].current;
         const newSlot = makeSlot(i + 1, cardDistance, verticalDistance, total);
         tl.set(el, { zIndex: newSlot.zIndex }, 0);
@@ -142,7 +148,7 @@ const CardSwap = forwardRef(({
       }, 0.38);
 
       tl.call(() => {
-        order.current = newOrder;
+        order.current = newOrder;           // sequential from targetIdx onward
         onActiveChangeRef.current?.(targetIdx);
         intervalRef.current = window.setInterval(swap, delay);
       });
