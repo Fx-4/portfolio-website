@@ -74,25 +74,29 @@ const CardSwap = forwardRef(({
 
     const swap = () => {
       if (order.current.length < 2) return;
+      // Kill any in-flight animation first — prevents two timelines
+      // animating the same properties simultaneously (main stutter cause)
+      tlRef.current?.kill();
+
       const [front, ...rest] = order.current;
       const elFront = refs[front].current;
       const tl = gsap.timeline();
       tlRef.current = tl;
 
-      tl.to(elFront, { y: '+=500', duration: config.durDrop, ease: config.ease });
+      tl.to(elFront, { y: '+=500', duration: config.durDrop, ease: config.ease, force3D: true, overwrite: 'auto' });
       tl.addLabel('promote', `-=${config.durDrop * config.promoteOverlap}`);
 
       rest.forEach((idx, i) => {
         const el = refs[idx].current;
         const slot = makeSlot(i, cardDistance, verticalDistance, refs.length);
         tl.set(el, { zIndex: slot.zIndex }, 'promote');
-        tl.to(el, { x: slot.x, y: slot.y, z: slot.z, duration: config.durMove, ease: config.ease }, `promote+=${i * 0.15}`);
+        tl.to(el, { x: slot.x, y: slot.y, z: slot.z, duration: config.durMove, ease: config.ease, force3D: true, overwrite: 'auto' }, `promote+=${i * 0.15}`);
       });
 
       const backSlot = makeSlot(refs.length - 1, cardDistance, verticalDistance, refs.length);
       tl.addLabel('return', `promote+=${config.durMove * config.returnDelay}`);
       tl.call(() => { gsap.set(elFront, { zIndex: backSlot.zIndex }); }, undefined, 'return');
-      tl.to(elFront, { x: backSlot.x, y: backSlot.y, z: backSlot.z, duration: config.durReturn, ease: config.ease }, 'return');
+      tl.to(elFront, { x: backSlot.x, y: backSlot.y, z: backSlot.z, duration: config.durReturn, ease: config.ease, force3D: true, overwrite: 'auto' }, 'return');
       tl.call(() => {
         order.current = [...rest, front];
         onActiveChangeRef.current?.(order.current[0]);
@@ -128,15 +132,23 @@ const CardSwap = forwardRef(({
           x: newSlot.x, y: newSlot.y, z: newSlot.z,
           duration: 0.6,
           ease: 'power2.inOut',
+          force3D: true,
+          overwrite: 'auto',
         }, 0);
       });
 
       // ── Phase 2 (t=0): target card rises UP out of the deck ──
+      // Use absolute coordinates so the rise is consistent even if
+      // a previous animation was interrupted mid-way
+      const startY = Number(gsap.getProperty(elTarget, 'y'));
+      const startZ = Number(gsap.getProperty(elTarget, 'z'));
       tl.to(elTarget, {
-        y: '-=280',
-        z: '+=100',
+        y: startY - 280,
+        z: startZ + 100,
         duration: 0.42,
         ease: 'power2.out',
+        force3D: true,
+        overwrite: 'auto',
       }, 0);
 
       // ── Phase 3: target sweeps to front position and lands ──
@@ -145,6 +157,8 @@ const CardSwap = forwardRef(({
         x: 0, y: 0, z: 0,
         duration: 0.48,
         ease: 'power2.inOut',
+        force3D: true,
+        overwrite: 'auto',
       }, 0.38);
 
       tl.call(() => {
@@ -162,9 +176,15 @@ const CardSwap = forwardRef(({
 
     if (pauseOnHover) {
       const node = container.current;
-      const pause = () => { tlRef.current?.pause(); clearInterval(intervalRef.current); };
+      const pause = () => {
+        tlRef.current?.pause();
+        clearInterval(intervalRef.current);
+      };
       const resume = () => {
-        tlRef.current?.play();
+        // Let the paused animation finish cleanly, then restart the interval.
+        // Don't call .play() — it could race with the new interval if the
+        // animation was near its end when paused.
+        tlRef.current?.kill();
         clearInterval(intervalRef.current);
         intervalRef.current = window.setInterval(swap, delay);
       };
