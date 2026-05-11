@@ -1,32 +1,39 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import PropTypes from 'prop-types';
 import '../styles/ProjectModal.css';
 import { FaGithub, FaExternalLinkAlt, FaTimes, FaCalendarAlt, FaExpand } from 'react-icons/fa';
 
 const ProjectModal = ({ project, isOpen, onClose }) => {
   const [lightboxOpen, setLightboxOpen] = useState(false);
+  const scrollYRef = useRef(0);
 
   useEffect(() => {
     const handleEsc = (e) => {
       if (e.key === 'Escape') {
-        if (lightboxOpen) {
-          setLightboxOpen(false);
-        } else {
-          onClose();
-        }
+        if (lightboxOpen) setLightboxOpen(false);
+        else onClose();
       }
     };
-
-    if (isOpen) {
-      document.addEventListener('keydown', handleEsc);
-      document.body.style.overflow = 'hidden';
-    }
-
-    return () => {
-      document.removeEventListener('keydown', handleEsc);
-      document.body.style.overflow = 'unset';
-    };
+    if (isOpen) document.addEventListener('keydown', handleEsc);
+    return () => document.removeEventListener('keydown', handleEsc);
   }, [isOpen, onClose, lightboxOpen]);
+
+  // iOS-safe scroll lock: position:fixed preserves scroll position
+  useEffect(() => {
+    if (isOpen) {
+      scrollYRef.current = window.scrollY;
+      document.body.style.position = 'fixed';
+      document.body.style.top = `-${scrollYRef.current}px`;
+      document.body.style.width = '100%';
+      document.body.style.overflowY = 'scroll';
+    } else {
+      document.body.style.position = '';
+      document.body.style.top = '';
+      document.body.style.width = '';
+      document.body.style.overflowY = '';
+      window.scrollTo(0, scrollYRef.current);
+    }
+  }, [isOpen]);
 
   // Reset lightbox when modal closes
   useEffect(() => {
