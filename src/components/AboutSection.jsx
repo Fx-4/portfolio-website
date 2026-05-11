@@ -11,7 +11,7 @@ import TooltipCard from './TooltipCard';
 // Import your image - update the path if needed
 import profileImage from '../assets/profile/Profile.png';
 // Import resume PDF
-import resumePDF from '../assets/resume/HAIKAL HIFZHI HELMY-resume (2).pdf';
+import resumePDF from '../assets/resume/HAIKAL HIFZHI HELMY-resume.pdf';
 
 // SplitText Component
 const SplitText = ({
