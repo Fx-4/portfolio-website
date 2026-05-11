@@ -1,4 +1,5 @@
 import React, { Children, cloneElement, forwardRef, isValidElement, useEffect, useMemo, useRef } from 'react';
+import PropTypes from 'prop-types';
 import gsap from 'gsap';
 import './CardSwap.css';
 
@@ -6,6 +7,9 @@ export const Card = forwardRef(({ customClass, ...rest }, ref) => (
   <div ref={ref} {...rest} className={`cs-card ${customClass ?? ''} ${rest.className ?? ''}`.trim()} />
 ));
 Card.displayName = 'Card';
+Card.propTypes = {
+  customClass: PropTypes.string,
+};
 
 const makeSlot = (i, distX, distY, total) => ({
   x: i * distX,
@@ -115,6 +119,19 @@ const CardSwap = ({
       {rendered}
     </div>
   );
+};
+
+CardSwap.propTypes = {
+  width: PropTypes.number,
+  height: PropTypes.number,
+  cardDistance: PropTypes.number,
+  verticalDistance: PropTypes.number,
+  delay: PropTypes.number,
+  pauseOnHover: PropTypes.bool,
+  onCardClick: PropTypes.func,
+  skewAmount: PropTypes.number,
+  easing: PropTypes.oneOf(['elastic', 'power1']),
+  children: PropTypes.node,
 };
 
 export default CardSwap;

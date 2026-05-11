@@ -12,6 +12,7 @@
   margin-left: auto;
   margin-right: auto;
   padding: 0;
+  contain: layout;
 }
 
 @media (min-width: 640px) {
@@ -36,8 +37,10 @@
   height: 400px;
   cursor: pointer;
   background: var(--surface);
+  will-change: transform, opacity;
+  transform: translateZ(0);
+  contain: layout style paint;
   transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1),
-              filter 0.3s ease,
               opacity 0.3s ease,
               box-shadow 0.3s ease;
 }
@@ -47,11 +50,10 @@
   transform: translateY(-4px);
 }
 
-/* Blurred siblings */
+/* Dimmed siblings — blur removed for GPU performance */
 .focus-card.blurred {
-  filter: blur(2px);
-  transform: scale(0.97);
-  opacity: 0.55;
+  transform: translateZ(0) scale(0.97);
+  opacity: 0.45;
 }
 
 /* ---- Image ---- */
@@ -61,7 +63,8 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transition: transform 0.65s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: transform;
+  transition: transform 0.55s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .focus-card:hover .focus-card-image {
@@ -351,10 +354,19 @@
   }
 }
 
-/* Touch devices: disable blur + hover transitions */
+/* Touch devices: disable hover transitions, free GPU memory */
 @media (hover: none) {
+  .focus-card {
+    will-change: auto;
+    contain: layout style;
+  }
+
+  .focus-card-image {
+    will-change: auto;
+  }
+
   .focus-card:hover {
-    transform: none;
+    transform: translateZ(0);
     box-shadow: none;
   }
 
