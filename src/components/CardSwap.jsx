@@ -106,43 +106,46 @@ const CardSwap = forwardRef(({
       tlRef.current?.kill();
       clearInterval(intervalRef.current);
 
-      // Rapid sequential swaps — same motion as normal swap but faster
-      // prevents cards from visually "passing through" each other
-      let remaining = pos;
-      const dur = 0.32;
+      const elTarget = refs[targetIdx].current;
+      const restOrder = order.current.filter(idx => idx !== targetIdx);
+      const newOrder = [targetIdx, ...restOrder];
 
-      const quickSwap = () => {
-        if (remaining === 0) {
-          intervalRef.current = window.setInterval(swap, delay);
-          return;
-        }
-        remaining--;
+      const tl = gsap.timeline();
+      tlRef.current = tl;
 
-        const [front, ...rest] = order.current;
-        const elFront = refs[front].current;
-        const tl = gsap.timeline({ onComplete: quickSwap });
-        tlRef.current = tl;
+      // ── Phase 1 (t=0): other cards shift to new slots simultaneously ──
+      restOrder.forEach((cardIdx, i) => {
+        const el = refs[cardIdx].current;
+        const newSlot = makeSlot(i + 1, cardDistance, verticalDistance, total);
+        tl.set(el, { zIndex: newSlot.zIndex }, 0);
+        tl.to(el, {
+          x: newSlot.x, y: newSlot.y, z: newSlot.z,
+          duration: 0.6,
+          ease: 'power2.inOut',
+        }, 0);
+      });
 
-        tl.to(elFront, { y: '+=420', duration: dur * 0.5, ease: 'power2.in' });
-        tl.addLabel('p', `-=${dur * 0.45}`);
+      // ── Phase 2 (t=0): target card rises UP out of the deck ──
+      tl.to(elTarget, {
+        y: '-=280',
+        z: '+=100',
+        duration: 0.42,
+        ease: 'power2.out',
+      }, 0);
 
-        rest.forEach((idx, i) => {
-          const el = refs[idx].current;
-          const slot = makeSlot(i, cardDistance, verticalDistance, refs.length);
-          tl.set(el, { zIndex: slot.zIndex }, 'p');
-          tl.to(el, { x: slot.x, y: slot.y, z: slot.z, duration: dur * 0.65, ease: 'power2.out' }, `p+=${i * 0.04}`);
-        });
+      // ── Phase 3: target sweeps to front position and lands ──
+      tl.set(elTarget, { zIndex: total }, 0.35);
+      tl.to(elTarget, {
+        x: 0, y: 0, z: 0,
+        duration: 0.48,
+        ease: 'power2.inOut',
+      }, 0.38);
 
-        const backSlot = makeSlot(refs.length - 1, cardDistance, verticalDistance, refs.length);
-        tl.call(() => { gsap.set(elFront, { zIndex: backSlot.zIndex }); }, undefined, 'p');
-        tl.to(elFront, { x: backSlot.x, y: backSlot.y, z: backSlot.z, duration: dur * 0.55, ease: 'power2.out' }, 'p');
-        tl.call(() => {
-          order.current = [...rest, front];
-          onActiveChangeRef.current?.(order.current[0]);
-        });
-      };
-
-      quickSwap();
+      tl.call(() => {
+        order.current = newOrder;
+        onActiveChangeRef.current?.(targetIdx);
+        intervalRef.current = window.setInterval(swap, delay);
+      });
     };
 
     swapFnRef.current = swap;
