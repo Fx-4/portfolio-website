@@ -129,10 +129,10 @@ function Home() {
           <ShinyText text="</> My Project" />
         </div>
         {/* CardSwap — featured projects */}
-        <div style={{ overflow: 'hidden', width: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+        <div style={{ width: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
 
           {/* Stack area: arrows flank the card on desktop, hidden on mobile */}
-          <div style={{ position: 'relative', width: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+          <div style={{ width: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
 
             {/* Prev arrow — desktop only */}
             <button
@@ -145,8 +145,8 @@ function Home() {
               </svg>
             </button>
 
-            {/* Card stack + dive overlay */}
-            <div style={{ position: 'relative' }}>
+            {/* Card stack + dive overlay — overflow hidden ONLY here */}
+            <div style={{ position: 'relative', overflow: 'hidden' }}>
               <div style={{
                 display: 'flex',
                 alignItems: 'flex-end',

@@ -112,12 +112,24 @@ const CardSwap = forwardRef(({
       ];
       order.current = newOrder;
 
+      // Animate all cards smoothly to their new slots
+      const tl = gsap.timeline();
+      tlRef.current = tl;
       newOrder.forEach((cardIdx, slotIdx) => {
-        placeNow(refs[cardIdx].current, makeSlot(slotIdx, cardDistance, verticalDistance, total), skewAmount);
+        const slot = makeSlot(slotIdx, cardDistance, verticalDistance, total);
+        tl.set(refs[cardIdx].current, { zIndex: slot.zIndex }, 0);
+        tl.to(refs[cardIdx].current, {
+          x: slot.x,
+          y: slot.y,
+          z: slot.z,
+          duration: 0.55,
+          ease: 'power2.out',
+        }, 0);
       });
-
-      onActiveChangeRef.current?.(targetIdx);
-      intervalRef.current = window.setInterval(swap, delay);
+      tl.call(() => {
+        onActiveChangeRef.current?.(targetIdx);
+        intervalRef.current = window.setInterval(swap, delay);
+      });
     };
 
     swapFnRef.current = swap;
