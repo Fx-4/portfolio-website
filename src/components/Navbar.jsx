@@ -229,15 +229,6 @@ const Navbar = () => {
 
       {/* Mobile full-screen overlay */}
       <div className={`mobile-menu${menuOpen ? ' open' : ''}`} aria-hidden={!menuOpen}>
-        <button
-          aria-label="Close menu"
-          type="button"
-          className="mobile-menu-close"
-          onClick={() => setMenuOpen(false)}
-        >
-          <X size={24} />
-        </button>
-
         <nav className="mobile-menu-nav">
           <Link
             to="/"

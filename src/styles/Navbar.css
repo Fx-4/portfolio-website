@@ -369,22 +369,6 @@
   transform: translateY(0);
 }
 
-.mobile-menu-close {
-  position: absolute;
-  top: 1.5rem;
-  right: 1.5rem;
-  background: none;
-  border: none;
-  cursor: pointer;
-  color: var(--icon-color);
-  padding: 6px;
-  border-radius: 6px;
-  transition: opacity 0.2s ease;
-}
-
-.mobile-menu-close:hover {
-  opacity: 0.7;
-}
 
 .mobile-menu-nav {
   display: flex;

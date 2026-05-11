@@ -11,7 +11,9 @@
       "WebFetch(domain:www.awwwards.com)",
       "WebFetch(domain:iglo.inc)",
       "WebFetch(domain:purelanding.page)",
-      "WebFetch(domain:www.igloo.inc)"
+      "WebFetch(domain:www.igloo.inc)",
+      "Bash(npm install gsap)",
+      "mcp__Claude_Preview__preview_start"
     ],
     "deny": [],
     "ask": []
