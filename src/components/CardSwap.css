@@ -60,21 +60,21 @@
 }
 
 .cs-nav-prev {
-  margin-right: 28px;
+  margin-right: 48px;
 }
 
 .cs-nav-next {
-  margin-left: 28px;
+  margin-left: 48px;
 }
 
 @media (min-width: 768px) {
-  .cs-nav-prev { margin-right: 40px; }
-  .cs-nav-next { margin-left: 40px; }
+  .cs-nav-prev { margin-right: 64px; }
+  .cs-nav-next { margin-left: 64px; }
 }
 
 @media (min-width: 1024px) {
-  .cs-nav-prev { margin-right: 52px; }
-  .cs-nav-next { margin-left: 52px; }
+  .cs-nav-prev { margin-right: 80px; }
+  .cs-nav-next { margin-left: 80px; }
 }
 
 /* Show arrows on tablet+ */
