@@ -8,7 +8,7 @@ import image6 from '../assets/images/Tenang.in.png';
 import image7 from '../assets/images/IdeaSparkV.png';
 import image8 from '../assets/images/HanziNarrative.png';
 import image9 from '../assets/images/SajiGo.png';
-import image10 from '../assets/images/MentalEnergyCoach.png';
+import image10 from '../assets/images/MentalEnergyCoach.jpeg';
 
 
 export const focusCardsData = [
