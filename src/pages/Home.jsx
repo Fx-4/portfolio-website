@@ -91,7 +91,7 @@ function Home() {
           "GIT","Docker","MySQL","HTML", "CSS",
           "JavaScript","React", "Next.js", "TypeScript",
           "Python","Java","Adobe Illustrator","Canva",
-          "Nagios","phpMyAdmin","React.js",
+          "Nagios","phpMyAdmin","React.js","PHP",
           "PostgreSQL"
         ]} 
         speed={0.8} 

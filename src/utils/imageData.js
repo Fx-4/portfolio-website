@@ -74,9 +74,9 @@ export const focusCardsData = [
     },
     {
       src: image7,
-      title: "Generate Idea",
+      title: "IdeasSpark",
       category: "Web Development",
-      description: "Platform AI-powered untuk menghasilkan ide kreatif dan inovatif. Generate Idea menggunakan teknologi machine learning untuk membantu brainstorming dan pengembangan konsep dengan antarmuka yang intuitif dan responsif.",
+      description: "Platform AI-powered untuk menghasilkan ide kreatif dan inovatif. IdeasSpark menggunakan teknologi machine learning untuk membantu brainstorming dan pengembangan konsep dengan antarmuka yang intuitif dan responsif.",
       technologies: ["React", "JavaScript", "CSS3", "AI Integration", "REST API"],
       date: { month: "November", year: 2024 },
       githubUrl: "https://github.com/Fx-4/Generate-Idea",
@@ -104,7 +104,7 @@ export const focusCardsData = [
     },
     {
       src: image10,
-      title: "Focus Flow",
+      title: "Mental Energy Coach",
       category: "Web Application",
       description: "Aplikasi manajemen beban kognitif berbasis AI untuk meningkatkan produktivitas. Dilengkapi Mental Battery tracker, kalender mingguan drag-and-drop, proyeksi energi mental realtime, AI Task Breakdown, dan Pomodoro Timer.",
       technologies: ["React", "TypeScript", "Tailwind CSS", "shadcn/ui", "AI Integration"],

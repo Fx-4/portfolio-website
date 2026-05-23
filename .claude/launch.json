@@ -4,7 +4,7 @@
     {
       "name": "portfolio-dev",
       "runtimeExecutable": "node",
-      "runtimeArgs": ["node_modules/vite/bin/vite.js", "--port", "5173"],
+      "runtimeArgs": ["D:/uii/belajar mandiri/website-portofolio/node_modules/vite/bin/vite.js", "--port", "5173"],
       "port": 5173
     }
   ]
