@@ -1,14 +1,14 @@
 // src/data/imageData.js
 import image1 from '../assets/images/Smartlearn.png';
-import image2 from '../assets/images/HistoricalJogja.png';
+import image2 from '../assets/images/Historical-Jogja.png';
 import image3 from '../assets/images/SecondLife.png';
 import image4 from '../assets/images/Nutrikids.png';
 import image5 from '../assets/images/veriflair.png';
 import image6 from '../assets/images/Tenang.in.png';
-import image7 from '../assets/images/IdeaSparkV.png';
+import image7 from '../assets/images/IdeasSpark.png';
 import image8 from '../assets/images/HanziNarrative.png';
 import image9 from '../assets/images/SajiGo.png';
-import image10 from '../assets/images/MentalEnergyCoach.jpeg';
+import image10 from '../assets/images/Mental-Energy-Coach.png';
 
 
 export const focusCardsData = [
@@ -74,9 +74,9 @@ export const focusCardsData = [
     },
     {
       src: image7,
-      title: "IdeasSpark",
+      title: "Generate Idea",
       category: "Web Development",
-      description: "Platform AI-powered untuk menghasilkan ide kreatif dan inovatif. IdeasSpark menggunakan teknologi machine learning untuk membantu brainstorming dan pengembangan konsep dengan antarmuka yang intuitif dan responsif.",
+      description: "Platform AI-powered untuk menghasilkan ide kreatif dan inovatif. Generate Idea menggunakan teknologi machine learning untuk membantu brainstorming dan pengembangan konsep dengan antarmuka yang intuitif dan responsif.",
       technologies: ["React", "JavaScript", "CSS3", "AI Integration", "REST API"],
       date: { month: "November", year: 2024 },
       githubUrl: "https://github.com/Fx-4/Generate-Idea",
@@ -104,7 +104,7 @@ export const focusCardsData = [
     },
     {
       src: image10,
-      title: "Mental Energy Coach",
+      title: "Focus Flow",
       category: "Web Application",
       description: "Aplikasi manajemen beban kognitif berbasis AI untuk meningkatkan produktivitas. Dilengkapi Mental Battery tracker, kalender mingguan drag-and-drop, proyeksi energi mental realtime, AI Task Breakdown, dan Pomodoro Timer.",
       technologies: ["React", "TypeScript", "Tailwind CSS", "shadcn/ui", "AI Integration"],
