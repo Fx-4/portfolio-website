@@ -1,9 +1,9 @@
 // src/data/imageData.js
-import image1 from '../assets/images/Smartlearn.png';
+import image1 from '../assets/images/SmartLearn.png';
 import image2 from '../assets/images/Historical-Jogja.png';
 import image3 from '../assets/images/SecondLife.png';
 import image4 from '../assets/images/Nutrikids.png';
-import image5 from '../assets/images/veriflair.png';
+import image5 from '../assets/images/VeriFlair.png';
 import image6 from '../assets/images/Tenang.in.png';
 import image7 from '../assets/images/IdeasSpark.png';
 import image8 from '../assets/images/HanziNarrative.png';
